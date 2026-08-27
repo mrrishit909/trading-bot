@@ -18,11 +18,17 @@ Every command starts with `./venv/bin/python` (the project's own Python).
 Wakes every 30 min, trades when the market is open, sleeps when closed.
 Ctrl+C to stop. Add `--no-ai` to skip the AI and save pennies.
 
-**Window 2 — watch it:**
+**Window 2 — the website:**
 ```
 ./venv/bin/python dashboard.py
 ```
-Then open http://localhost:8777 in your browser.
+Then open http://localhost:8777 in your browser. Pages:
+- **Overview** — account value, chart, today's picks, holdings
+- **Holdings** — what you own, with profit/loss
+- **Decisions** — every BUY/SELL/WAIT + the reasoning (filter by strategy)
+- **Trades** — every trade attempt
+- **Scoreboard** — robot vs AI, graded against what prices actually did
+- **Universe** — all ~70 stocks and the current scan signal
 
 ## One-off commands
 
