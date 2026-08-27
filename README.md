@@ -13,7 +13,18 @@ Small steps. One at a time. Nothing scary.
 6. ✅ A simple robot that follows one rule — `robot.py`, `step6_robot.py`
 7. ✅ A diary of every move — `diary.py`, `step7_robot.py`, `show_diary.py`
 8. ✅ Run by itself + a webpage — `auto_run.py`, `dashboard.py`
-9. 🧠 The AI brain (next)
+9. ✅ The AI brain (advisory only) — `ai_brain.py`, `step9_ai_advisor.py`
+
+## The AI brain
+
+`step9_ai_advisor.py` asks Claude what it would do with each stock (reading
+prices + the average signal + recent news) and writes its opinion to the diary.
+It does NOT trade — it just gives opinions we can score later.
+Costs about a third of a cent per run. Needs `ANTHROPIC_API_KEY` in `.env`.
+
+```
+./venv/bin/python step9_ai_advisor.py
+```
 
 ## Everyday use
 
