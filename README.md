@@ -26,6 +26,20 @@ Costs about a third of a cent per run. Needs `ANTHROPIC_API_KEY` in `.env`.
 ./venv/bin/python step9_ai_advisor.py
 ```
 
+`auto_run.py` runs the dumb robot AND the AI advisor every cycle, so both
+pile up in the diary.
+
+## Grading them: compare.py
+
+After a few weeks of data, this lines up every decision against what the
+price actually did afterwards and tells you if either strategy beat just
+staying invested.
+
+```
+./venv/bin/python compare.py        (judge 3 trading days forward)
+./venv/bin/python compare.py 5      (judge 5 trading days forward)
+```
+
 ## Everyday use
 
 Open two terminal windows:
