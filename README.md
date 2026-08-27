@@ -5,15 +5,34 @@ Small steps. One at a time. Nothing scary.
 
 ## The steps
 
-1. 🔌 Say hi to the pretend-money account  ← we are here
-2. 👀 Look up a stock price
-3. 🛒 Buy 1 pretend share
-4. 💰 Sell it back
-5. 🛡️ Add "don't be dumb" safety rules
-6. 🤖 A simple robot that follows one rule
-7. 📓 A diary of every move
-8. 📊 A webpage to watch it
-9. 🧠 The AI brain (much later)
+1. ✅ Say hi to the pretend-money account — `step1_say_hi.py`
+2. ✅ Look up a stock price — `step2_look.py`
+3. ✅ Buy 1 pretend share — `step3_buy.py`
+4. ✅ Sell it back — `step4_sell.py`
+5. ✅ "Don't be dumb" safety rules — `safety.py`, `settings.py`, `step5_safety_demo.py`
+6. ✅ A simple robot that follows one rule — `robot.py`, `step6_robot.py`
+7. ✅ A diary of every move — `diary.py`, `step7_robot.py`, `show_diary.py`
+8. ✅ Run by itself + a webpage — `auto_run.py`, `dashboard.py`
+9. 🧠 The AI brain (next)
+
+## Everyday use
+
+Open two terminal windows:
+
+```
+# window 1 — let the robot run itself (only trades when market is open)
+cd ~/trading-robot && ./venv/bin/python auto_run.py
+
+# window 2 — watch it in your browser
+cd ~/trading-robot && ./venv/bin/python dashboard.py
+# then open http://localhost:8777
+```
+
+Check the diary anytime:
+```
+./venv/bin/python show_diary.py
+./venv/bin/python show_diary.py trades
+```
 
 ## First-time setup
 
