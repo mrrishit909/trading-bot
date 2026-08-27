@@ -21,6 +21,7 @@ from datetime import datetime, timedelta, timezone
 
 FAST_DAYS = 5
 SLOW_DAYS = 20
+STRATEGY_NAME = "sma_crossover_5_20_v1"
 
 
 def _average(numbers):
@@ -44,13 +45,25 @@ def decide(data_client, symbol, do_we_own_it):
 
     closing_prices = [bar.close for bar in bars]
 
+    # Everything we looked at, saved so a future version of us can replay this exact decision.
+    context = {
+        "strategy": STRATEGY_NAME,
+        "fast_days": FAST_DAYS,
+        "slow_days": SLOW_DAYS,
+        "closes_used": [round(p, 4) for p in closing_prices],
+        "bars_available": len(closing_prices),
+    }
+
     if len(closing_prices) < SLOW_DAYS:
         return {"action": "WAIT", "reason": f"Not enough price history yet "
-                f"({len(closing_prices)} days, need {SLOW_DAYS}).", "fast": None, "slow": None}
+                f"({len(closing_prices)} days, need {SLOW_DAYS}).",
+                "fast": None, "slow": None, "context": context}
 
     fast_line = _average(closing_prices[-FAST_DAYS:])
     slow_line = _average(closing_prices[-SLOW_DAYS:])
     trending_up = fast_line > slow_line
+    context["fast_avg"] = round(fast_line, 4)
+    context["slow_avg"] = round(slow_line, 4)
 
     if trending_up and not do_we_own_it:
         action = "BUY"
@@ -67,4 +80,5 @@ def decide(data_client, symbol, do_we_own_it):
         action = "WAIT"
         reason = f"{symbol} trending down and we don't own it. Stay in cash. Do nothing."
 
-    return {"action": action, "reason": reason, "fast": fast_line, "slow": slow_line}
+    return {"action": action, "reason": reason, "fast": fast_line, "slow": slow_line,
+            "context": context}
