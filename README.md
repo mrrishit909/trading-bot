@@ -14,6 +14,22 @@ Small steps. One at a time. Nothing scary.
 7. ✅ A diary of every move — `diary.py`, `step7_robot.py`, `show_diary.py`
 8. ✅ Run by itself + a webpage — `auto_run.py`, `dashboard.py`
 9. ✅ The AI brain (advisory only) — `ai_brain.py`, `step9_ai_advisor.py`
+10. ✅ Scan a big list, trade the worthy ones — `universe.py`, `scanner.py`, `step10_scan_and_trade.py`
+
+## Step 10: scan the whole big list
+
+`universe.py` holds ~70 large, liquid US stocks. Each run:
+- checks everything we own — sells anything no longer trending up
+- scans all ~70 — picks the top few trending up (fresh crossovers rank first)
+- buys the picks, up to `MAX_STOCKS_HELD` (5) positions at once
+
+```
+./venv/bin/python step10_scan_and_trade.py            (really paper-trades)
+./venv/bin/python step10_scan_and_trade.py --pretend   (talk only)
+```
+
+`auto_run.py` now runs `step10_scan_and_trade.py` + `step9_ai_advisor.py` each cycle.
+The AI advisor looks at what we own plus the scanner's shortlist.
 
 ## The AI brain
 

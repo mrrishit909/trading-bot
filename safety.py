@@ -62,10 +62,16 @@ def can_i_trade(trading_client, symbol, shares, price_per_share, side):
     if side == "sell":
         return (True, "ok")
 
-    # RULE 1: is this stock allowed?
+    # RULE 1: is this stock on the big list?
     if symbol not in settings.ALLOWED_STOCKS:
-        return (False, f"NO. {symbol} is not on the allowed list "
-                       f"({', '.join(settings.ALLOWED_STOCKS)}).")
+        return (False, f"NO. {symbol} is not on the big list of "
+                       f"{len(settings.ALLOWED_STOCKS)} allowed stocks.")
+
+    # RULE 1b: are we already holding as many different stocks as allowed?
+    held_symbols = {p.symbol for p in trading_client.get_all_positions()}
+    if symbol not in held_symbols and len(held_symbols) >= settings.MAX_STOCKS_HELD:
+        return (False, f"NO. We already hold {len(held_symbols)} different stocks "
+                       f"(limit is {settings.MAX_STOCKS_HELD}). Sell something first.")
 
     # RULE 2: would we have too much money in this one stock?
     #   current value we already hold + what we're about to add
