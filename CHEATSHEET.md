@@ -19,9 +19,13 @@ Every command starts with `./venv/bin/python` (the project's own Python).
 ./service.sh ai-logs    watch the AI advisor's log live
 ```
 
-When ON: the robot runs every 30 min, the AI advisor twice on weekdays.
-It only trades while the market is open. **Your Mac must be awake** — if it's
-asleep or shut down, nothing runs until it wakes up.
+When ON, every 30 minutes:
+- **crypto robot runs always** (crypto trades 24/7)
+- **stock + options robots run only when the US market is open**
+- AI advisor runs twice on weekdays
+
+**Your Mac must be awake** — if it's asleep or shut down, nothing runs until
+it wakes up.
 
 ## Watching it — the website
 
@@ -33,6 +37,7 @@ Then open http://localhost:8777 in your browser. Pages:
 - **Overview** — account value, chart, today's picks, holdings
 - **Holdings** — stocks you own, with profit/loss
 - **Options** — open call/put bets, live + realized P/L, recent option decisions
+- **Crypto** — coins held (24/7), profit/loss, recent crypto decisions
 - **Decisions** — every BUY/SELL/WAIT + the reasoning (filter by strategy)
 - **Trades** — every trade attempt
 - **Scoreboard** — robot vs AI, graded against what prices actually did
@@ -48,6 +53,8 @@ Then open http://localhost:8777 in your browser. Pages:
 | Run stock robot, no trades, just talk | `./venv/bin/python step10_scan_and_trade.py --pretend` |
 | Run options robot once (calls/puts) | `./venv/bin/python step11_options.py` |
 | Run options robot, just talk | `./venv/bin/python step11_options.py --pretend` |
+| Run crypto robot once (24/7) | `./venv/bin/python step12_crypto.py` |
+| Run crypto robot, just talk | `./venv/bin/python step12_crypto.py --pretend` |
 | AI opinions | `./venv/bin/python step9_ai_advisor.py` |
 | See the diary summary | `./venv/bin/python show_diary.py` |
 | See every trade / decision / run | `./venv/bin/python show_diary.py trades` (or `decisions`, `runs`) |
