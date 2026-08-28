@@ -17,12 +17,41 @@ DOLLARS_PER_BUY = 1000
 # Never own more than this many different stocks at once.
 MAX_STOCKS_HELD = 5
 
-# Never make more than this many trades in one day.
-# (With up to 5 stocks to buy and 5 to sell, 10 gives a little headroom.)
-MAX_TRADES_PER_DAY = 10
+# Never make more than this many trades in one day (stocks AND options together).
+# Up to 5 stock buys + 5 stock sells + 3 option buys + 3 option sells = 16 worst case.
+MAX_TRADES_PER_DAY = 16
 
 # If we lose more than this much pretend money in one day, STOP everything.
 DAILY_LOSS_LIMIT = 500
 
 # When scanning the big list, how many top candidates to look at closely.
 SHORTLIST_SIZE = 8
+
+
+# ============ OPTIONS (paper only, and much more careful) ============
+# The options robot ONLY ever BUYS calls and puts. It never sells options.
+# That means the most it can ever lose on one bet is what it paid.
+
+TRADE_OPTIONS = True
+
+# Most we'll pay for one option bet (1 contract = the option price x 100).
+MAX_DOLLARS_PER_OPTION = 1000
+
+# How many option bets open at once.
+MAX_OPTION_POSITIONS = 3
+
+# Which expirations to consider (days from today).
+OPTION_MIN_DAYS = 20
+OPTION_MAX_DAYS = 45
+
+# How far out-of-the-money to buy (percent). Calls this far above the stock
+# price, puts this far below. Slightly OTM = cheaper bet, clearer direction.
+OPTION_STRIKE_OFFSET_PCT = 2.0
+
+# Skip contracts fewer people are trading than this (hard to get out of).
+OPTION_MIN_OPEN_INTEREST = 100
+
+# Auto-exit rules for an option we hold.
+OPTION_TAKE_PROFIT_PCT = 50     # sell to close once up this much
+OPTION_STOP_LOSS_PCT = 50       # sell to close once down this much
+OPTION_CLOSE_BEFORE_EXPIRY_DAYS = 5   # always close if expiry is this close

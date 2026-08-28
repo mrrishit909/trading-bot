@@ -78,8 +78,9 @@ def cls_for(v):
 
 
 # ---- page shell ------------------------------------------------------
-NAV = [("/", "Overview"), ("/holdings", "Holdings"), ("/decisions", "Decisions"),
-       ("/trades", "Trades"), ("/scoreboard", "Scoreboard"), ("/universe", "Universe")]
+NAV = [("/", "Overview"), ("/holdings", "Holdings"), ("/options", "Options"),
+       ("/decisions", "Decisions"), ("/trades", "Trades"),
+       ("/scoreboard", "Scoreboard"), ("/universe", "Universe")]
 
 def shell(path, title, body):
     links = "".join(
@@ -230,6 +231,68 @@ def page_holdings():
       {rows}</table>"""
 
 
+def page_options():
+    from options_engine import readable, days_to_expiry
+    positions = [p for p in get_positions()
+                 if str(getattr(p, "asset_class", "")).endswith("us_option")]
+
+    if positions:
+        rows = ""
+        for p in positions:
+            pl = float(p.unrealized_pl)
+            plpc = float(p.unrealized_plpc) * 100
+            rows += (f"<tr><td>{readable(p.symbol)}</td><td>{p.qty}</td>"
+                     f"<td>{money(float(p.avg_entry_price)*100)}</td>"
+                     f"<td>{money(float(p.current_price)*100)}</td>"
+                     f"<td>{money(p.market_value)}</td>"
+                     f"<td>{days_to_expiry(p.symbol)}</td>"
+                     f"<td class='{cls_for(pl)}'>{money(pl)} ({pct(plpc)})</td></tr>")
+        held_html = (f"<table><tr><th>Bet</th><th>Contracts</th><th>Paid (each)</th>"
+                     f"<th>Now (each)</th><th>Value</th><th>Days left</th><th>Profit/Loss</th></tr>{rows}</table>")
+    else:
+        held_html = "<p class='muted'>No option bets open right now.</p>"
+
+    db = diary.get_db()
+    # realized P/L: pair each SELL with the earlier BUY on the same contract
+    trades = db.execute("""
+        SELECT t.side, t.fill_price, t.shares, t.note FROM trades t JOIN runs r ON t.run_id=r.run_id
+        WHERE r.strategy='options_long_v1' AND t.status='filled' ORDER BY t.trade_id
+    """).fetchall()
+    paid, got = {}, []
+    for t in trades:
+        contract = (t["note"] or "").split(" | ")[0]
+        amt = (t["fill_price"] or 0) * 100 * (t["shares"] or 0)
+        if t["side"] == "buy":
+            paid[contract] = paid.get(contract, 0) + amt
+        else:
+            got.append((contract, amt - paid.get(contract, 0)))
+    realized = sum(g for _, g in got)
+    realized_html = ""
+    if got:
+        realized_html = "<h2>Closed bets</h2><table><tr><th>Contract</th><th>Result</th></tr>" + "".join(
+            f"<tr><td>{html.escape(c)}</td><td class='{cls_for(g)}'>{money(g)}</td></tr>" for c, g in got
+        ) + f"<tr><td><b>Total</b></td><td class='{cls_for(realized)}'><b>{money(realized)}</b></td></tr></table>"
+
+    recent = db.execute("""
+        SELECT d.ts_utc, d.symbol, d.action, d.reason FROM decisions d JOIN runs r ON d.run_id=r.run_id
+        WHERE r.strategy='options_long_v1' ORDER BY d.decision_id DESC LIMIT 30
+    """).fetchall()
+    dec_html = "".join(
+        f"<tr><td>{r['ts_utc'][:16]}</td><td>{r['symbol']}</td>"
+        f"<td><span class='badge {r['action'].lower()}'>{r['action']}</span></td>"
+        f"<td class='why'>{html.escape(r['reason'])}</td></tr>" for r in recent
+    ) or "<tr><td colspan='4' class='muted'>Nothing yet.</td></tr>"
+
+    return f"""<p class="muted">The options robot only BUYS calls and puts — most it can lose on a bet is what it paid.
+      Limits: max {settings.MAX_OPTION_POSITIONS} bets, ${settings.MAX_DOLLARS_PER_OPTION} each,
+      auto-exit at +{settings.OPTION_TAKE_PROFIT_PCT}% / -{settings.OPTION_STOP_LOSS_PCT}%.</p>
+      <h2>Open option bets</h2>
+      {held_html}
+      {realized_html}
+      <h2>Recent option decisions</h2>
+      <table><tr><th>When (UTC)</th><th>Stock</th><th>Call</th><th>Reason</th></tr>{dec_html}</table>"""
+
+
 def page_decisions(qs):
     db = diary.get_db()
     strat = qs.get("strategy", [None])[0]
@@ -339,6 +402,7 @@ def page_universe():
 ROUTES = {
     "/": lambda qs: page_overview(),
     "/holdings": lambda qs: page_holdings(),
+    "/options": lambda qs: page_options(),
     "/decisions": lambda qs: page_decisions(qs),
     "/trades": lambda qs: page_trades(),
     "/scoreboard": lambda qs: page_scoreboard(),

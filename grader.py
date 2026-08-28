@@ -21,6 +21,7 @@ def grade_all(data_client, db, lookahead=3):
     rows = db.execute("""
         SELECT d.symbol, d.action, d.owned_before, d.ref_price, d.ts_utc, r.strategy AS strategy
         FROM decisions d JOIN runs r ON d.run_id = r.run_id
+        WHERE r.strategy != 'options_long_v1'   -- options P/L is tracked on the Options page
         ORDER BY d.decision_id
     """).fetchall()
     if not rows:
