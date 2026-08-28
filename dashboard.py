@@ -79,7 +79,7 @@ def cls_for(v):
 
 # ---- page shell ------------------------------------------------------
 NAV = [("/", "Overview"), ("/holdings", "Holdings"), ("/options", "Options"),
-       ("/decisions", "Decisions"), ("/trades", "Trades"),
+       ("/crypto", "Crypto"), ("/decisions", "Decisions"), ("/trades", "Trades"),
        ("/scoreboard", "Scoreboard"), ("/universe", "Universe")]
 
 def shell(path, title, body):
@@ -134,9 +134,21 @@ def get_account():
 def get_positions():
     return cached("positions", 20, lambda: list(trading.get_all_positions()))
 
+def _klass(p):
+    return str(getattr(p, "asset_class", "")).lower()
+
+def stock_positions():
+    return [p for p in get_positions() if _klass(p).endswith("us_equity")]
+
+def option_positions():
+    return [p for p in get_positions() if _klass(p).endswith("us_option")]
+
+def crypto_positions():
+    return [p for p in get_positions() if _klass(p).endswith("crypto")]
+
 def get_scan():
     def make():
-        held = {p.symbol for p in get_positions()}
+        held = {p.symbol for p in stock_positions()}
         a = analyze_all(data, list(settings.ALLOWED_STOCKS) + list(held))
         short = rank_buys(a, exclude=held)
         return a, short, held
@@ -175,8 +187,8 @@ def page_overview():
     a = get_account()
     equity, cash = float(a.equity), float(a.cash)
     day = equity - float(a.last_equity)
-    positions = get_positions()
-    total_pl = sum(float(p.unrealized_pl) for p in positions)
+    stocks, opts, coins = stock_positions(), option_positions(), crypto_positions()
+    total_pl = sum(float(p.unrealized_pl) for p in get_positions())
 
     db = diary.get_db()
     runs = db.execute("SELECT ts_utc, equity_after FROM runs WHERE equity_after IS NOT NULL ORDER BY run_id").fetchall()
@@ -192,8 +204,8 @@ def page_overview():
         f"<tr><td>{p.symbol}</td><td>{p.qty}</td><td>{money(p.market_value)}</td>"
         f"<td class='{cls_for(p.unrealized_pl)}'>{money(p.unrealized_pl)} "
         f"({pct(float(p.unrealized_plpc)*100)})</td></tr>"
-        for p in positions
-    ) or "<tr><td colspan='4' class='muted'>Holding nothing — all cash.</td></tr>"
+        for p in stocks
+    ) or "<tr><td colspan='4' class='muted'>No stocks held.</td></tr>"
 
     return f"""
       <div class="cards">
@@ -203,22 +215,23 @@ def page_overview():
           <div class="big {cls_for(day)}">{money(day)}</div></div>
         <div class="card"><div class="label">Open profit/loss</div>
           <div class="big {cls_for(total_pl)}">{money(total_pl)}</div></div>
-        <div class="card"><div class="label">Stocks held</div>
-          <div class="big">{len(positions)} / {settings.MAX_STOCKS_HELD}</div></div>
+        <div class="card"><div class="label">Stocks</div><div class="big">{len(stocks)} / {settings.MAX_STOCKS_HELD}</div></div>
+        <div class="card"><div class="label">Options</div><div class="big">{len(opts)} / {settings.MAX_OPTION_POSITIONS}</div></div>
+        <div class="card"><div class="label">Coins</div><div class="big">{len(coins)} / {settings.MAX_CRYPTO_HELD}</div></div>
       </div>
       <h2>Account value over runs</h2>
       {chart}
-      <h2>Scanner's current picks</h2>
+      <h2>Scanner's current stock picks</h2>
       <p>{picks}</p>
-      <h2>Holding now</h2>
+      <h2>Stocks held now</h2>
       <table><tr><th>Stock</th><th>Shares</th><th>Value</th><th>Profit/Loss</th></tr>{holdings_rows}</table>
     """
 
 
 def page_holdings():
-    positions = get_positions()
+    positions = stock_positions()
     if not positions:
-        return "<p class='muted'>Holding nothing right now — all cash.</p>"
+        return "<p class='muted'>No stocks held right now. (See the Options and Crypto pages too.)</p>"
     rows = ""
     for p in positions:
         pl = float(p.unrealized_pl)
@@ -231,10 +244,45 @@ def page_holdings():
       {rows}</table>"""
 
 
+def page_crypto():
+    coins = crypto_positions()
+    if coins:
+        rows = ""
+        for p in coins:
+            pl = float(p.unrealized_pl)
+            rows += (f"<tr><td>{p.symbol}</td><td>{float(p.qty):g}</td>"
+                     f"<td>{money(p.avg_entry_price)}</td><td>{money(p.current_price)}</td>"
+                     f"<td>{money(p.market_value)}</td>"
+                     f"<td class='{cls_for(pl)}'>{money(pl)} ({pct(float(p.unrealized_plpc)*100)})</td></tr>")
+        held_html = (f"<table><tr><th>Coin</th><th>Amount</th><th>Bought at</th><th>Price now</th>"
+                     f"<th>Value</th><th>Profit/Loss</th></tr>{rows}</table>")
+    else:
+        held_html = "<p class='muted'>No coins held right now.</p>"
+
+    db = diary.get_db()
+    recent = db.execute("""
+        SELECT d.ts_utc, d.symbol, d.action, d.reason FROM decisions d JOIN runs r ON d.run_id=r.run_id
+        WHERE r.strategy='crypto_sma_v1' ORDER BY d.decision_id DESC LIMIT 30
+    """).fetchall()
+    dec_html = "".join(
+        f"<tr><td>{r['ts_utc'][:16]}</td><td>{r['symbol']}</td>"
+        f"<td><span class='badge {r['action'].lower()}'>{r['action']}</span></td>"
+        f"<td class='why'>{html.escape(r['reason'])}</td></tr>" for r in recent
+    ) or "<tr><td colspan='4' class='muted'>Nothing yet.</td></tr>"
+
+    return f"""<p class="muted">Crypto trades 24/7 — this part never stops. Limits: max {settings.MAX_CRYPTO_HELD} coins,
+      ${settings.MAX_DOLLARS_PER_CRYPTO} each, {settings.MAX_CRYPTO_TRADES_PER_DAY} trades/day.
+      Signal: 3-day vs 10-day average.</p>
+      <h2>Coins held</h2>
+      {held_html}
+      <h2>Recent crypto decisions</h2>
+      <table><tr><th>When (UTC)</th><th>Coin</th><th>Call</th><th>Reason</th></tr>{dec_html}</table>"""
+
+
 def page_options():
     from options_engine import readable, days_to_expiry
     positions = [p for p in get_positions()
-                 if str(getattr(p, "asset_class", "")).endswith("us_option")]
+                 if str(getattr(p, "asset_class", "")).lower().endswith("us_option")]
 
     if positions:
         rows = ""
@@ -403,6 +451,7 @@ ROUTES = {
     "/": lambda qs: page_overview(),
     "/holdings": lambda qs: page_holdings(),
     "/options": lambda qs: page_options(),
+    "/crypto": lambda qs: page_crypto(),
     "/decisions": lambda qs: page_decisions(qs),
     "/trades": lambda qs: page_trades(),
     "/scoreboard": lambda qs: page_scoreboard(),

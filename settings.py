@@ -4,6 +4,7 @@ robot braver or more careful. Start SMALL and CAREFUL.
 """
 
 from universe import UNIVERSE
+from crypto_universe import CRYPTO_UNIVERSE   # noqa: F401  (used by the crypto robot)
 
 # The robot may ONLY trade stocks on this list (the "big list" in universe.py).
 ALLOWED_STOCKS = UNIVERSE
@@ -55,3 +56,22 @@ OPTION_MIN_OPEN_INTEREST = 100
 OPTION_TAKE_PROFIT_PCT = 50     # sell to close once up this much
 OPTION_STOP_LOSS_PCT = 50       # sell to close once down this much
 OPTION_CLOSE_BEFORE_EXPIRY_DAYS = 5   # always close if expiry is this close
+
+
+# ============ CRYPTO (paper only, trades 24/7) ============
+# Crypto never closes, so this part of the robot never has to stop.
+# Crypto is jumpier than stocks, so the money limits are smaller.
+
+TRADE_CRYPTO = True
+
+# How many dollars to spend each time it buys a coin.
+CRYPTO_DOLLARS_PER_BUY = 200
+
+# Never own more than this many different coins at once.
+MAX_CRYPTO_HELD = 4
+
+# Never put more than this many dollars into one coin.
+MAX_DOLLARS_PER_CRYPTO = 400
+
+# Never make more than this many crypto trades in one day.
+MAX_CRYPTO_TRADES_PER_DAY = 8

@@ -54,7 +54,7 @@ if not just_talking and not trading.get_clock().is_open:
 
 def option_positions():
     return [p for p in trading.get_all_positions()
-            if str(getattr(p, "asset_class", "")).endswith("us_option")]
+            if str(getattr(p, "asset_class", "")).lower().endswith("us_option")]
 
 
 def option_bid(symbol):

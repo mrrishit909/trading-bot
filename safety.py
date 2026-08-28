@@ -30,6 +30,18 @@ def _trades_made_today(trading_client):
     return len(orders)
 
 
+def _crypto_trades_made_today(trading_client):
+    """Count crypto orders placed since midnight UTC (crypto symbols contain a '/')."""
+    from alpaca.trading.requests import GetOrdersRequest
+    from alpaca.trading.enums import QueryOrderStatus
+
+    today_start = datetime.now(timezone.utc).replace(hour=0, minute=0, second=0, microsecond=0)
+    orders = trading_client.get_orders(GetOrdersRequest(
+        status=QueryOrderStatus.ALL, after=today_start, limit=500,
+    ))
+    return sum(1 for o in orders if "/" in str(o.symbol))
+
+
 def _money_lost_today(trading_client):
     """How much the whole account is down today. Positive number = we lost that much."""
     account = trading_client.get_account()
@@ -70,7 +82,7 @@ def can_i_trade(trading_client, symbol, shares, price_per_share, side):
     # RULE 1b: are we already holding as many different stocks as allowed?
     #   (only count real stock positions, not option positions)
     held_symbols = {p.symbol for p in trading_client.get_all_positions()
-                    if str(getattr(p, "asset_class", "")).endswith("us_equity")}
+                    if str(getattr(p, "asset_class", "")).lower().endswith("us_equity")}
     if symbol not in held_symbols and len(held_symbols) >= settings.MAX_STOCKS_HELD:
         return (False, f"NO. We already hold {len(held_symbols)} different stocks "
                        f"(limit is {settings.MAX_STOCKS_HELD}). Sell something first.")
@@ -117,7 +129,7 @@ def can_i_trade_option(trading_client, occ_symbol, underlying, contracts, cost_p
     # How many option bets do we already have open?
     from options_engine import parse_occ
     option_positions = [p for p in trading_client.get_all_positions()
-                        if str(getattr(p, "asset_class", "")).endswith("us_option")]
+                        if str(getattr(p, "asset_class", "")).lower().endswith("us_option")]
     held_occ = {p.symbol for p in option_positions}
     open_underlyings = {info["underlying"]
                         for p in option_positions
@@ -135,5 +147,49 @@ def can_i_trade_option(trading_client, occ_symbol, underlying, contracts, cost_p
     if total_cost > settings.MAX_DOLLARS_PER_OPTION:
         return (False, f"NO. That bet costs ${total_cost:,.2f} "
                        f"(limit ${settings.MAX_DOLLARS_PER_OPTION} per option).")
+
+    return (True, "ok")
+
+
+def can_i_trade_crypto(trading_client, symbol, dollars, side):
+    """
+    The bouncer for CRYPTO. symbol like 'BTC/USD'. side is 'buy' or 'sell'.
+    Returns (True, "ok") or (False, "reason").
+    """
+    lost = _money_lost_today(trading_client)
+    if lost >= settings.DAILY_LOSS_LIMIT:
+        return (False, f"NO. We've lost ${lost:,.2f} today (limit ${settings.DAILY_LOSS_LIMIT}). "
+                       f"Done for the day.")
+
+    count = _crypto_trades_made_today(trading_client)
+    if count >= settings.MAX_CRYPTO_TRADES_PER_DAY:
+        return (False, f"NO. Already made {count} crypto trades today "
+                       f"(limit {settings.MAX_CRYPTO_TRADES_PER_DAY}).")
+
+    if side == "sell":
+        return (True, "ok")
+
+    if symbol not in settings.CRYPTO_UNIVERSE:
+        return (False, f"NO. {symbol} is not on the crypto list.")
+
+    # normalise position symbols ('BTCUSD') to match ('BTC/USD')
+    def norm(s):
+        s = str(s)
+        return s if "/" in s else (s[:-3] + "/USD" if s.endswith("USD") else s)
+
+    crypto_positions = [p for p in trading_client.get_all_positions()
+                        if str(getattr(p, "asset_class", "")).lower().endswith("crypto")]
+    held = {norm(p.symbol) for p in crypto_positions}
+
+    if symbol not in held and len(held) >= settings.MAX_CRYPTO_HELD:
+        return (False, f"NO. Already hold {len(held)} coins (limit {settings.MAX_CRYPTO_HELD}).")
+
+    already_in = 0.0
+    for p in crypto_positions:
+        if norm(p.symbol) == symbol:
+            already_in = abs(float(p.market_value))
+    if already_in + dollars > settings.MAX_DOLLARS_PER_CRYPTO:
+        return (False, f"NO. That would put ${already_in + dollars:,.2f} into {symbol} "
+                       f"(limit ${settings.MAX_DOLLARS_PER_CRYPTO} per coin).")
 
     return (True, "ok")
