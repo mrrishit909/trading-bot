@@ -31,7 +31,8 @@ asleep or shut down, nothing runs until it wakes up.
 Run it in its own terminal window whenever you want to look.
 Then open http://localhost:8777 in your browser. Pages:
 - **Overview** — account value, chart, today's picks, holdings
-- **Holdings** — what you own, with profit/loss
+- **Holdings** — stocks you own, with profit/loss
+- **Options** — open call/put bets, live + realized P/L, recent option decisions
 - **Decisions** — every BUY/SELL/WAIT + the reasoning (filter by strategy)
 - **Trades** — every trade attempt
 - **Scoreboard** — robot vs AI, graded against what prices actually did
@@ -43,8 +44,10 @@ Then open http://localhost:8777 in your browser. Pages:
 |---|---|
 | See pretend money | `./venv/bin/python step1_say_hi.py` |
 | Check a price | `./venv/bin/python step2_look.py NVDA` |
-| Run robot once (scan + trade) | `./venv/bin/python step10_scan_and_trade.py` |
-| Run robot, no trades, just talk | `./venv/bin/python step10_scan_and_trade.py --pretend` |
+| Run stock robot once (scan + trade) | `./venv/bin/python step10_scan_and_trade.py` |
+| Run stock robot, no trades, just talk | `./venv/bin/python step10_scan_and_trade.py --pretend` |
+| Run options robot once (calls/puts) | `./venv/bin/python step11_options.py` |
+| Run options robot, just talk | `./venv/bin/python step11_options.py --pretend` |
 | AI opinions | `./venv/bin/python step9_ai_advisor.py` |
 | See the diary summary | `./venv/bin/python show_diary.py` |
 | See every trade / decision / run | `./venv/bin/python show_diary.py trades` (or `decisions`, `runs`) |
@@ -54,8 +57,8 @@ Then open http://localhost:8777 in your browser. Pages:
 
 | File | What's in it |
 |---|---|
-| `settings.py` | The safety limits (max per stock, max stocks held, daily loss limit) |
-| `universe.py` | The ~70 stocks the robot is allowed to consider |
+| `settings.py` | Safety limits — stocks AND options (max per bet, auto-exit %, `TRADE_OPTIONS` on/off) |
+| `universe.py` | The ~70 stocks the robot is allowed to consider (also the option underlyings) |
 | `.env` | Your secret keys (never share, never commit) |
 
 ## If something breaks
