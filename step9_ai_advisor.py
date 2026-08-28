@@ -14,6 +14,7 @@ Run it like this:
 """
 
 import os
+import sys
 from dotenv import load_dotenv
 import anthropic
 from alpaca.trading.client import TradingClient
@@ -35,6 +36,11 @@ data = StockHistoricalDataClient(ALPACA_KEY, ALPACA_SECRET)
 news = NewsClient(ALPACA_KEY, ALPACA_SECRET)
 claude = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
 db = diary.get_db()
+
+# When run on a schedule, skip if the market is closed (weekend, holiday, overnight).
+if "--if-open" in sys.argv and not trading.get_clock().is_open:
+    print("Market is closed — skipping AI advisor run.")
+    raise SystemExit(0)
 
 acct = trading.get_account()
 equity_before = float(acct.equity)

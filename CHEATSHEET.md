@@ -9,19 +9,26 @@ cd ~/trading-robot
 
 Every command starts with `./venv/bin/python` (the project's own Python).
 
-## Everyday use — two terminal windows
+## Leaving it running for weeks (the background schedule)
 
-**Window 1 — the robot runs itself:**
 ```
-./venv/bin/python auto_run.py
+./service.sh start     turn the schedule ON
+./service.sh stop      turn it OFF
+./service.sh status     is it running? what did it last do?
+./service.sh logs       watch the robot's log live (Ctrl+C to stop watching)
+./service.sh ai-logs    watch the AI advisor's log live
 ```
-Wakes every 30 min, trades when the market is open, sleeps when closed.
-Ctrl+C to stop. Add `--no-ai` to skip the AI and save pennies.
 
-**Window 2 — the website:**
+When ON: the robot runs every 30 min, the AI advisor twice on weekdays.
+It only trades while the market is open. **Your Mac must be awake** — if it's
+asleep or shut down, nothing runs until it wakes up.
+
+## Watching it — the website
+
 ```
 ./venv/bin/python dashboard.py
 ```
+Run it in its own terminal window whenever you want to look.
 Then open http://localhost:8777 in your browser. Pages:
 - **Overview** — account value, chart, today's picks, holdings
 - **Holdings** — what you own, with profit/loss
