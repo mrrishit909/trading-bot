@@ -388,17 +388,85 @@ def page_trades():
           <th>Shares</th><th>Price</th><th>Amount</th><th>Note</th></tr>{body}</table>"""
 
 
+STRAT_NAMES = {
+    "sma_scan_v1": "Stock robot (scan + trade)",
+    "sma_crossover_5_20_v1": "Stock robot (old 3-stock version)",
+    "claude_advisor_v1": "AI advisor (opinions only)",
+    "options_long_v1": "Options robot",
+    "crypto_sma_v1": "Crypto robot",
+}
+
+
 def page_scoreboard():
+    db = diary.get_db()
+
+    # --- Part 1: how is the account ACTUALLY doing (real numbers, available now) ---
+    first = db.execute("SELECT equity_before FROM runs WHERE equity_before IS NOT NULL ORDER BY run_id LIMIT 1").fetchone()
+    try:
+        acct = get_account()
+        now_equity = float(acct.equity)
+    except Exception:
+        now_equity = None
+    start_equity = float(first["equity_before"]) if first else None
+
+    perf = ""
+    if start_equity and now_equity is not None:
+        change = now_equity - start_equity
+        change_pct = change / start_equity * 100
+        perf = f"""<h2>How the account is actually doing</h2>
+        <div class="cards">
+          <div class="card"><div class="label">Started at</div><div class="big">{money(start_equity)}</div></div>
+          <div class="card"><div class="label">Now</div><div class="big">{money(now_equity)}</div></div>
+          <div class="card"><div class="label">Change</div>
+            <div class="big {cls_for(change)}">{money(change)} ({pct(change_pct)})</div></div>
+        </div>
+        <p class="muted">This is everything together — stocks, options, crypto, cash. Real paper-account numbers.</p>"""
+
+    # --- Part 2: decision grading (needs a few days to fill in) ---
+    counts = db.execute("""
+        SELECT r.strategy AS strategy, COUNT(*) AS n, MIN(d.ts_utc) AS first_ts
+        FROM decisions d JOIN runs r ON d.run_id = r.run_id
+        WHERE r.strategy NOT IN ('options_long_v1', 'crypto_sma_v1')
+        GROUP BY r.strategy
+    """).fetchall()
+
     scores = get_scores(3)
+    out = [perf, "<h2>Decision grading</h2>",
+           "<p class='muted'>Each stock/AI decision gets graded against what the price actually did "
+           "3 trading days later. \"Benchmark\" = just staying fully invested. "
+           "Options and crypto have their own P/L on their pages.</p>"]
+
     if not scores:
-        return "<p class='muted'>No decisions to grade yet.</p>"
-    out = ["<p class='muted'>Each decision graded against what the price actually did 3 trading days later. "
-           "\"Benchmark\" = what you'd have earned just staying fully invested.</p>"]
+        out.append("<p class='muted'>No stock or AI decisions logged yet.</p>")
+        return "".join(out)
+
+    any_graded = any(s["judged"] for s in scores.values())
+    if not any_graded:
+        # tell them when to expect the first grades
+        import datetime as _dt
+        earliest = min((c["first_ts"] for c in counts), default=None)
+        eta = ""
+        if earliest:
+            d0 = _dt.date.fromisoformat(earliest[:10])
+            biz = 0
+            day = d0
+            while biz < 3:
+                day += _dt.timedelta(days=1)
+                if day.weekday() < 5:
+                    biz += 1
+            eta = f" First scores expected around <b>{day.isoformat()}</b>."
+        total = sum(c["n"] for c in counts)
+        out.append(f"<p class='muted'>✅ Working — collecting data. "
+                   f"{total} decisions logged so far, none old enough to grade yet.{eta}</p>")
+
     for strat, s in scores.items():
-        out.append(f"<h2>{html.escape(strat)}</h2>")
+        out.append(f"<h2 style='text-transform:none;color:#e6e6e6'>{html.escape(STRAT_NAMES.get(strat, strat))}</h2>")
         if not s["judged"]:
-            out.append(f"<p class='muted'>{s['decisions']} decisions logged, "
-                       f"{s['pending']} still too recent to grade. Check back in a few days.</p>")
+            out.append(f"""<div class="cards">
+              <div class="card"><div class="label">Decisions collected</div><div class="big">{s['decisions']}</div></div>
+              <div class="card"><div class="label">Graded so far</div><div class="big">0</div>
+                <div class="muted">{s['pending']} waiting</div></div>
+            </div>""")
             continue
         diff = s["earned"] - s["benchmark"]
         verdict = ("TIED with" if abs(diff) < 1e-9
@@ -416,7 +484,7 @@ def page_scoreboard():
           <div class="card"><div class="label">Verdict</div>
             <div class="big {vcls}">{verdict}</div><div class="muted">vs staying invested</div></div>
         </div>""")
-    return "".join(out)
+    return "".join(x for x in out if x)
 
 
 def page_universe():
