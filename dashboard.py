@@ -87,43 +87,126 @@ def shell(path, title, body):
         f'<a href="{href}" class="{"on" if href == path else ""}">{label}</a>'
         for href, label in NAV
     )
-    return f"""<!doctype html><html><head><meta charset="utf-8">
+    stamp = f"{datetime.now(timezone.utc):%H:%M UTC}"
+    # wrap plain tables in a rounded panel for the polished look
+    body = body.replace("<table>", '<div class="panel"><table>').replace("</table>", "</table></div>")
+    return f"""<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title} · Trading Robot</title>
 <meta http-equiv="refresh" content="60">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
+  :root {{
+    --bg:#0a0d12; --surface:#12171f; --surface-2:#161c26; --raised:#1b2230;
+    --border:#242d3a; --border-soft:#1b222d;
+    --text:#e9edf2; --dim:#93a0b1; --faint:#5c6775;
+    --accent:#4be0a8; --accent-dim:#2f9d78;
+    --up:#40dd83; --down:#ff6f6f;
+    --buy-bg:#12301f; --buy-fg:#5fe39a;
+    --sell-bg:#331717; --sell-fg:#ff8a8a;
+    --wait-bg:#232a36; --wait-fg:#9aa7b6;
+  }}
   * {{ box-sizing:border-box; }}
-  body {{ font-family:-apple-system,system-ui,sans-serif; background:#0f1216; color:#e6e6e6;
-         margin:0; padding:0 0 60px; }}
-  header {{ padding:18px 26px 0; }}
-  h1 {{ margin:0; font-size:20px; }}
-  nav {{ display:flex; gap:4px; padding:14px 26px 0; flex-wrap:wrap; border-bottom:1px solid #222933; }}
-  nav a {{ padding:8px 14px; color:#8a94a0; text-decoration:none; font-size:14px;
-           border-radius:8px 8px 0 0; }}
-  nav a.on {{ color:#e6e6e6; background:#171c22; border:1px solid #262d36; border-bottom:1px solid #171c22; }}
-  nav a:hover {{ color:#e6e6e6; }}
-  main {{ padding:22px 26px; }}
-  h2 {{ font-size:14px; color:#8a94a0; text-transform:uppercase; letter-spacing:.5px; margin:26px 0 10px; }}
-  .cards {{ display:flex; gap:14px; flex-wrap:wrap; }}
-  .card {{ background:#171c22; border:1px solid #262d36; border-radius:10px; padding:14px 18px; min-width:150px; }}
-  .label {{ color:#8a94a0; font-size:12px; }}
-  .big {{ font-size:22px; font-weight:600; margin-top:4px; }}
+  html {{ -webkit-text-size-adjust:100%; }}
+  body {{
+    font-family:'Inter',-apple-system,system-ui,'Segoe UI',sans-serif;
+    background:var(--bg); color:var(--text); margin:0; padding:0 0 72px;
+    font-size:14px; line-height:1.5; letter-spacing:-0.005em;
+    background-image:radial-gradient(900px 500px at 78% -8%, rgba(75,224,168,.07), transparent 70%);
+    background-attachment:fixed;
+  }}
+  .wrap {{ max-width:1180px; margin:0 auto; padding:0 24px; }}
+  a {{ color:inherit; }}
+
+  header {{
+    position:sticky; top:0; z-index:20; backdrop-filter:blur(10px);
+    background:rgba(10,13,18,.72); border-bottom:1px solid var(--border-soft);
+  }}
+  .head-in {{ display:flex; align-items:center; justify-content:space-between; padding:14px 0 13px; }}
+  h1 {{ margin:0; font-size:16px; font-weight:600; letter-spacing:-0.01em; display:flex; align-items:center; gap:9px; }}
+  h1 .dot {{ width:8px; height:8px; border-radius:50%; background:var(--accent); box-shadow:0 0 10px var(--accent); }}
+  .head-meta {{ font-size:11.5px; color:var(--faint); font-family:'JetBrains Mono',monospace; }}
+
+  nav {{
+    position:sticky; top:47px; z-index:19; backdrop-filter:blur(10px);
+    background:rgba(10,13,18,.72); border-bottom:1px solid var(--border-soft);
+  }}
+  .nav-in {{ display:flex; gap:2px; padding:8px 0; flex-wrap:wrap; }}
+  nav a {{
+    padding:7px 13px; color:var(--dim); text-decoration:none; font-size:13px; font-weight:500;
+    border-radius:8px; transition:background .15s, color .15s;
+  }}
+  nav a:hover {{ color:var(--text); background:var(--surface-2); }}
+  nav a.on {{ color:var(--accent); background:rgba(75,224,168,.1); }}
+
+  main {{ padding-top:26px; }}
+  main.wrap p {{ color:var(--dim); }}
+
+  h2 {{
+    font-size:11.5px; color:var(--faint); text-transform:uppercase; letter-spacing:.09em;
+    font-weight:600; margin:30px 0 12px;
+  }}
+
+  .cards {{ display:flex; gap:12px; flex-wrap:wrap; }}
+  .card {{
+    background:linear-gradient(180deg, var(--raised), var(--surface));
+    border:1px solid var(--border); border-radius:13px; padding:15px 17px; min-width:150px; flex:1 1 150px;
+    box-shadow:0 1px 0 rgba(255,255,255,.03) inset;
+  }}
+  .label {{ color:var(--faint); font-size:10.5px; text-transform:uppercase; letter-spacing:.07em; font-weight:600; }}
+  .big {{
+    font-size:23px; font-weight:600; margin-top:6px; letter-spacing:-0.02em;
+    font-family:'JetBrains Mono',monospace;
+  }}
+  .card .muted {{ margin-top:3px; }}
+
+  .panel {{ border:1px solid var(--border); border-radius:13px; overflow:hidden; background:var(--surface); }}
+  .panel + .panel {{ margin-top:14px; }}
   table {{ border-collapse:collapse; width:100%; font-size:13px; }}
-  th,td {{ text-align:left; padding:7px 10px; border-bottom:1px solid #222933; vertical-align:top; }}
-  th {{ color:#8a94a0; font-weight:500; }}
-  .up {{ color:#3fb950; }} .down {{ color:#f85149; }}
-  .why {{ color:#b6bec8; max-width:460px; }}
-  .warn {{ color:#f0a020; white-space:pre-wrap; }}
-  .badge {{ padding:2px 8px; border-radius:6px; font-size:11px; font-weight:600; }}
-  .badge.buy {{ background:#193c22; color:#3fb950; }}
-  .badge.sell {{ background:#3c1a1a; color:#f85149; }}
-  .badge.wait {{ background:#2a2f37; color:#8a94a0; }}
-  .pill {{ font-size:11px; padding:2px 7px; border-radius:999px; background:#2a2f37; color:#9aa4b0; }}
-  .muted {{ color:#8a94a0; font-size:12px; }}
-  a.tk {{ color:#6cb6ff; text-decoration:none; }}
+  th {{
+    background:var(--surface-2); color:var(--faint); font-weight:600; font-size:10.5px;
+    text-transform:uppercase; letter-spacing:.06em; padding:10px 14px; text-align:left;
+    border-bottom:1px solid var(--border); white-space:nowrap;
+  }}
+  td {{
+    padding:10px 14px; border-bottom:1px solid var(--border-soft); vertical-align:top;
+    font-variant-numeric:tabular-nums;
+  }}
+  tr:last-child td {{ border-bottom:none; }}
+  tr:hover td {{ background:rgba(255,255,255,.022); }}
+
+  .up {{ color:var(--up); }} .down {{ color:var(--down); }}
+  .why {{ color:var(--dim); max-width:520px; font-size:12.5px; }}
+  .muted {{ color:var(--faint); font-size:12px; }}
+  .warn {{
+    color:#ffcf7a; white-space:pre-wrap; background:rgba(255,180,90,.08);
+    border:1px solid rgba(255,180,90,.2); border-radius:10px; padding:12px 14px; font-size:12.5px;
+  }}
+  .badge {{ padding:3px 9px; border-radius:7px; font-size:10.5px; font-weight:700; letter-spacing:.03em; }}
+  .badge.buy {{ background:var(--buy-bg); color:var(--buy-fg); }}
+  .badge.sell {{ background:var(--sell-bg); color:var(--sell-fg); }}
+  .badge.wait {{ background:var(--wait-bg); color:var(--wait-fg); }}
+  .pill {{
+    display:inline-block; font-size:10.5px; padding:2px 8px; border-radius:999px;
+    background:var(--surface-2); border:1px solid var(--border); color:var(--dim); margin-right:3px;
+  }}
+  a.tk {{ color:var(--accent); text-decoration:none; font-weight:500; }}
+  a.tk:hover {{ text-decoration:underline; }}
+  svg {{ display:block; }}
+  @media (max-width:640px) {{
+    .wrap {{ padding:0 14px; }}
+    .big {{ font-size:20px; }}
+    .why {{ max-width:none; }}
+  }}
 </style></head><body>
-<header><h1>🤖 Trading Robot <span class="muted">· pretend money · refreshes every 60s</span></h1></header>
-<nav>{links}</nav>
-<main>{body}</main>
+<header><div class="wrap head-in">
+  <h1><span class="dot"></span> Trading Robot</h1>
+  <span class="head-meta">paper money · updated {stamp}</span>
+</div></header>
+<nav><div class="wrap nav-in">{links}</div></nav>
+<main class="wrap">{body}</main>
 </body></html>"""
 
 
@@ -164,22 +247,45 @@ def equity_chart(points):
     vals = [v for _, v in points if v is not None]
     if len(vals) < 2:
         return "<p class='muted'>Need a couple of runs to draw a chart.</p>"
-    w, h, pad = 720, 200, 34
+    w, h = 1000, 240
+    padx, padtop, padbot = 8, 20, 22
     lo, hi = min(vals), max(vals)
     span = (hi - lo) or 1
+    lo -= span * 0.12
+    hi += span * 0.12
+    span = hi - lo
     n = len(vals)
-    def x(i): return pad + i * (w - 2 * pad) / (n - 1)
-    def y(v): return h - pad - (v - lo) * (h - 2 * pad) / span
-    line = " ".join(f"{x(i):.1f},{y(v):.1f}" for i, v in enumerate(vals))
-    area = f"{pad},{h-pad} " + line + f" {x(n-1):.1f},{h-pad}"
-    last = vals[-1]
-    return f"""<svg viewBox="0 0 {w} {h}" style="width:100%;max-width:{w}px;height:auto;background:#171c22;border:1px solid #262d36;border-radius:10px">
-      <polygon points="{area}" fill="#3fb95022"/>
-      <polyline points="{line}" fill="none" stroke="#3fb950" stroke-width="2"/>
-      <text x="{pad}" y="16" fill="#8a94a0" font-size="11">{money(hi)}</text>
-      <text x="{pad}" y="{h-8}" fill="#8a94a0" font-size="11">{money(lo)}</text>
-      <text x="{w-pad}" y="{y(last)-6:.0f}" fill="#e6e6e6" font-size="11" text-anchor="end">{money(last)}</text>
-    </svg>"""
+    up = vals[-1] >= vals[0]
+    stroke = "var(--up)" if up else "var(--down)"
+
+    def x(i): return padx + i * (w - 2 * padx) / (n - 1)
+    def y(v): return h - padbot - (v - lo) * (h - padtop - padbot) / span
+
+    pts = [(x(i), y(v)) for i, v in enumerate(vals)]
+    line = " ".join(f"{px:.1f},{py:.1f}" for px, py in pts)
+    area = f"{pts[0][0]:.1f},{h-padbot} " + line + f" {pts[-1][0]:.1f},{h-padbot}"
+    grid = "".join(
+        f'<line x1="{padx}" y1="{padtop + k*(h-padtop-padbot)/3:.0f}" x2="{w-padx}" '
+        f'y2="{padtop + k*(h-padtop-padbot)/3:.0f}" stroke="var(--border-soft)" stroke-width="1"/>'
+        for k in range(4)
+    )
+    ex, ey = pts[-1]
+    gid = f"g{abs(hash(tuple(vals))) % 99999}"
+    return f"""<div class="panel" style="padding:6px 6px 2px">
+    <svg viewBox="0 0 {w} {h}" style="width:100%;height:auto">
+      <defs><linearGradient id="{gid}" x1="0" x2="0" y1="0" y2="1">
+        <stop offset="0" stop-color="{stroke}" stop-opacity="0.28"/>
+        <stop offset="1" stop-color="{stroke}" stop-opacity="0"/>
+      </linearGradient></defs>
+      {grid}
+      <polygon points="{area}" fill="url(#{gid})"/>
+      <polyline points="{line}" fill="none" stroke="{stroke}" stroke-width="2.5"
+        stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+      <circle cx="{ex:.1f}" cy="{ey:.1f}" r="3.5" fill="{stroke}"/>
+    </svg>
+    <div style="display:flex;justify-content:space-between;padding:4px 10px 8px;font-size:11px;color:var(--faint);font-family:'JetBrains Mono',monospace">
+      <span>{n} runs</span><span>low {money(min(vals))} · high {money(max(vals))} · now {money(vals[-1])}</span>
+    </div></div>"""
 
 
 # ---- pages --------------------------------------------------------
