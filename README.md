@@ -18,10 +18,20 @@ Small steps. One at a time. Nothing scary.
 
 ## Step 10: scan the whole big list
 
-`universe.py` holds ~70 large, liquid US stocks. Each run:
-- checks everything we own — sells anything no longer trending up
-- scans all ~70 — picks the top few trending up (fresh crossovers rank first)
-- buys the picks, up to `MAX_STOCKS_HELD` (5) positions at once
+`universe.py` holds 300 large, liquid US stocks. Each run:
+- checks everything we own and SELLS it if any of:
+  - it's down more than `STOCK_STOP_LOSS_PCT` (10%) from what we paid (emergency stop)
+  - it's UP, but has fallen `TRAILING_STOP_PCT` (10%) from its recent high — lock in
+    the gain instead of waiting for the slow average to catch up and give it back
+  - the 5-day average has dropped a clear margin below the 20-day average
+    (`SELL_BUFFER_PCT` in `scanner.py`, so tiny wiggles don't cause whipsaw)
+- only buys when the S&P 500 itself is trending up (`USE_MARKET_FILTER`)
+- scans all 300 — a candidate must be trending up, up over the past 3 months,
+  and not overbought (RSI ≤ 78)
+- ranks them by **3- and 6-month momentum** (not last week's noise)
+- buys the top picks, sized by volatility so each carries similar risk
+  (fractional shares, so price doesn't matter), up to `MAX_STOCKS_HELD`,
+  skipping anything sold in the last `REBUY_COOLDOWN_DAYS` days
 
 ```
 ./venv/bin/python step10_scan_and_trade.py            (really paper-trades)

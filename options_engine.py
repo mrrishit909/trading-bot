@@ -9,6 +9,10 @@ An option contract has a code like  AAPL260918C00320000  which means:
 
 We ONLY ever buy calls and puts (never sell them), so the worst that can
 happen on any bet is we lose what we paid.
+
+We buy DEEP IN THE MONEY (call strike below the stock price, put strike above)
+and far from expiry, so the contract is mostly real ("intrinsic") value and
+barely bleeds to time-decay — it behaves like a leveraged share of the stock.
 """
 
 import re
@@ -56,8 +60,9 @@ def pick_contract(trading_client, option_data_client, underlying, direction, sto
     Returns a dict with the contract + its live quote, or None if nothing good.
     """
     ctype = ContractType.CALL if direction == "call" else ContractType.PUT
-    offset = settings.OPTION_STRIKE_OFFSET_PCT / 100
-    target_strike = stock_price * (1 + offset) if direction == "call" else stock_price * (1 - offset)
+    itm = settings.OPTION_ITM_PCT / 100
+    # in-the-money: call strike BELOW the stock, put strike ABOVE it
+    target_strike = stock_price * (1 - itm) if direction == "call" else stock_price * (1 + itm)
 
     req = GetOptionContractsRequest(
         underlying_symbols=[underlying],
@@ -79,9 +84,13 @@ def pick_contract(trading_client, option_data_client, underlying, direction, sto
                   and float(c.open_interest) >= settings.OPTION_MIN_OPEN_INTEREST)]
     pool = liquid or contracts
 
-    # nearest expiration first, then strike closest to our target
-    nearest_exp = min(c.expiration_date for c in pool)
-    same_exp = [c for c in pool if c.expiration_date == nearest_exp]
+    # aim for the middle of the DTE window (best decay/liquidity balance),
+    # then the strike closest to our in-the-money target
+    mid_days = (settings.OPTION_MIN_DAYS + settings.OPTION_MAX_DAYS) / 2
+    target_exp = date.today() + timedelta(days=mid_days)
+    chosen_exp = min((c.expiration_date for c in pool),
+                     key=lambda d: abs((d - target_exp).days))
+    same_exp = [c for c in pool if c.expiration_date == chosen_exp]
     best = min(same_exp, key=lambda c: abs(float(c.strike_price) - target_strike))
 
     # live quote

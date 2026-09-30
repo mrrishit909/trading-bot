@@ -5,11 +5,12 @@ Before the robot makes ANY trade, it must ask the bouncer:
     "Can I buy 5 shares of AAPL?"
 The bouncer says YES or NO with a reason.
 
-The 4 rules:
+Selling is ALWAYS allowed (it can only reduce risk). The rules below only
+ever stop us OPENING new positions:
   1. Is this stock on the allowed list?
   2. Would this trade put too much money in one stock?
   3. Have we already traded too many times today?
-  4. Have we lost too much money today? (if so, nothing is allowed)
+  4. Have we lost too much money today? (if so, no new buys)
 """
 
 from datetime import datetime, timezone
@@ -51,18 +52,26 @@ def _money_lost_today(trading_client):
     return -change if change < 0 else 0.0
 
 
-def can_i_trade(trading_client, symbol, shares, price_per_share, side):
+def can_i_trade(trading_client, symbol, shares, price_per_share, side, sleeve=False):
     """
     Ask the bouncer. Returns (True, "ok") or (False, "reason it said no").
-    side is "buy" or "sell".
+    side is "buy" or "sell". sleeve=True = a SPY cash-sleeve order (see
+    settings.USE_SPY_CASH_SLEEVE): still obeys the bad-day and trade-count
+    rules, but not the stock list / stock count / per-stock cap (it isn't a stock pick).
     """
     symbol = symbol.upper()
 
-    # RULE 4 first: if we're having a bad day, stop completely.
+    # Selling something we own is ALWAYS allowed — it reduces risk. The daily-loss
+    # and trade-count limits must never stop us from cutting a loser or taking a
+    # profit; they only stop us opening NEW risk.
+    if side == "sell":
+        return (True, "ok")
+
+    # RULE 4: if we're having a bad day, stop opening new positions.
     lost = _money_lost_today(trading_client)
     if lost >= settings.DAILY_LOSS_LIMIT:
         return (False, f"NO. We've lost ${lost:,.2f} today (limit is ${settings.DAILY_LOSS_LIMIT}). "
-                       f"Done trading for the day.")
+                       f"No new buys for the day.")
 
     # RULE 3: too many trades today?
     count = _trades_made_today(trading_client)
@@ -70,8 +79,7 @@ def can_i_trade(trading_client, symbol, shares, price_per_share, side):
         return (False, f"NO. We've already made {count} trades today "
                        f"(limit is {settings.MAX_TRADES_PER_DAY}).")
 
-    # Selling something we own is always allowed past this point (it reduces risk).
-    if side == "sell":
+    if sleeve:
         return (True, "ok")
 
     # RULE 1: is this stock on the big list?
@@ -81,8 +89,10 @@ def can_i_trade(trading_client, symbol, shares, price_per_share, side):
 
     # RULE 1b: are we already holding as many different stocks as allowed?
     #   (only count real stock positions, not option positions)
+    #   (SPY is the cash sleeve, not a stock pick — it doesn't use up a slot)
     held_symbols = {p.symbol for p in trading_client.get_all_positions()
-                    if str(getattr(p, "asset_class", "")).lower().endswith("us_equity")}
+                    if str(getattr(p, "asset_class", "")).lower().endswith("us_equity")
+                    and p.symbol != "SPY"}
     if symbol not in held_symbols and len(held_symbols) >= settings.MAX_STOCKS_HELD:
         return (False, f"NO. We already hold {len(held_symbols)} different stocks "
                        f"(limit is {settings.MAX_STOCKS_HELD}). Sell something first.")
@@ -108,19 +118,19 @@ def can_i_trade_option(trading_client, occ_symbol, underlying, contracts, cost_p
     The bouncer for OPTIONS. Returns (True, "ok") or (False, "reason").
     side is "buy" (open a bet) or "sell" (close one).
     """
-    # Same bad-day and too-many-trades rules as stocks.
+    # Closing a bet is ALWAYS allowed (it reduces risk) — check this first.
+    if side == "sell":
+        return (True, "ok")
+
+    # Same bad-day and too-many-trades rules as stocks (new bets only).
     lost = _money_lost_today(trading_client)
     if lost >= settings.DAILY_LOSS_LIMIT:
         return (False, f"NO. We've lost ${lost:,.2f} today (limit ${settings.DAILY_LOSS_LIMIT}). "
-                       f"Done for the day.")
+                       f"No new bets for the day.")
 
     count = _trades_made_today(trading_client)
     if count >= settings.MAX_TRADES_PER_DAY:
         return (False, f"NO. Already made {count} trades today (limit {settings.MAX_TRADES_PER_DAY}).")
-
-    # Closing a bet is always allowed (it reduces risk).
-    if side == "sell":
-        return (True, "ok")
 
     # The stock it's about must be on the big list.
     if underlying.upper() not in settings.ALLOWED_STOCKS:
@@ -156,18 +166,19 @@ def can_i_trade_crypto(trading_client, symbol, dollars, side):
     The bouncer for CRYPTO. symbol like 'BTC/USD'. side is 'buy' or 'sell'.
     Returns (True, "ok") or (False, "reason").
     """
+    # Selling a coin is ALWAYS allowed (it reduces risk) — check this first.
+    if side == "sell":
+        return (True, "ok")
+
     lost = _money_lost_today(trading_client)
     if lost >= settings.DAILY_LOSS_LIMIT:
         return (False, f"NO. We've lost ${lost:,.2f} today (limit ${settings.DAILY_LOSS_LIMIT}). "
-                       f"Done for the day.")
+                       f"No new buys for the day.")
 
     count = _crypto_trades_made_today(trading_client)
     if count >= settings.MAX_CRYPTO_TRADES_PER_DAY:
         return (False, f"NO. Already made {count} crypto trades today "
                        f"(limit {settings.MAX_CRYPTO_TRADES_PER_DAY}).")
-
-    if side == "sell":
-        return (True, "ok")
 
     if symbol not in settings.CRYPTO_UNIVERSE:
         return (False, f"NO. {symbol} is not on the crypto list.")

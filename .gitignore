@@ -1,6 +1,15 @@
 venv/
 .env
+.env.*
+!.env.example
 __pycache__/
 *.pyc
 diary.db
+diary_*.db
 logs/
+
+# private or generated: notes copied from Claude memory, daily bot output, trained weights
+claude-notes/
+news/
+research/
+*.npz

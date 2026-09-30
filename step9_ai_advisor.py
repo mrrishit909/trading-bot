@@ -37,6 +37,10 @@ news = NewsClient(ALPACA_KEY, ALPACA_SECRET)
 claude = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
 db = diary.get_db()
 
+if not getattr(settings, "AI_ADVISOR_ENABLED", True):
+    print("AI advisor is paused (settings.AI_ADVISOR_ENABLED = False).")
+    raise SystemExit(0)
+
 # When run on a schedule, skip if the market is closed (weekend, holiday, overnight).
 if "--if-open" in sys.argv and not trading.get_clock().is_open:
     print("Market is closed — skipping AI advisor run.")
@@ -48,7 +52,8 @@ cash_before = float(acct.cash)
 run_id = diary.start_run(db, "ai_advisory", STRATEGY_NAME, equity_before, cash_before)
 
 # What to look at: everything we own + the scanner's top picks
-held = {p.symbol for p in trading.get_all_positions()}
+held = {p.symbol for p in trading.get_all_positions()
+        if str(p.asset_class).lower().endswith("us_equity")}
 analysis = analyze_all(data, list(settings.ALLOWED_STOCKS) + list(held))
 shortlist = rank_buys(analysis, exclude=held)[:settings.SHORTLIST_SIZE]
 watch = list(held) + [s for s in shortlist if s not in held]
@@ -88,4 +93,4 @@ for symbol in watch:
 diary.finish_run(db, run_id, equity_before, cash_before)
 print("\n" + "=" * 60)
 print(f"Done. Total AI cost this run: about ${total_cost:.4f}")
-print(f"Saved to diary.db as run #{run_id}.")
+print(f"Saved to {os.path.basename(diary.DB_PATH)} as run #{run_id}.")

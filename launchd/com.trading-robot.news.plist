@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.trading-robot.news</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Users/rishitmathurrishit/trading-robot/venv/bin/python</string>
+        <string>/Users/rishitmathurrishit/trading-robot/news_scan.py</string>
+    </array>
+    <key>WorkingDirectory</key>
+    <string>/Users/rishitmathurrishit/trading-robot</string>
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Hour</key><integer>8</integer>
+        <key>Minute</key><integer>45</integer>
+    </dict>
+    <key>StandardOutPath</key>
+    <string>/Users/rishitmathurrishit/trading-robot/logs/news.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/rishitmathurrishit/trading-robot/logs/news.log</string>
+</dict>
+</plist>

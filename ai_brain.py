@@ -19,6 +19,7 @@ from datetime import datetime, timezone, timedelta
 
 from alpaca.data.requests import StockBarsRequest, StockLatestQuoteRequest, NewsRequest
 from alpaca.data.timeframe import TimeFrame
+from alpaca.data.enums import Adjustment
 
 STRATEGY_NAME = "claude_advisor_v1"
 MODEL = "claude-haiku-4-5-20251001"
@@ -40,6 +41,7 @@ def _gather(data_client, news_client, symbol):
     start = datetime.now(timezone.utc) - timedelta(days=45)
     bars = data_client.get_stock_bars(StockBarsRequest(
         symbol_or_symbols=symbol, timeframe=TimeFrame.Day, start=start,
+        adjustment=Adjustment.ALL,
     )).data.get(symbol, [])
     closes = [b.close for b in bars]
 

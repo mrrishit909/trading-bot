@@ -18,7 +18,10 @@ import json
 import os
 from datetime import datetime, timezone
 
-DB_PATH = os.path.join(os.path.dirname(__file__), "diary.db")
+# Which diary file to use. auto_run.py / the dashboard set ROBOT_DIARY_PATH when
+# running a non-main account profile; otherwise it's the original diary.db.
+DB_PATH = (os.environ.get("ROBOT_DIARY_PATH")
+           or os.path.join(os.path.dirname(__file__), "diary.db"))
 
 
 def _now():
@@ -119,3 +122,52 @@ def log_trade(db, run_id, decision_id, symbol, side, status,
          gross, order_id, note, equity_before, cash_before),
     )
     db.commit()
+
+
+def already_scaled_out(db, strategy, symbol):
+    """True if we've already taken a partial 'scale-out' profit on the CURRENT
+    holding of `symbol` — i.e. a filled sell noted 'scale-out' dated after the
+    most recent filled buy of it. Resets automatically on a fresh entry."""
+    row = db.execute(
+        """SELECT MAX(t.ts_utc) AS last_buy
+           FROM trades t JOIN runs r ON t.run_id = r.run_id
+           WHERE r.strategy = ? AND t.symbol = ? AND t.side = 'buy' AND t.status = 'filled'""",
+        (strategy, symbol.upper()),
+    ).fetchone()
+    last_buy = row["last_buy"] if row else None
+    if not last_buy:
+        return False
+    hit = db.execute(
+        """SELECT 1 FROM trades t JOIN runs r ON t.run_id = r.run_id
+           WHERE r.strategy = ? AND t.symbol = ? AND t.side = 'sell'
+             AND t.status = 'filled' AND COALESCE(t.note, '') LIKE '%scale-out%'
+             AND t.ts_utc > ? LIMIT 1""",
+        (strategy, symbol.upper(), last_buy),
+    ).fetchone()
+    return hit is not None
+
+
+def last_buy_ts(db, strategy, symbol):
+    """UTC ISO timestamp of the most recent FILLED buy of `symbol` by this
+    strategy, or None if we've never (knowably) bought it."""
+    row = db.execute(
+        """SELECT MAX(t.ts_utc) AS ts FROM trades t JOIN runs r ON t.run_id = r.run_id
+           WHERE r.strategy = ? AND t.symbol = ? AND t.side = 'buy' AND t.status = 'filled'""",
+        (strategy, symbol.upper()),
+    ).fetchone()
+    return row["ts"] if row and row["ts"] else None
+
+
+def recently_sold(db, strategy, days):
+    """Symbols this strategy actually SOLD (filled) within the last `days` days —
+    used for the re-buy cooldown so we don't churn in and out of the same name."""
+    from datetime import timedelta
+    cutoff = (datetime.now(timezone.utc) - timedelta(days=days)).isoformat()
+    rows = db.execute(
+        """SELECT DISTINCT t.symbol
+           FROM trades t JOIN runs r ON t.run_id = r.run_id
+           WHERE t.side = 'sell' AND t.status = 'filled'
+             AND r.strategy = ? AND t.ts_utc >= ?""",
+        (strategy, cutoff),
+    ).fetchall()
+    return {r["symbol"].upper() for r in rows}

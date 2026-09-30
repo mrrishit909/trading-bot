@@ -1,11 +1,17 @@
 """
-STEP 11: Trade options (paper money) — buy calls and puts only.
+STEP 11: Trade options (paper money) — buy calls and puts only, "stock-replacement" style.
+
+We buy DEEP IN THE MONEY, FAR from expiry (see settings.py) so the contract
+barely bleeds to time-decay and moves almost like the stock — a leveraged way
+to ride a trend, not a lottery ticket.
 
 Each run:
-  1. Look at every option bet we hold. Sell to close if it's up 50%, down 50%,
-     or getting close to expiry.
-  2. Scan the big list. If a stock JUST crossed up -> buy a call.
-     If it JUST crossed down -> buy a put. One contract, small money.
+  1. Look at every option bet we hold. Sell to close if the trend that
+     justified it has reversed (the same 5/20 SMA signal the stock robot uses),
+     OR it's down past the disaster stop, OR expiry is close.
+     There is NO fixed profit target — winners are allowed to run.
+  2. Scan the big list for STRONG fresh crossovers (real 5-day momentum) that
+     agree with the market's direction (SPY). Call on up, put on down.
   Every trade checks the options bouncer first. Everything is logged.
 
 We NEVER sell an option to open. Worst case on any bet = what we paid.
@@ -42,19 +48,24 @@ stock_data = StockHistoricalDataClient(K, S)
 odc = OptionHistoricalDataClient(K, S)
 db = diary.get_db()
 
-if not settings.TRADE_OPTIONS:
-    print("Options trading is switched off in settings.py (TRADE_OPTIONS = False).")
+def option_positions():
+    return [p for p in trading.get_all_positions()
+            if str(getattr(p, "asset_class", "")).lower().endswith("us_option")]
+
+
+# When options are turned OFF we still do one job: close out anything we already
+# hold (wind-down mode). We never open new bets. Once the book is empty, nothing.
+OPTIONS_OFF = not settings.TRADE_OPTIONS
+if OPTIONS_OFF and not option_positions():
+    print("Options trading is off (TRADE_OPTIONS = False) and no bets are open. Nothing to do.")
     raise SystemExit(0)
+if OPTIONS_OFF:
+    print("Options trading is OFF — this run only CLOSES existing bets, opens nothing.")
 
 # Options orders only fill during market hours — don't leave orders queued overnight.
 if not just_talking and not trading.get_clock().is_open:
     print("Market is closed — the options robot only runs while the market is open.")
     raise SystemExit(0)
-
-
-def option_positions():
-    return [p for p in trading.get_all_positions()
-            if str(getattr(p, "asset_class", "")).lower().endswith("us_option")]
 
 
 def option_bid(symbol):
@@ -68,6 +79,15 @@ def wait_for_fill(order):
         order = trading.get_order_by_id(order.id)
         if order.status == "filled":
             return "filled", float(order.filled_avg_price), str(order.id)
+    # limit order didn't fill in time — cancel it, don't leave it resting in the book
+    try:
+        trading.cancel_order_by_id(order.id)
+        time.sleep(1)
+        order = trading.get_order_by_id(order.id)
+        if order.status == "filled":
+            return "filled", float(order.filled_avg_price), str(order.id)
+    except Exception:
+        pass
     return "not_filled", None, str(order.id)
 
 
@@ -85,9 +105,16 @@ equity_before, cash_before = float(acct.equity), float(acct.cash)
 run_id = diary.start_run(db, mode, opt.STRATEGY_NAME, equity_before, cash_before)
 
 held = option_positions()
+held_unders = [opt.parse_occ(p.symbol)["underlying"] for p in held if opt.parse_occ(p.symbol)]
+
 print("=" * 60)
 print(f"OPTIONS RUN #{run_id}   mode: {mode}   holding {len(held)} option bet(s)")
 print("=" * 60)
+
+# one SMA scan, used for BOTH exits ("has the trend reversed?") and entries
+analysis = analyze_all(stock_data, list(settings.ALLOWED_STOCKS) + held_unders + ["SPY"])
+spy = analysis.get("SPY", {})
+spy_up = bool(spy.get("enough_data") and spy.get("trending_up"))
 
 # ---- 1. EXIT pass -----------------------------------------------
 print("\n--- checking option bets we hold ---")
@@ -100,22 +127,34 @@ for pos in held:
     now_val = bid if bid else 0.0
     pnl_pct = ((now_val - entry) / entry * 100) if entry else 0.0
     dte = opt.days_to_expiry(pos.symbol)
+    a = analysis.get(info["underlying"], {})
+    kind = info["kind"]                         # "call" or "put"
 
     ctx = {"contract": pos.symbol, "readable": name, "entry_premium": entry,
            "current_bid": bid, "pnl_pct": round(pnl_pct, 1), "days_to_expiry": dte,
-           "contracts": contracts}
+           "contracts": contracts, "underlying_trending_up": a.get("trending_up"),
+           "underlying_sell_signal": a.get("sell_signal")}
 
     reasons = []
-    if pnl_pct >= settings.OPTION_TAKE_PROFIT_PCT:
-        reasons.append(f"up {pnl_pct:.0f}% (take profit)")
-    if pnl_pct <= -settings.OPTION_STOP_LOSS_PCT:
-        reasons.append(f"down {pnl_pct:.0f}% (cut the loss)")
-    if dte is not None and dte <= settings.OPTION_CLOSE_BEFORE_EXPIRY_DAYS:
-        reasons.append(f"only {dte} days to expiry")
+    if OPTIONS_OFF:
+        reasons.append("options trading turned off — closing out")
+    else:
+        # MAIN exit: the trend that justified the bet has turned against us
+        if a.get("enough_data"):
+            if kind == "call" and a.get("sell_signal"):
+                reasons.append(f"{info['underlying']} trend turned down — thesis over")
+            if kind == "put" and a.get("trending_up"):
+                reasons.append(f"{info['underlying']} trend turned back up — thesis over")
+        # FLOOR: disaster stop
+        if pnl_pct <= -settings.OPTION_DISASTER_STOP_PCT:
+            reasons.append(f"down {pnl_pct:.0f}% (disaster stop)")
+        # TIME: don't hold into the theta cliff
+        if dte is not None and dte <= settings.OPTION_CLOSE_BEFORE_EXPIRY_DAYS:
+            reasons.append(f"only {dte} days to expiry")
 
     if not reasons:
         record(run_id, info["underlying"], "WAIT",
-               f"Hold {name}: {pnl_pct:+.0f}%, {dte} days left.", True, None, ctx)
+               f"Hold {name}: {pnl_pct:+.0f}%, {dte} days left, trend still with us.", True, None, ctx)
         print(f"  {name}: hold ({pnl_pct:+.0f}%, {dte}d left)")
         continue
 
@@ -146,19 +185,35 @@ for pos in held:
 # ---- 2. ENTRY pass -------------------------------------------
 held = option_positions()
 open_underlyings = {opt.parse_occ(p.symbol)["underlying"] for p in held if opt.parse_occ(p.symbol)}
-room = settings.MAX_OPTION_POSITIONS - len(held)
+room = 0 if OPTIONS_OFF else settings.MAX_OPTION_POSITIONS - len(held)
 
 print(f"\n--- scanning for new option bets (room for {max(room,0)}) ---")
-if room <= 0:
+if OPTIONS_OFF:
+    print("  options are off — opening nothing.")
+elif room <= 0:
     print("  no room — already at the limit.")
 else:
-    analysis = analyze_all(stock_data, list(settings.ALLOWED_STOCKS))
+    mom = settings.OPTION_MIN_MOMENTUM_PCT
+    # only STRONG fresh crossovers — real momentum behind them, not a wiggle
     bullish = sorted(
-        [(s, a) for s, a in analysis.items() if a.get("enough_data") and a["crossed_up"]],
+        [(s, a) for s, a in analysis.items()
+         if s != "SPY" and a.get("enough_data") and a["crossed_up"]
+         and a["move_5d_pct"] >= mom],
         key=lambda t: -t[1]["move_5d_pct"])
     bearish = sorted(
-        [(s, a) for s, a in analysis.items() if a.get("enough_data") and a["crossed_down"]],
+        [(s, a) for s, a in analysis.items()
+         if s != "SPY" and a.get("enough_data") and a["crossed_down"]
+         and a["move_5d_pct"] <= -mom],
         key=lambda t: t[1]["move_5d_pct"])
+
+    # don't fight the market: calls only when SPY trends up, puts only when it doesn't
+    if settings.OPTION_USE_MARKET_FILTER:
+        if spy_up:
+            bearish = []
+            print("  SPY trending up → calls only")
+        else:
+            bullish = []
+            print("  SPY not trending up → puts only")
 
     # interleave: call, put, call, put...
     queue = []
@@ -166,7 +221,7 @@ else:
         if i < len(bullish): queue.append(("call", *bullish[i]))
         if i < len(bearish): queue.append(("put", *bearish[i]))
 
-    print(f"  {len(bullish)} bullish crossovers, {len(bearish)} bearish crossovers")
+    print(f"  {len(bullish)} strong bullish, {len(bearish)} strong bearish (≥{mom:g}% in 5d)")
 
     made = 0
     for direction, sym, a in queue:
@@ -181,10 +236,10 @@ else:
             continue
 
         cost = contract["cost_1_contract"]
-        reason = (f"{sym} just crossed {'up' if direction == 'call' else 'down'} "
-                  f"(5d move {a['move_5d_pct']:+.1f}%). Buy 1 {contract['underlying']} "
-                  f"${contract['strike']:g} {direction} exp {contract['expiration']} "
-                  f"for ~${cost:,.0f}.")
+        reason = (f"{sym} strong {'up' if direction == 'call' else 'down'} crossover "
+                  f"(5d move {a['move_5d_pct']:+.1f}%), SPY agrees. Buy 1 deep-ITM "
+                  f"{contract['underlying']} ${contract['strike']:g} {direction} "
+                  f"exp {contract['expiration']} for ~${cost:,.0f}.")
         decision_id = record(run_id, sym, "BUY", reason, False, stock_price, {"contract_pick": contract})
         print(f"  {sym} {direction}: {reason}")
 
@@ -237,4 +292,4 @@ if opts_now:
               f"value ${float(p.market_value):,.2f}  ({'+' if pl >= 0 else ''}{pl:,.2f})")
 else:
     print("No option bets held.")
-print(f"\nSaved to diary.db as run #{run_id}.")
+print(f"\nSaved to {os.path.basename(diary.DB_PATH)} as run #{run_id}.")

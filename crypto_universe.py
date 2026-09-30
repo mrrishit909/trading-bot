@@ -19,3 +19,14 @@ CRYPTO_UNIVERSE = [
     "AAVE/USD",  # Aave
     "DOGE/USD",  # Dogecoin
 ]
+
+# A hotter, higher-volatility list used ONLY by the $500 sprint account
+# (see profiles.py). No BTC/ETH — too slow to move a small account 40% in a
+# week. Memecoins and high-beta alts can run 50-200%... or crater just as fast.
+# Every symbol checked tradable on Alpaca paper 2026-08-31.
+SPRINT_CRYPTO = [
+    "SOL/USD", "AVAX/USD", "LINK/USD", "UNI/USD", "AAVE/USD", "DOGE/USD",
+    "XRP/USD", "ADA/USD", "DOT/USD", "ARB/USD", "POL/USD", "CRV/USD",
+    "LDO/USD", "FIL/USD", "GRT/USD", "RENDER/USD", "ONDO/USD", "HYPE/USD",
+    "WIF/USD", "PEPE/USD", "BONK/USD", "SHIB/USD", "TRUMP/USD", "SUSHI/USD",
+]
