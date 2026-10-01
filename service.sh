@@ -13,6 +13,7 @@
 #   ./service.sh research-logs  watch the daily-review log live
 #   ./service.sh news-now      run the pre-market news scan right now
 #   ./service.sh news-logs     watch the news-scan log live
+#   ./service.sh publish-now   push a fresh public snapshot to GitHub Pages right now
 #   ./service.sh web            (re)start ONLY the websites
 #   ./service.sh web-stop       stop ONLY the websites
 #   ./service.sh lid-closed-on  keep running with the lid CLOSED (asks for your Mac password)
@@ -93,6 +94,10 @@ case "$1" in
     reconcile)
         cd "$HERE" && "$PY" reconcile.py "${@:2}" && "$PY" reconcile.py --profile sprint500 "${@:2}"
         ;;
+    publish-now)
+        echo "Publishing a fresh snapshot to https://mrrishit909.github.io/trading-bot-live/ ..."
+        cd "$HERE" && "$PY" publish_dashboard.py
+        ;;
     restart)
         "$0" stop; echo; sleep 1; "$0" start
         ;;
@@ -133,6 +138,9 @@ case "$1" in
         echo
         echo "== latest daily review =="
         ls -t "$HERE/research"/20*.md 2>/dev/null | head -1 | xargs -I{} basename {} || echo "  (none yet)"
+        echo
+        echo "== public snapshot =="
+        echo "  https://mrrishit909.github.io/trading-bot-live/  [$(curl -s -o /dev/null -w '%{http_code}' https://mrrishit909.github.io/trading-bot-live/ 2>/dev/null)]"
         ;;
     logs)          tail -f "$HERE/logs/robot.log" ;;
     sprint-logs)   tail -f "$HERE/logs/sprint500.log" ;;
@@ -150,6 +158,6 @@ case "$1" in
         sudo pmset -a disablesleep 0 && echo "Back to normal - the Mac will sleep when you close the lid."
         ;;
     *)
-        echo "usage: ./service.sh {start|stop|restart|status|web|web-stop|research-now|research-logs|news-now|news-logs|reconcile|logs|sprint-logs|ai-logs|web-logs|lid-closed-on|lid-closed-off}"
+        echo "usage: ./service.sh {start|stop|restart|status|web|web-stop|research-now|research-logs|news-now|news-logs|publish-now|reconcile|logs|sprint-logs|ai-logs|web-logs|lid-closed-on|lid-closed-off}"
         ;;
 esac

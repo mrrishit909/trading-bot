@@ -103,6 +103,14 @@ def one_check():
     except Exception as e:
         print(f"    (reconcile skipped: {str(e)[:100]})")
 
+    # keep the public read-only snapshot in step with the live account (main only --
+    # it's the one shown locally at :8777 and the one people are meant to see)
+    if profile_name == "main":
+        try:
+            run("publish_dashboard.py")
+        except Exception as e:
+            print(f"    (dashboard publish skipped: {str(e)[:100]})")
+
 
 print(f"Auto-runner started for profile '{profile_name}' ({PROFILE['label']}). "
       f"Strategies: {', '.join(sorted(WANT))}. Ctrl+C to stop.")
