@@ -1,0 +1,124 @@
+{
+  "as_of": "2026-09-17 12:45 UTC",
+  "date": "2026-09-17",
+  "market": {
+    "read": "neutral",
+    "reason": "Fed delivered a 25bp hike and crypto ETFs saw outflows, but index futures rose and headlines are mixed rather than broadly shocking."
+  },
+  "stocks": {
+    "PANW": {
+      "verdict": "avoid",
+      "reason": "analyst downgrade Thursday"
+    },
+    "CPRT": {
+      "verdict": "avoid",
+      "reason": "downgraded, analyst no longer bullish"
+    },
+    "PEGA": {
+      "verdict": "avoid",
+      "reason": "analyst downgrade"
+    },
+    "S": {
+      "verdict": "avoid",
+      "reason": "analyst downgrade"
+    },
+    "FLNC": {
+      "verdict": "avoid",
+      "reason": "cut FY26 guidance and downgraded, plunging premarket"
+    },
+    "LEN": {
+      "verdict": "avoid",
+      "reason": "missed Q3 estimates, shares lower"
+    },
+    "WOR": {
+      "verdict": "avoid",
+      "reason": "earnings imminent"
+    },
+    "AMD": {
+      "verdict": "positive",
+      "reason": "bullish AI outlooks, up nearly 3% premarket"
+    },
+    "CRM": {
+      "verdict": "positive",
+      "reason": "Snap Specs partnership and Live Nation Agentforce expansion"
+    },
+    "MRVL": {
+      "verdict": "positive",
+      "reason": "BofA and Piper Sandler bullish AI forecasts, up 3%"
+    },
+    "ON": {
+      "verdict": "positive",
+      "reason": "guides AI data center revenue to more than double in 2026"
+    },
+    "CRDO": {
+      "verdict": "positive",
+      "reason": "expanded ZeroFlap optical line to 1.6T for AI networking"
+    },
+    "NOK": {
+      "verdict": "positive",
+      "reason": "Microsoft deal expansion and AI-RAN momentum"
+    },
+    "INTC": {
+      "verdict": "positive",
+      "reason": "analyst sees potential Apple/Tesla foundry deals, $200 target"
+    },
+    "SNAP": {
+      "verdict": "positive",
+      "reason": "Nvidia, AWS and Salesforce partnerships lift shares"
+    },
+    "DELL": {
+      "verdict": "neutral",
+      "reason": "momentum extension with no specific catalyst"
+    },
+    "MSFT": {
+      "verdict": "neutral",
+      "reason": "Nokia partnership is incremental; no company-specific catalyst"
+    },
+    "MPC": {
+      "verdict": "neutral",
+      "reason": "conflicting oil supply headlines, pipeline restart offsets shock"
+    },
+    "VLO": {
+      "verdict": "neutral",
+      "reason": "conflicting oil supply headlines, pipeline restart offsets shock"
+    },
+    "DRI": {
+      "verdict": "neutral",
+      "reason": "earnings not until Sept 24, ratings remain bullish"
+    }
+  },
+  "watched": [
+    "ABBV",
+    "ACN",
+    "AMD",
+    "BBY",
+    "CDW",
+    "CRM",
+    "CRWD",
+    "DELL",
+    "FTNT",
+    "HPE",
+    "HPQ",
+    "HUM",
+    "IQV",
+    "MET",
+    "MPC",
+    "MSFT",
+    "NET",
+    "NOW",
+    "NUE",
+    "PANW",
+    "PSX",
+    "SNOW",
+    "SPOT",
+    "SWKS",
+    "TEAM",
+    "TMO",
+    "TRV",
+    "VLO",
+    "W",
+    "ZS"
+  ],
+  "model": "claude-opus-5",
+  "cost_usd": 0.1144
+}

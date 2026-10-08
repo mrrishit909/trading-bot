@@ -1,0 +1,131 @@
+{
+  "as_of": "2026-09-28 12:54 UTC",
+  "date": "2026-09-28",
+  "market": {
+    "read": "risk_off",
+    "reason": "Treasury yields spiking to 5.17% with high crude, Asian equities and US futures sharply lower and gold slumping on renewed Fed hike bets."
+  },
+  "stocks": {
+    "AMD": {
+      "verdict": "neutral",
+      "reason": "premarket drop is macro-driven, no company-specific news"
+    },
+    "DELL": {
+      "verdict": "neutral",
+      "reason": "only tangential mention in Nvidia AI safety platform story"
+    },
+    "META": {
+      "verdict": "positive",
+      "reason": "launched Meta Enterprise Platform, hired MongoDB's CEO, bullish analyst commentary"
+    },
+    "TEAM": {
+      "verdict": "positive",
+      "reason": "Baird reiterates Outperform and raises target to $245"
+    },
+    "TMO": {
+      "verdict": "positive",
+      "reason": "reseller agreement adding Evosep Eno to mass spec portfolio"
+    },
+    "W": {
+      "verdict": "neutral",
+      "reason": "stale earnings call transcript only"
+    },
+    "PANW": {
+      "verdict": "positive",
+      "reason": "BTIG reiterates Buy, raises target to $425"
+    },
+    "SNOW": {
+      "verdict": "negative",
+      "reason": "$3.5B convertible notes private placement is dilutive"
+    },
+    "MSFT": {
+      "verdict": "neutral",
+      "reason": "only Senate inquiry chatter on AI tax subsidies"
+    },
+    "PLTR": {
+      "verdict": "neutral",
+      "reason": "only tangential mention in Surf Air FAA story"
+    },
+    "PFE": {
+      "verdict": "neutral",
+      "reason": "prior-week earnings transcript, nothing new"
+    },
+    "NVDA": {
+      "verdict": "positive",
+      "reason": "$150B buyback increase to $235B authorization"
+    },
+    "MDB": {
+      "verdict": "negative",
+      "reason": "CEO departure with interim CEO named, though guidance affirmed"
+    },
+    "MRK": {
+      "verdict": "neutral",
+      "reason": "licensing deal offset by $0.13/share Q3 charge"
+    },
+    "DXCM": {
+      "verdict": "positive",
+      "reason": "named official CGM partner of Team Novo Nordisk"
+    },
+    "MU": {
+      "verdict": "positive",
+      "reason": "Wedbush reiterates Outperform with $1,400 target"
+    },
+    "CTVA": {
+      "verdict": "negative",
+      "reason": "FTC and state AG settlement, $35M payment and 10-year loyalty program ban"
+    },
+    "LFCR": {
+      "verdict": "positive",
+      "reason": "acquisition by Webster Equity at up to $9.67/share"
+    },
+    "FISV": {
+      "verdict": "positive",
+      "reason": "Jana Partners pushing $1.25B cost-cut target"
+    },
+    "ONDS": {
+      "verdict": "positive",
+      "reason": "Cyberhawk wins three-year SSE drone inspection contract"
+    },
+    "TLS": {
+      "verdict": "positive",
+      "reason": "$13.7M HHS cybersecurity contract award"
+    },
+    "APLD": {
+      "verdict": "neutral",
+      "reason": "earnings not until Oct 8; $31B backlog noted"
+    }
+  },
+  "watched": [
+    "A",
+    "AAPL",
+    "AMD",
+    "AMGN",
+    "BBY",
+    "CRWD",
+    "DDOG",
+    "DELL",
+    "DXCM",
+    "FCX",
+    "FTNT",
+    "ILMN",
+    "IQV",
+    "MET",
+    "META",
+    "MRK",
+    "MSFT",
+    "NVDA",
+    "PANW",
+    "PFE",
+    "PLTR",
+    "QCOM",
+    "SNOW",
+    "TEAM",
+    "TMO",
+    "VLO",
+    "W",
+    "WAT",
+    "ZBRA"
+  ],
+  "model": "claude-opus-5",
+  "cost_usd": 0.1148
+}

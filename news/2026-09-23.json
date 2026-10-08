@@ -1,0 +1,236 @@
+{
+  "as_of": "2026-09-23 12:45 UTC",
+  "date": "2026-09-23",
+  "market": {
+    "read": "neutral",
+    "reason": "Futures mixed with Dow/S&P higher and Nasdaq lower amid Trump's Iran rhetoric \u2014 no broad shock."
+  },
+  "stocks": {
+    "APP": {
+      "verdict": "negative",
+      "reason": "Edgewater flags stalling market share, shares lower"
+    },
+    "MPC": {
+      "verdict": "avoid",
+      "reason": "analyst downgrade"
+    },
+    "VLO": {
+      "verdict": "avoid",
+      "reason": "analyst downgrade"
+    },
+    "ACN": {
+      "verdict": "avoid",
+      "reason": "earnings today"
+    },
+    "GIS": {
+      "verdict": "avoid",
+      "reason": "earnings today"
+    },
+    "CTAS": {
+      "verdict": "avoid",
+      "reason": "earnings today"
+    },
+    "CBRL": {
+      "verdict": "avoid",
+      "reason": "earnings today"
+    },
+    "MANU": {
+      "verdict": "avoid",
+      "reason": "earnings today"
+    },
+    "FUL": {
+      "verdict": "avoid",
+      "reason": "earnings today"
+    },
+    "DRI": {
+      "verdict": "avoid",
+      "reason": "Q1 earnings imminent"
+    },
+    "IONQ": {
+      "verdict": "positive",
+      "reason": "real-time quantum error correction demo, +12% premarket"
+    },
+    "INFQ": {
+      "verdict": "positive",
+      "reason": "surging on quantum computing milestone read-through"
+    },
+    "LLY": {
+      "verdict": "positive",
+      "reason": "full FDA approval for Inluriyo combination"
+    },
+    "IONS": {
+      "verdict": "positive",
+      "reason": "positive Phase 3 interim data with Roche"
+    },
+    "RCL": {
+      "verdict": "positive",
+      "reason": "$3B 50% stake in Sandals Resorts"
+    },
+    "AVGO": {
+      "verdict": "negative",
+      "reason": "China probing its data center switches"
+    },
+    "MSFT": {
+      "verdict": "positive",
+      "reason": "Copilot enterprise push, stock up premarket"
+    },
+    "META": {
+      "verdict": "positive",
+      "reason": "JPMorgan says Muse outpacing early ChatGPT downloads"
+    },
+    "HCA": {
+      "verdict": "positive",
+      "reason": "bullish initiation with $495 target"
+    },
+    "MRVL": {
+      "verdict": "positive",
+      "reason": "bullish analyst initiation"
+    },
+    "TTC": {
+      "verdict": "positive",
+      "reason": "bullish analyst initiation"
+    },
+    "GRDN": {
+      "verdict": "positive",
+      "reason": "bullish analyst initiation"
+    },
+    "PLSE": {
+      "verdict": "positive",
+      "reason": "bullish analyst initiation"
+    },
+    "MET": {
+      "verdict": "positive",
+      "reason": "analyst upgrade"
+    },
+    "PLXS": {
+      "verdict": "positive",
+      "reason": "analyst upgrade"
+    },
+    "EAT": {
+      "verdict": "positive",
+      "reason": "analyst upgrade"
+    },
+    "WST": {
+      "verdict": "positive",
+      "reason": "analyst upgrade"
+    },
+    "FITB": {
+      "verdict": "positive",
+      "reason": "upgraded to Buy"
+    },
+    "PANW": {
+      "verdict": "positive",
+      "reason": "launched AI-powered cyber defense service"
+    },
+    "INNV": {
+      "verdict": "avoid",
+      "reason": "10M-share offering, down 9%"
+    },
+    "MU": {
+      "verdict": "neutral",
+      "reason": "bullish CNBC mention offset by Burry short"
+    },
+    "PLTR": {
+      "verdict": "neutral",
+      "reason": "Burry short vs technical strength, no hard catalyst"
+    },
+    "NIO": {
+      "verdict": "neutral",
+      "reason": "HERE partnership offset by Firefly recall"
+    },
+    "NEM": {
+      "verdict": "neutral",
+      "reason": "weak on lower gold price, no company news"
+    },
+    "INTC": {
+      "verdict": "neutral",
+      "reason": "technical commentary only"
+    },
+    "BABA": {
+      "verdict": "neutral",
+      "reason": "overseas cloud expansion plans, no hard catalyst"
+    },
+    "PYPL": {
+      "verdict": "neutral",
+      "reason": "speculative Meta takeover chatter only"
+    },
+    "QBTS": {
+      "verdict": "neutral",
+      "reason": "board appointment"
+    },
+    "TMO": {
+      "verdict": "neutral",
+      "reason": "overbought technical note only"
+    },
+    "A": {
+      "verdict": "neutral",
+      "reason": "overbought technical note only"
+    },
+    "FTNT": {
+      "verdict": "neutral",
+      "reason": "stale performance recap"
+    },
+    "ILMN": {
+      "verdict": "neutral",
+      "reason": "stale performance recap"
+    },
+    "DDOG": {
+      "verdict": "neutral",
+      "reason": "TV final-trade mention only"
+    },
+    "AMD": {
+      "verdict": "neutral",
+      "reason": "performance recap, no new catalyst"
+    },
+    "NVDA": {
+      "verdict": "neutral",
+      "reason": "no company-specific catalyst"
+    },
+    "SMCI": {
+      "verdict": "neutral",
+      "reason": "technical setup commentary only"
+    },
+    "ORCL": {
+      "verdict": "neutral",
+      "reason": "drifting with tech sector, no company news"
+    },
+    "PRGS": {
+      "verdict": "neutral",
+      "reason": "earnings not until Sept 30"
+    }
+  },
+  "watched": [
+    "A",
+    "AAPL",
+    "AMD",
+    "AME",
+    "BBY",
+    "DDOG",
+    "DELL",
+    "DXCM",
+    "FTNT",
+    "ILMN",
+    "IQV",
+    "JCI",
+    "LLY",
+    "MET",
+    "META",
+    "MPC",
+    "MU",
+    "NOW",
+    "NVDA",
+    "PANW",
+    "PLTR",
+    "PSX",
+    "SNOW",
+    "TEAM",
+    "TMO",
+    "ULTA",
+    "VLO",
+    "W",
+    "WAT",
+    "ZS"
+  ],
+  "model": "claude-opus-5",
+  "cost_usd": 0.1605
+}

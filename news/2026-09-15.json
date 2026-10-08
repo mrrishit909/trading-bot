@@ -1,0 +1,144 @@
+{
+  "as_of": "2026-09-15 12:45 UTC",
+  "date": "2026-09-15",
+  "market": {
+    "read": "neutral",
+    "reason": "Index futures slipped modestly ahead of a two-day FOMC meeting with Brent near $107 and yields elevated, but there is no broad shock."
+  },
+  "stocks": {
+    "AAPL": {
+      "verdict": "positive",
+      "reason": "iOS 27 launch and rising iPhone 18 pre-order wait times signal demand"
+    },
+    "CRM": {
+      "verdict": "neutral",
+      "reason": "only a valuation/AI-growth opinion piece"
+    },
+    "MSFT": {
+      "verdict": "neutral",
+      "reason": "AI safety rules and bullish pundit mention, nothing material"
+    },
+    "NOW": {
+      "verdict": "positive",
+      "reason": "shares rising on rotation into software after AI-slowdown calls"
+    },
+    "HOOD": {
+      "verdict": "positive",
+      "reason": "prediction markets partnership and first IPO underwriting role"
+    },
+    "CRWD": {
+      "verdict": "positive",
+      "reason": "cybersecurity rotation bid plus bullish Cramer/Melius commentary"
+    },
+    "FTNT": {
+      "verdict": "positive",
+      "reason": "rallied with cybersecurity group on AI-safety rotation"
+    },
+    "NET": {
+      "verdict": "positive",
+      "reason": "higher on Microsoft AI safety rules boosting AI security demand"
+    },
+    "DELL": {
+      "verdict": "neutral",
+      "reason": "pulled back with AI hardware selloff, no company-specific catalyst"
+    },
+    "HPE": {
+      "verdict": "avoid",
+      "reason": "analyst downgrade and 6% premarket drop"
+    },
+    "SMCI": {
+      "verdict": "negative",
+      "reason": "fell 7% on scrutiny of AI infrastructure spending"
+    },
+    "AXON": {
+      "verdict": "negative",
+      "reason": "proposed $1B convertible note offering pressuring shares"
+    },
+    "QCOM": {
+      "verdict": "negative",
+      "reason": "MediaTek 2nm launch intensifies competitive pressure"
+    },
+    "PLAY": {
+      "verdict": "avoid",
+      "reason": "worse-than-expected Q2 results"
+    },
+    "KMTS": {
+      "verdict": "avoid",
+      "reason": "missed earnings estimates, stock down 8.6%"
+    },
+    "BAC": {
+      "verdict": "negative",
+      "reason": "CEO gave weak Q3 investment banking guidance"
+    },
+    "AZO": {
+      "verdict": "avoid",
+      "reason": "earnings today"
+    },
+    "CBRL": {
+      "verdict": "avoid",
+      "reason": "earnings imminent"
+    },
+    "AGL": {
+      "verdict": "positive",
+      "reason": "upgraded to Outperform with higher target"
+    },
+    "NOK": {
+      "verdict": "positive",
+      "reason": "initiated at Buy with $15 target"
+    },
+    "IOT": {
+      "verdict": "positive",
+      "reason": "initiated at Overweight, $45 target"
+    },
+    "ADSK": {
+      "verdict": "neutral",
+      "reason": "initiated at Neutral"
+    },
+    "AVGO": {
+      "verdict": "neutral",
+      "reason": "shares dropped on AI fears but CEO reaffirmed demand"
+    },
+    "TSLA": {
+      "verdict": "neutral",
+      "reason": "Roadster reveal hype offset by Cybercab ride complaint"
+    },
+    "NVDA": {
+      "verdict": "neutral",
+      "reason": "mixed AI-slowdown commentary, no concrete catalyst"
+    }
+  },
+  "watched": [
+    "AAPL",
+    "BBY",
+    "CDW",
+    "COP",
+    "CRM",
+    "CRWD",
+    "DE",
+    "DELL",
+    "ELV",
+    "FTNT",
+    "HOOD",
+    "HPE",
+    "HPQ",
+    "HUM",
+    "IQV",
+    "MDT",
+    "MET",
+    "MPC",
+    "MRNA",
+    "MSFT",
+    "NET",
+    "NOW",
+    "PM",
+    "PSX",
+    "SMCI",
+    "SNOW",
+    "SWKS",
+    "TEAM",
+    "TRV",
+    "VLO"
+  ],
+  "model": "claude-opus-5",
+  "cost_usd": 0.1234
+}

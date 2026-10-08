@@ -1,0 +1,144 @@
+{
+  "as_of": "2026-09-16 12:45 UTC",
+  "date": "2026-09-16",
+  "market": {
+    "read": "neutral",
+    "reason": "Futures higher ahead of the FOMC decision, but 10-year yields above 5%, oil near $107 and bitcoin down 4% keep the backdrop mixed."
+  },
+  "stocks": {
+    "AAPL": {
+      "verdict": "positive",
+      "reason": "record smartphone market share and X/SpaceXAI antitrust suit dropped"
+    },
+    "CRM": {
+      "verdict": "positive",
+      "reason": "launched Koa CRM reasoning model with NVIDIA"
+    },
+    "HOOD": {
+      "verdict": "negative",
+      "reason": "DOJ charged two employees in crypto insider-trading scheme"
+    },
+    "MPC": {
+      "verdict": "positive",
+      "reason": "record diesel crack spreads boosting refiners"
+    },
+    "VLO": {
+      "verdict": "positive",
+      "reason": "diesel squeeze drives best year ever, up 140%"
+    },
+    "PSX": {
+      "verdict": "neutral",
+      "reason": "only a stale five-year performance recap"
+    },
+    "COP": {
+      "verdict": "positive",
+      "reason": "Brent above $107 on Gulf supply disruption"
+    },
+    "EOG": {
+      "verdict": "positive",
+      "reason": "WTI past $105 on Saudi pipeline outages"
+    },
+    "FANG": {
+      "verdict": "positive",
+      "reason": "crude surge lifts E&P names"
+    },
+    "DELL": {
+      "verdict": "neutral",
+      "reason": "technical rebound, no specific catalyst"
+    },
+    "CRWD": {
+      "verdict": "neutral",
+      "reason": "sector rotation chatter only, no company catalyst"
+    },
+    "FTNT": {
+      "verdict": "neutral",
+      "reason": "mentioned only in cybersecurity ETF theme piece"
+    },
+    "MSFT": {
+      "verdict": "neutral",
+      "reason": "CEO AI-safety commentary, no business catalyst"
+    },
+    "NOW": {
+      "verdict": "neutral",
+      "reason": "generic software rotation mention"
+    },
+    "INTC": {
+      "verdict": "positive",
+      "reason": "SK Hynix in talks to partner at Ohio memory plant"
+    },
+    "TSLA": {
+      "verdict": "avoid",
+      "reason": "NHTSA safety order demanding Cybercab answers by month-end"
+    },
+    "TCOM": {
+      "verdict": "positive",
+      "reason": "beat Q2 estimates, stock surging premarket"
+    },
+    "BE": {
+      "verdict": "positive",
+      "reason": "gains on S&P 500 inclusion and AI power demand"
+    },
+    "ARWR": {
+      "verdict": "positive",
+      "reason": "positive interim Phase 1/2a platform data"
+    },
+    "EAT": {
+      "verdict": "positive",
+      "reason": "new Buy initiation"
+    },
+    "SLDB": {
+      "verdict": "positive",
+      "reason": "initiated at Outperform"
+    },
+    "BBNX": {
+      "verdict": "negative",
+      "reason": "priced dilutive stock offering, shares down 7%"
+    },
+    "CAVA": {
+      "verdict": "negative",
+      "reason": "weak traffic report drove 8.9% selloff"
+    },
+    "MRVL": {
+      "verdict": "neutral",
+      "reason": "premarket strength on analyst commentary only"
+    },
+    "KO": {
+      "verdict": "neutral",
+      "reason": "long-dated $10B US capex plan, no near-term impact"
+    }
+  },
+  "watched": [
+    "AAPL",
+    "BBY",
+    "CDW",
+    "CF",
+    "COP",
+    "CRM",
+    "CRWD",
+    "DE",
+    "DELL",
+    "ELV",
+    "EOG",
+    "FANG",
+    "FTNT",
+    "HOOD",
+    "HPE",
+    "HPQ",
+    "HUM",
+    "IQV",
+    "MET",
+    "MPC",
+    "MSFT",
+    "NET",
+    "NOW",
+    "NUE",
+    "PSX",
+    "SNOW",
+    "SWKS",
+    "TEAM",
+    "TRV",
+    "VLO"
+  ],
+  "model": "claude-opus-5",
+  "cost_usd": 0.1297
+}

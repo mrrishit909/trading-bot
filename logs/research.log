@@ -1,0 +1,766 @@
+Traceback (most recent call last):
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/connection.py", line 204, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/util/connection.py", line 60, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+               ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/socket.py", line 983, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/connectionpool.py", line 488, in _make_request
+    raise new_e
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/connectionpool.py", line 1106, in _validate_conn
+    conn.connect()
+    ~~~~~~~~~~~~^^
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/connection.py", line 759, in connect
+    self.sock = sock = self._new_conn()
+                       ~~~~~~~~~~~~~~^^
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/connection.py", line 211, in _new_conn
+    raise NameResolutionError(self.host, self, e) from e
+urllib3.exceptions.NameResolutionError: HTTPSConnection(host='paper-api.alpaca.markets', port=443): Failed to resolve 'paper-api.alpaca.markets' ([Errno 8] nodename nor servname provided, or not known)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/requests/adapters.py", line 696, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/connectionpool.py", line 842, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/util/retry.py", line 543, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='paper-api.alpaca.markets', port=443): Max retries exceeded with url: /v2/account (Caused by NameResolutionError("HTTPSConnection(host='paper-api.alpaca.markets', port=443): Failed to resolve 'paper-api.alpaca.markets' ([Errno 8] nodename nor servname provided, or not known)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/rishitmathurrishit/trading-robot/daily_review.py", line 280, in <module>
+    main()
+    ~~~~^^
+  File "/Users/rishitmathurrishit/trading-robot/daily_review.py", line 225, in main
+    info = gather()
+  File "/Users/rishitmathurrishit/trading-robot/daily_review.py", line 80, in gather
+    acct = trading.get_account()
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/alpaca/trading/client.py", line 474, in get_account
+    response = self.get("/account")
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/alpaca/common/rest.py", line 225, in get
+    return self._request("GET", path, data, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/alpaca/common/rest.py", line 131, in _request
+    return self._one_request(method, url, opts, retry)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/alpaca/common/rest.py", line 195, in _one_request
+    response = self._session.request(method, url, **opts)
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/requests/sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/requests/sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/requests/adapters.py", line 729, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='paper-api.alpaca.markets', port=443): Max retries exceeded with url: /v2/account (Caused by NameResolutionError("HTTPSConnection(host='paper-api.alpaca.markets', port=443): Failed to resolve 'paper-api.alpaca.markets' ([Errno 8] nodename nor servname provided, or not known)"))
+Traceback (most recent call last):
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/connection.py", line 204, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/util/connection.py", line 60, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+               ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/socket.py", line 983, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/connectionpool.py", line 488, in _make_request
+    raise new_e
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/connectionpool.py", line 1106, in _validate_conn
+    conn.connect()
+    ~~~~~~~~~~~~^^
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/connection.py", line 759, in connect
+    self.sock = sock = self._new_conn()
+                       ~~~~~~~~~~~~~~^^
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/connection.py", line 211, in _new_conn
+    raise NameResolutionError(self.host, self, e) from e
+urllib3.exceptions.NameResolutionError: HTTPSConnection(host='paper-api.alpaca.markets', port=443): Failed to resolve 'paper-api.alpaca.markets' ([Errno 8] nodename nor servname provided, or not known)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/requests/adapters.py", line 696, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/connectionpool.py", line 842, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/util/retry.py", line 543, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='paper-api.alpaca.markets', port=443): Max retries exceeded with url: /v2/account (Caused by NameResolutionError("HTTPSConnection(host='paper-api.alpaca.markets', port=443): Failed to resolve 'paper-api.alpaca.markets' ([Errno 8] nodename nor servname provided, or not known)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/rishitmathurrishit/trading-robot/daily_review.py", line 280, in <module>
+    main()
+    ~~~~^^
+  File "/Users/rishitmathurrishit/trading-robot/daily_review.py", line 225, in main
+    info = gather()
+  File "/Users/rishitmathurrishit/trading-robot/daily_review.py", line 80, in gather
+    acct = trading.get_account()
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/alpaca/trading/client.py", line 474, in get_account
+    response = self.get("/account")
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/alpaca/common/rest.py", line 225, in get
+    return self._request("GET", path, data, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/alpaca/common/rest.py", line 131, in _request
+    return self._one_request(method, url, opts, retry)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/alpaca/common/rest.py", line 195, in _one_request
+    response = self._session.request(method, url, **opts)
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/requests/sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/requests/sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/requests/adapters.py", line 729, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='paper-api.alpaca.markets', port=443): Max retries exceeded with url: /v2/account (Caused by NameResolutionError("HTTPSConnection(host='paper-api.alpaca.markets', port=443): Failed to resolve 'paper-api.alpaca.markets' ([Errno 8] nodename nor servname provided, or not known)"))
+wrote /Users/rishitmathurrishit/trading-robot/research/2026-09-05.md
+cost ~$0.0949  (11086 in / 1579 out)
+
+## How it's actually going
+
+Equity $99,755.05, −0.25% since inception, +$139.62 today. Realised: **9 round trips, 0 wins, −$487** (stocks −$113, crypto −$29, options −$346). Every one of the three strategies lost against SPY over its own matched holding window, and SPY's matched returns were all roughly flat-to-−0.5%, so the underperformance is real losses, not a falling benchmark.
+
+The offset is the open book, now **+$214 unrealised** versus −$51 two days ago. That flip is why total equity improved while the realised record stayed 0-for-9. Don't read it as a turn — it's two days of drift in eleven positions.
+
+Nine round trips, opened in essentially two clustered bursts into the same tape, is not nine independent samples. You cannot separate "no edge" from "one bad week." The clearest sign...
+Traceback (most recent call last):
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/connection.py", line 204, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/util/connection.py", line 60, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+               ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/socket.py", line 983, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/connectionpool.py", line 488, in _make_request
+    raise new_e
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/connectionpool.py", line 1106, in _validate_conn
+    conn.connect()
+    ~~~~~~~~~~~~^^
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/connection.py", line 759, in connect
+    self.sock = sock = self._new_conn()
+                       ~~~~~~~~~~~~~~^^
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/connection.py", line 211, in _new_conn
+    raise NameResolutionError(self.host, self, e) from e
+urllib3.exceptions.NameResolutionError: HTTPSConnection(host='paper-api.alpaca.markets', port=443): Failed to resolve 'paper-api.alpaca.markets' ([Errno 8] nodename nor servname provided, or not known)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/requests/adapters.py", line 696, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/connectionpool.py", line 842, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/util/retry.py", line 543, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='paper-api.alpaca.markets', port=443): Max retries exceeded with url: /v2/account (Caused by NameResolutionError("HTTPSConnection(host='paper-api.alpaca.markets', port=443): Failed to resolve 'paper-api.alpaca.markets' ([Errno 8] nodename nor servname provided, or not known)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/rishitmathurrishit/trading-robot/daily_review.py", line 280, in <module>
+    main()
+    ~~~~^^
+  File "/Users/rishitmathurrishit/trading-robot/daily_review.py", line 225, in main
+    info = gather()
+  File "/Users/rishitmathurrishit/trading-robot/daily_review.py", line 80, in gather
+    acct = trading.get_account()
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/alpaca/trading/client.py", line 474, in get_account
+    response = self.get("/account")
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/alpaca/common/rest.py", line 225, in get
+    return self._request("GET", path, data, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/alpaca/common/rest.py", line 131, in _request
+    return self._one_request(method, url, opts, retry)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/alpaca/common/rest.py", line 195, in _one_request
+    response = self._session.request(method, url, **opts)
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/requests/sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/requests/sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/requests/adapters.py", line 729, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='paper-api.alpaca.markets', port=443): Max retries exceeded with url: /v2/account (Caused by NameResolutionError("HTTPSConnection(host='paper-api.alpaca.markets', port=443): Failed to resolve 'paper-api.alpaca.markets' ([Errno 8] nodename nor servname provided, or not known)"))
+wrote /Users/rishitmathurrishit/trading-robot/research/2026-09-07.md
+cost ~$0.1014  (11845 in / 1686 out)
+
+## How it's actually going
+
+Equity $99,760.57, −0.24% since inception, +$145.14 today. The realised record is unchanged: **9 round trips, 0 wins, −$487** (stocks −$113, crypto −$29, options −$346). Each of the three strategies lost against SPY over its own matched holding window, and SPY's matched returns were roughly flat, so this is real loss, not benchmark drag.
+
+The gap between −$487 realised and −$240 total equity is the open book, now **+$220 unrealised**. That's drift in eleven positions over ten days, not a turn.
+
+Nine round trips opened in two clustered bursts into the same tape is not nine independent samples. You cannot distinguish "no edge" from "one bad week" and won't be able to for months at this trade rate. Options remain the one legible fact: 71% of realised losses from ~4...
+wrote /Users/rishitmathurrishit/trading-robot/research/2026-09-08.md
+cost ~$0.1175  (13095 in / 2082 out)
+
+## How it's actually going
+
+Equity $99,558.40, −0.44% since inception, −$57 today. Realised record is now **10 round trips, 0 wins, −$548** (stocks −$173, crypto −$29, options −$346). UPS closed at 101.50 for −4.4% / −$60 after an 11-day hold, versus SPY −0.44% over the same window. That's the tenth consecutive losing round trip. Ten trades from two clustered entry bursts is still not ten independent samples, and the conclusion is unchanged: no edge demonstrated, none disproven.
+
+**The new thing worth attention is an accounting gap.** ORCL and ADBE have both vanished from the position list. There is no fill for either in the 14-day trade log and neither appears in `completed_trades_vs_spy`. But `sma_scan_v1` logged **4 SELL decisions** against only 2 logged fills (ANET, UPS), and cash jump...
+wrote /Users/rishitmathurrishit/trading-robot/research/2026-09-09.md
+cost ~$0.1352  (16549 in / 2099 out)
+
+## How it's actually going
+
+Equity $99,517.55, −0.48% since inception, −$59.63 today. The ORCL/ADBE ledger gap flagged yesterday has **resolved itself** — both now appear as closed trades, and the record changes materially: **ORCL +9.52% / +$131 is the first real stock winner**, ADBE −12.46% / −$182 the worst loss to date. Stocks are now 8 round trips, 2 wins, −$216; crypto 3 RTs, 0 wins, −$29; options 4 RTs, 0 wins, −$346 (still 58% of all realised loss from ~4% of capital, still switched off).
+
+Combined, 15 round trips, −$591 realised, average stock trade −1.93% vs SPY −0.29% on matched windows. That is a real deficit, not benchmark drag, but 15 trades from three clustered entry bursts remains far too few to conclude anything. The "0-for-10" framing from prior notes was partly an artifac...
+wrote /Users/rishitmathurrishit/trading-robot/research/2026-09-10.md
+cost ~$0.1469  (17066 in / 2461 out)
+
+## How it's actually going
+
+Equity $99,291.58, −0.71% since inception, −$149 today. Realised: **17 round trips, 3 wins, −$562** (stocks −$216 on 8 RTs, crypto −$0.14 on 5, options −$346 on 4). The open book has flipped from +$124 unrealised on Sunday to **−$175 today** — that's the newly deployed stock basket marking down in its first two sessions, not a thesis breaking.
+
+Two closes today/yesterday, both crypto: **UNI +31.3% / +$61** and **AAVE −2.6% / −$32**. UNI alone drags crypto's realised P/L back to roughly zero and makes crypto the only sleeve "beating SPY" on matched windows (+2.70% avg vs −0.48%). One trade of five. Do not read that as an edge.
+
+Stocks average −1.93% per trade vs SPY −0.29% on matched windows. Real deficit, still 8 trades from three clustered entries. Nothing conc...
+wrote /Users/rishitmathurrishit/trading-robot/research/2026-09-11.md
+cost ~$0.1485  (16675 in / 2603 out)
+
+**How it's actually going**
+
+Equity $99,559.97, −0.44% since inception, +$236 today. Realised record is now **22 round trips, 3 wins, −$634** (stocks 9 RTs / 2 wins / −$248; crypto 9 RTs / 1 win / −$40; options 4 RTs / 0 wins / −$346, off).
+
+Four new closes since yesterday, all losers: **ILMN −2.10% / −$32** after a 2-day hold, **LINK −2.59% / −$32**, and two BTC lots at −4.3% (−$8 combined). Stocks still average −1.95% per trade vs SPY −0.23% on matched windows. Crypto's sleeve "beats SPY" only because UNI (+31%) carries five losers — one trade, ignore it.
+
+The offset is the open book, which flipped from −$175 Wednesday to **+$163** today: LTC +8.2%, AAPL +7.1%, VLO +2.3% against NOW −6.6% and HOOD −3.6%. Ledger hygiene is clean this time — 5 stock SELL decisions match 5 fills, 4 crypto S...
+wrote /Users/rishitmathurrishit/trading-robot/research/2026-09-12.md
+cost ~$0.1354  (16773 in / 2062 out)
+
+**How it's actually going**
+
+Equity $99,542.93, −0.46% since inception, +$9.47 today. Saturday — US market closed, no stock activity, and crypto sat still too: zero fills since Friday 13:49 (IQV buy / ILMN sell). Nothing new closed.
+
+Realised record is unchanged from yesterday: **22 round trips, 3 wins, −$634** (stocks 9 RTs / 2 wins / −$248; crypto 9 RTs / 1 win / −$40; options 4 RTs / 0 wins / −$346, switched off). Stocks average −1.95% per trade vs SPY −0.23% on matched windows — a real deficit, but on nine trades from three clustered entry bursts it is not evidence of anything. Open book +$146, down slightly from +$163 Friday.
+
+The only thing that moved today is the mark-to-market on a book that is 81% cash, so the equity line is essentially flat by construction.
+
+**Patterns**
+
+Nothing...
+wrote /Users/rishitmathurrishit/trading-robot/research/2026-09-13.md
+cost ~$0.1286  (16637 in / 1818 out)
+
+**How it's actually going**
+
+Equity $99,569.73, −0.43% since inception, +$36 today. Sunday: US market closed, and crypto produced no fills either — last trade was Friday 13:49 (IQV buy / ILMN sell). Nothing new closed, so the realised record is identical for the second day running: **22 round trips, 3 wins, −$634** (stocks 9 RTs / 2 wins / −$248, avg −1.95% vs SPY −0.23% on matched windows; crypto 9 RTs / 1 win / −$40; options 4 RTs / 0 wins / −$346, off).
+
+The only mover is mark-to-market. Open book improved to **+$173** from +$146, mostly LTC (+10.6%, now the largest single winner at +$129) and AAPL (+7.0%). Sample remains far too small to say anything about edge — nine stock round trips from three clustered entry bursts is not a track record.
+
+**Patterns**
+
+No new closes, so no new data...
+wrote /Users/rishitmathurrishit/trading-robot/research/2026-09-14.md
+cost ~$0.1432  (15784 in / 2571 out)
+
+**How it's actually going**
+
+Equity $99,709.87, −0.29% since inception, +$176 today. Monday, market open, and **zero fills** — cash unchanged at $80,622. That's consistent, not broken: 10/10 stock slots are full, no stop or momentum-breakdown triggered, and crypto logged 2 BUYs in the week but none today.
+
+Realised record is identical for a fourth day: **22 round trips, 3 wins, −$634** (stocks 9 RT / 2 wins / −$248, avg −1.95% vs SPY −0.23% on matched windows; crypto 9 RT / 1 win / −$40; options 4 RT / 0 wins / −$346, off). Nine stock round trips out of three clustered entry bursts is not a track record — no conclusion available.
+
+The open book carried the day: **+$313**, up from +$173. The mover is NOW, which went from −6.4% (worst position six days running) to +0.1% — a ~7% single-day sw...
+wrote /Users/rishitmathurrishit/trading-robot/research/2026-09-15.md
+cost ~$0.1465  (17261 in / 2409 out)
+
+## How it's actually going
+
+Equity $99,578.77, −0.42% since inception, −$83 today. First real activity in days: the bot rotated stocks (sold AAPL ×3 and MSFT, bought BBY and TEAM) and dumped two crypto positions.
+
+Realised record is now **28 round trips, 7 wins, −$671**. Broken out: stocks 12 RT / 4 wins / −$199, avg −0.59% vs SPY −0.62% on matched windows; crypto 12 RT / 3 wins / −$126, avg +2.09% vs SPY −0.64%; options 4 RT / 0 wins / −$346 (off). Both live strategies now nominally "beat SPY" on average return, but that flips on a single trade at this size — the crypto average is entirely one UNI winner (+32%) against eleven others. Nothing here is a track record.
+
+Two things stand out from today's closes. AAPL was the best stock trade to date (+6.2% over 19 days vs SPY −1.78%) and was s...
+wrote /Users/rishitmathurrishit/trading-robot/research/2026-09-16.md
+cost ~$0.1534  (18166 in / 2501 out)
+
+## How it's actually going
+
+Equity $99,516.59, −0.48% since inception, −$56 today. Three new closes, all losers: **HOOD −7.9% (−$118)**, ETH −4.1% (−$50), NOW −0.2% (−$3). Realised record is now **31 round trips, 7 wins, −$843** — stocks 14 RT / 4 wins / −$321, crypto 13 RT / 3 wins / −$176, options 4 RT / 0 wins / −$346 (off).
+
+The stock book now **loses to SPY on matched windows: −1.08% avg vs −0.75%**. That flipped from yesterday's near-tie purely on HOOD. Crypto still shows "beat SPY" (+1.62% avg vs −0.63%) but that number is an artefact — the +32.3% winner is a 0.105-unit dust lot worth $0.16, while the dollar-weighted result is −$176. Ignore the crypto average return; the P&L is the honest figure. Open book is +$325, so total drawdown is modest, but 14 stock round trips from four ent...
+wrote /Users/rishitmathurrishit/trading-robot/research/2026-09-17.md
+cost ~$0.1451  (18115 in / 2182 out)
+
+## How it's actually going
+
+Equity $99,832.57, −0.17% since inception, **+$351 today** — the best day of the run, and it came entirely from the open book, which rose from +$325 to **+$641**. No fills today, no new closes; the realised record is unchanged at **31 round trips, 7 wins, −$843** (stocks 14 RT / 4 wins / −$321, avg −1.08% vs SPY −0.75% on matched windows; crypto 13 RT / 3 wins / −$176; options 4 RT / 0 wins / −$346, off). Stocks still lose to SPY on matched windows. Fourteen stock round trips from four entry bursts remains too small to conclude anything — today's +$351 is one good day for energy and life-science holdings, not evidence.
+
+The genuinely new number is signal accuracy: `sma_scan_v1` is now at **984 judged, 54.0% hit, −1.32% avg earned vs −3.63% benchmark**. `claude_a...
+wrote /Users/rishitmathurrishit/trading-robot/research/2026-09-18.md
+cost ~$0.1461  (19371 in / 1970 out)
+
+## How it's actually going
+
+Equity $100,073.78 — **first time above the $100k start line** (+0.07%, +$267 today). That's the open book doing the work, not realised results.
+
+One new close: **HUM sold 9/18 at −5.8% (−$107)** after nine days, the name flagged as the book's drag yesterday. Realised record is now **32 round trips, 7 wins, −$950** (stocks 15 RT / 4 wins / −$428, avg −1.40% vs SPY −0.69% on matched windows; crypto 13 RT / 3 wins / −$176; options 4 RT / 0 wins / −$346, off). The stock book's deficit to SPY widened again. Fifteen stock round trips, mostly from four entry bursts, is not a sample — but the direction has now been consistently negative for four sessions running, which is more than pure noise.
+
+Advisor head-to-head, bigger sample, unchanged verdict: **claude_advisor_v1...
+wrote /Users/rishitmathurrishit/trading-robot/research/2026-09-19.md
+cost ~$0.1528  (19107 in / 2291 out)
+
+## How it's actually going
+
+Equity $100,272.61, +0.27% since inception, +$106 today. Saturday — stocks closed, crypto ran and traded nothing — so the realised record is unchanged at **32 round trips, 7 wins, −$950**: stocks 15 RT / 4 wins / −$428 (avg −1.40% vs SPY −0.69% on matched windows), crypto 13 RT / 3 wins / −$176, options 4 RT / 0 wins / −$346 (off).
+
+Everything above water is unrealised. The open book is now **+$1,199**, up from roughly +$745 two days ago, and **$666 of that — 55% — is four crypto positions that are two days old.** AVAX alone is +28.2% on a $1,220 cost. So the "first time above $100k" narrative rests on a $5k correlated crypto bet placed in a single minute on 9/18, not on the stock engine, which has lost to SPY on every matched window measured so far. Fifteen sto...
+Traceback (most recent call last):
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/connection.py", line 204, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/util/connection.py", line 60, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+               ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/socket.py", line 983, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/connectionpool.py", line 488, in _make_request
+    raise new_e
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/connectionpool.py", line 1106, in _validate_conn
+    conn.connect()
+    ~~~~~~~~~~~~^^
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/connection.py", line 759, in connect
+    self.sock = sock = self._new_conn()
+                       ~~~~~~~~~~~~~~^^
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/connection.py", line 211, in _new_conn
+    raise NameResolutionError(self.host, self, e) from e
+urllib3.exceptions.NameResolutionError: HTTPSConnection(host='paper-api.alpaca.markets', port=443): Failed to resolve 'paper-api.alpaca.markets' ([Errno 8] nodename nor servname provided, or not known)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/requests/adapters.py", line 696, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/connectionpool.py", line 842, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/util/retry.py", line 543, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='paper-api.alpaca.markets', port=443): Max retries exceeded with url: /v2/account (Caused by NameResolutionError("HTTPSConnection(host='paper-api.alpaca.markets', port=443): Failed to resolve 'paper-api.alpaca.markets' ([Errno 8] nodename nor servname provided, or not known)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/rishitmathurrishit/trading-robot/daily_review.py", line 334, in <module>
+    main()
+    ~~~~^^
+  File "/Users/rishitmathurrishit/trading-robot/daily_review.py", line 273, in main
+    info = gather()
+  File "/Users/rishitmathurrishit/trading-robot/daily_review.py", line 80, in gather
+    acct = trading.get_account()
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/alpaca/trading/client.py", line 474, in get_account
+    response = self.get("/account")
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/alpaca/common/rest.py", line 225, in get
+    return self._request("GET", path, data, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/alpaca/common/rest.py", line 131, in _request
+    return self._one_request(method, url, opts, retry)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/alpaca/common/rest.py", line 195, in _one_request
+    response = self._session.request(method, url, **opts)
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/requests/sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/requests/sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/requests/adapters.py", line 729, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='paper-api.alpaca.markets', port=443): Max retries exceeded with url: /v2/account (Caused by NameResolutionError("HTTPSConnection(host='paper-api.alpaca.markets', port=443): Failed to resolve 'paper-api.alpaca.markets' ([Errno 8] nodename nor servname provided, or not known)"))
+wrote /Users/rishitmathurrishit/trading-robot/research/2026-09-21.md
+cost ~$0.1528  (19136 in / 2284 out)
+
+## How it's actually going
+
+Equity $100,491.56, +0.49% since inception, +$325 today. One new close: **BBY sold 9/21 at −0.33% (−$5.65)** after four trading days, replaced by W. Realised record is now **33 round trips, 7 wins, −$956**: stocks 16 RT / 4 wins / −$434 (avg −1.33% vs SPY −0.50% on matched windows), crypto 13 RT / 3 wins / −$176, options 4 RT / 0 wins / −$346 (off).
+
+The headline number remains misleading. Open book is **+$1,422, of which +$1,114 (78%) is the four crypto positions bought in one minute on 9/18** — AVAX alone +47.4% on a $1,220 cost. The ten-name stock book is +$308 unrealised and has lost to SPY on every matched window measured. Strip the four-day-old crypto beta and the account is roughly flat-to-down. Sixteen stock round trips is still not a sample, but the sig...
+wrote /Users/rishitmathurrishit/trading-robot/research/2026-09-22.md
+cost ~$0.1598  (19353 in / 2523 out)
+
+## How it's actually going
+
+Equity $100,555.10, +0.55% since inception, +$135 today. One new close: **CRM sold 9/22 at −5.45% (−$54.37)** after 26 calendar days — the longest hold yet to be closed, and SPY was +0.54% over that exact window. Realised record now **34 round trips, 7 wins, −$1,010**: stocks 17 RT / 4 wins / −$488 (avg −1.57% vs SPY −0.44% on matched windows), crypto 13 RT / 3 wins / −$176, options 4 RT / 0 / −$346 (off).
+
+The composition of the open book got more lopsided, not less. Unrealised is **+$1,539, of which +$1,437 (93%) is the four crypto positions bought in one minute on 9/18** — AVAX +44.9%, BCH +44.2%. The ten-name stock book's unrealised gain *fell from +$308 to +$102* over the same day the headline rose. Strip crypto and the equity curve is flat. Seventeen stock...
+wrote /Users/rishitmathurrishit/trading-robot/research/2026-09-23.md
+cost ~$0.1672  (18842 in / 2919 out)
+
+## How it's actually going
+
+Equity $100,385.02, +0.38% since inception, **−$220 today**. Two new closes, both refiners: **MPC +0.08% (+$1.88)** and **VLO +0.66% (+$14.91)**, held two weeks. Both were positive in absolute terms and both lost to SPY, which returned +0.96% over that exact window. Realised record is now **36 round trips, 9 wins, −$993**: stocks 19 RT / 6 wins / −$472 (avg −1.37% vs SPY −0.29% matched), crypto 13 RT / 3 wins / −$176, options 4 RT / 0 / −$346 (off).
+
+The composition point stands and is the whole story: unrealised is **+$1,347, of which +$1,203 (89%) is the four crypto positions bought in one minute on 9/18**. The eight-name stock book is +$145. Today's −$220 came almost entirely from crypto giving back (AVAX +44.9% → +35.1%). Nineteen stock round trips is still ...
+wrote /Users/rishitmathurrishit/trading-robot/research/2026-09-24.md
+cost ~$0.1481  (18384 in / 2246 out)
+
+## How it's actually going
+
+Equity $100,693.69, +0.69% since inception, +$318 today. **No new closes and no fills at all** — the realised record is unchanged at 36 round trips, 9 wins, −$993 (stocks 19 RT / 6 wins / −$472, avg −1.37% vs SPY −0.29% matched; crypto 13 / 3 / −$176; options 4 / 0 / −$346, off). Nineteen stock round trips remains far too small to conclude anything, but the sign has been negative for two weeks straight and the SPY-relative gap is wider than the absolute loss.
+
+Composition is still the whole story. Unrealised is **+$1,656, of which +$1,333 (80%) is the four crypto positions bought in one minute on 9/18**. The eight-name stock book contributes +$324 on ~$15.0k. Today's +$318 is mostly crypto bouncing back after yesterday's give-back. Strip the crypto minute and th...
+wrote /Users/rishitmathurrishit/trading-robot/research/2026-09-25.md
+cost ~$0.1633  (18860 in / 2758 out)
+
+## How it's actually going
+
+Equity $100,776.81, +0.78% since inception, +$98 today. One new close: **PSX sold 9/25 at −3.31% (−$78.05)** after 16 days, while SPY returned **+1.43%** over that exact window — a ~4.7pp relative miss and the fourth refiner/energy exit in a row that went nowhere or backwards while the index rose. Realised record is now **37 round trips, 9 wins, −$1,071**: stocks 20 RT / 6 wins / −$550 (avg −1.47% vs SPY −0.20% on matched windows), crypto 13 / 3 / −$176, options 4 / 0 / −$346 (off).
+
+The composition story is unchanged and still the whole story. Unrealised is **+$1,815, of which +$1,514 (83%) is the four crypto positions bought in one minute on 9/18**. The nine-name stock book is +$301 on ~$16.1k cost. Strip the crypto minute and the account is flat since incepti...
+wrote /Users/rishitmathurrishit/trading-robot/research/2026-09-26.md
+cost ~$0.1438  (18873 in / 1976 out)
+
+## How it's actually going
+
+Equity $100,760.33, +0.76% since inception, **−$82 today**. Saturday: US market closed, no stock fills, no new closes. The realised ledger is unchanged from yesterday — **37 round trips, 9 wins, −$1,071**: stocks 20 RT / 6 wins / −$550 (avg −1.47% vs matched SPY −0.20%), crypto 13 / 3 / −$176, options 4 / 0 / −$346 (off). Twenty stock round trips is not a sample; what it is, is five weeks of a consistently negative sign with the SPY-relative gap wider than the absolute loss.
+
+Composition is still the entire result. Unrealised is **+$1,799, of which +$1,490 (83%) is the four crypto positions bought in one minute on 9/18**. The nine-name stock book is +$309 on ~$15.9k. Today's −$82 is pure crypto drift. Strip that one minute and the account is flat.
+
+One thing wor...
+Traceback (most recent call last):
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/connection.py", line 204, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/util/connection.py", line 60, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+               ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/socket.py", line 983, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/connectionpool.py", line 488, in _make_request
+    raise new_e
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/connectionpool.py", line 1106, in _validate_conn
+    conn.connect()
+    ~~~~~~~~~~~~^^
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/connection.py", line 759, in connect
+    self.sock = sock = self._new_conn()
+                       ~~~~~~~~~~~~~~^^
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/connection.py", line 211, in _new_conn
+    raise NameResolutionError(self.host, self, e) from e
+urllib3.exceptions.NameResolutionError: HTTPSConnection(host='paper-api.alpaca.markets', port=443): Failed to resolve 'paper-api.alpaca.markets' ([Errno 8] nodename nor servname provided, or not known)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/requests/adapters.py", line 696, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/connectionpool.py", line 842, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/util/retry.py", line 543, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='paper-api.alpaca.markets', port=443): Max retries exceeded with url: /v2/account (Caused by NameResolutionError("HTTPSConnection(host='paper-api.alpaca.markets', port=443): Failed to resolve 'paper-api.alpaca.markets' ([Errno 8] nodename nor servname provided, or not known)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/rishitmathurrishit/trading-robot/daily_review.py", line 334, in <module>
+    main()
+    ~~~~^^
+  File "/Users/rishitmathurrishit/trading-robot/daily_review.py", line 273, in main
+    info = gather()
+  File "/Users/rishitmathurrishit/trading-robot/daily_review.py", line 80, in gather
+    acct = trading.get_account()
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/alpaca/trading/client.py", line 474, in get_account
+    response = self.get("/account")
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/alpaca/common/rest.py", line 225, in get
+    return self._request("GET", path, data, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/alpaca/common/rest.py", line 131, in _request
+    return self._one_request(method, url, opts, retry)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/alpaca/common/rest.py", line 195, in _one_request
+    response = self._session.request(method, url, **opts)
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/requests/sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/requests/sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/requests/adapters.py", line 729, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='paper-api.alpaca.markets', port=443): Max retries exceeded with url: /v2/account (Caused by NameResolutionError("HTTPSConnection(host='paper-api.alpaca.markets', port=443): Failed to resolve 'paper-api.alpaca.markets' ([Errno 8] nodename nor servname provided, or not known)"))
+wrote /Users/rishitmathurrishit/trading-robot/research/2026-09-28.md
+cost ~$0.1835  (18871 in / 3567 out)
+
+## How it's actually going
+
+Equity $100,252.46, +0.25% since inception, **−$589.78 today** — the worst single day in the log and enough to erase two-thirds of the cumulative gain. No fills today despite the market being open; no new closes. The realised ledger is unchanged for a third session: **37 round trips, 9 wins, −$1,071** (stocks 20 RT / 6 wins / −$550, avg −1.47% vs matched SPY −0.20%; crypto 13 / 3 / −$176; options 4 / 0 / −$346, off). Twenty stock round trips is still not a sample.
+
+What's new is that the drawdown was broad, not crypto-only. Crypto unrealised fell from ~+$1,490 (9/26) to **+$1,233**; the stock book fell from +$309 to **+$58**. With only $21,979 invested, −$590 is roughly **−2.6% on deployed capital in a day** — the vol-scaled sizing is doing its job at the accoun...
+wrote /Users/rishitmathurrishit/trading-robot/research/2026-09-29.md
+cost ~$0.152  (20550 in / 1969 out)
+
+## How it's actually going
+
+Equity $100,531.90, +0.53% since inception, +$263 today. The big change is structural, not P/L: the bot deployed **$43.5k into SPY via `spy_sleeve_v1`** and opened seven new stock positions in a single 13:56 batch. Cash went from ~78% to **12%**. The account is now roughly 43% SPY, 36% single-name stocks, 6.5% crypto. Whatever happens next, the dominant driver of returns is now SPY itself.
+
+Two new closes, both losers: **TEAM −7.36% (−$110)** over 14 days while SPY returned +1.15%, and **W −6.16% (−$92)** over 8 days vs SPY −1.20%. W was the weak name flagged in the last three reviews; it exited near the flagged level rather than at the 10% stop. Realised ledger is now **39 round trips, 9 wins, −$1,274**: stocks 22 RT / 6 wins / −$752 (avg −1.95% vs matched SPY ...
+wrote /Users/rishitmathurrishit/trading-robot/research/2026-09-30.md
+cost ~$0.1621  (21053 in / 2273 out)
+
+## How it's actually going
+
+Equity $100,083.77, +0.08% since inception, **−$346.73 today**. Cumulative gain is now essentially zero — five weeks of activity has produced nothing distinguishable from cash.
+
+Two new closes, and they are the first genuinely interesting pair in a while. **BCH/USD +30.06% (+$367) over 12 days** — the largest dollar win in the log — and **FCX −1.77% (−$30)** after five days, the `trending_up: false` name flagged yesterday, exited quickly rather than left to rot. Realised ledger: **41 round trips, 10 wins, −$936**. Stocks 23 RT / 6 wins / **−$782** (avg −1.94% vs matched SPY −0.23%); crypto 14 RT / 4 wins / **+$192**; options 4 / 0 / −$346 (off).
+
+Worth correcting my own prior note: I said crypto's `beat_spy: true` was an equal-weight artefact and to trust the do...
+wrote /Users/rishitmathurrishit/trading-robot/research/2026-10-01.md
+cost ~$0.1792  (21030 in / 2962 out)
+
+## How it's actually going
+
+Equity $100,477.74, +0.48% since inception, **+$429.81 today**. No fills, no new closes — the realised ledger is frozen for a second session at **41 round trips, 10 wins, −$936**: stocks 23 RT / 6 wins / **−$782** (avg −1.94% vs matched SPY −0.23%), crypto 14 RT / 4 wins / **+$192**, options 4 / 0 / −$346 (off). Twenty-three stock round trips is not a sample, but the sign has been negative for five weeks and the SPY-relative gap (−1.71pp per trade) is wider than the absolute loss.
+
+What's actually new is *where* today's gain came from. The SPY sleeve went slightly backwards (−$81 unrealised, −0.19% on $43.6k cost). Crypto unrealised is ~**+$1,136** across four names, down from ~$1,579 pre-BCH-sale. So the **+$430 came from the 9/29 small-cap batch and the older ...
+Traceback (most recent call last):
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/connection.py", line 204, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/util/connection.py", line 60, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+               ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/socket.py", line 983, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/connectionpool.py", line 488, in _make_request
+    raise new_e
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/connectionpool.py", line 1106, in _validate_conn
+    conn.connect()
+    ~~~~~~~~~~~~^^
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/connection.py", line 759, in connect
+    self.sock = sock = self._new_conn()
+                       ~~~~~~~~~~~~~~^^
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/connection.py", line 211, in _new_conn
+    raise NameResolutionError(self.host, self, e) from e
+urllib3.exceptions.NameResolutionError: HTTPSConnection(host='paper-api.alpaca.markets', port=443): Failed to resolve 'paper-api.alpaca.markets' ([Errno 8] nodename nor servname provided, or not known)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/requests/adapters.py", line 696, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/connectionpool.py", line 842, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/urllib3/util/retry.py", line 543, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='paper-api.alpaca.markets', port=443): Max retries exceeded with url: /v2/account (Caused by NameResolutionError("HTTPSConnection(host='paper-api.alpaca.markets', port=443): Failed to resolve 'paper-api.alpaca.markets' ([Errno 8] nodename nor servname provided, or not known)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/rishitmathurrishit/trading-robot/daily_review.py", line 334, in <module>
+    main()
+    ~~~~^^
+  File "/Users/rishitmathurrishit/trading-robot/daily_review.py", line 273, in main
+    info = gather()
+  File "/Users/rishitmathurrishit/trading-robot/daily_review.py", line 80, in gather
+    acct = trading.get_account()
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/alpaca/trading/client.py", line 474, in get_account
+    response = self.get("/account")
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/alpaca/common/rest.py", line 225, in get
+    return self._request("GET", path, data, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/alpaca/common/rest.py", line 131, in _request
+    return self._one_request(method, url, opts, retry)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/alpaca/common/rest.py", line 195, in _one_request
+    response = self._session.request(method, url, **opts)
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/requests/sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/requests/sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/requests/adapters.py", line 729, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='paper-api.alpaca.markets', port=443): Max retries exceeded with url: /v2/account (Caused by NameResolutionError("HTTPSConnection(host='paper-api.alpaca.markets', port=443): Failed to resolve 'paper-api.alpaca.markets' ([Errno 8] nodename nor servname provided, or not known)"))
+wrote /Users/rishitmathurrishit/trading-robot/research/2026-10-03.md
+cost ~$0.1747  (21558 in / 2677 out)
+
+## How it's actually going
+
+Equity $101,176.62, +1.18% since inception, +$36.88 today — flat. The important point: **every dollar of that gain is unrealised**. The realised ledger across all sleeves is **−$1,008** (stocks −$863, crypto +$192, options −$346, SPY sleeve +$9). Open P/L is roughly +$904 in stocks and +$1,239 in crypto, so four crypto names still carry over half the paper gain on 6% of capital.
+
+Two new closes from the 10/02 batch, both losers as flagged: **DELL −1.53% (−$23)** over 16 days while SPY returned +2.32%, and **META −3.28% (−$58)** over 7 days vs SPY −0.22%. Stocks are now **25 round trips, 6 wins (24%), avg −1.98% vs matched SPY −0.13%**. Twenty-five trades is still not a sample, but the per-trade deficit to SPY (−1.85pp) has been stable for five weeks, which is mo...
+wrote /Users/rishitmathurrishit/trading-robot/research/2026-10-04.md
+cost ~$0.1596  (22075 in / 1968 out)
+
+## How it's actually going
+
+Equity $101,187.03, +1.19% since inception, +$47.29 today. US market closed; the only live activity was crypto. Two LINK lots closed overnight 10/04: a residual 0.30-share scrap at +19.95% (+$0.71) and the real position — 84.2 shares bought 9/30 at $14.4779, sold at $14.1362 for **−2.65% (−$32.38)** after four days. Proceeds went straight into LTC at $70.67.
+
+That drops crypto realised from +$192 to **+$160 over 16 round trips (5 wins)**. Full ledger is now **−$1,040 realised**: stocks −$863 (25 RT, 6 wins, avg −1.98% vs matched SPY −0.13%), crypto +$160, options −$346 (off), SPY sleeve +$9. Every dollar of the +1.19% headline is still unrealised — roughly +$900 in stocks and **+$1,285 in crypto on about $6.2k of capital**. Four coins carry over half the paper g...
+wrote /Users/rishitmathurrishit/trading-robot/research/2026-10-05.md
+cost ~$0.1887  (20776 in / 3392 out)
+
+## How it's actually going
+
+Equity **$102,272.74**, +2.27% since inception, **+$1,133 today** — the best single day so far, and it came almost entirely from the single-name stock book, not crypto (crypto unrealised is flat at ~$1,284, essentially unchanged from yesterday).
+
+Realised remains the sober part: **−$1,022 across all sleeves**. One new close — **IQV, +0.81% (+$18.16)** over 24 days, exactly the `trending_up: false` rotation candidate flagged yesterday. It's technically a win, but matched SPY returned **+1.63%** over the same window, so it's another trade that lost to the index. Stocks are now **26 round trips, 7 wins (26.9%), avg −1.87% vs matched SPY −0.06%**. The ~1.8pp-per-trade deficit to SPY has now been stable for six weeks across 26 trades. That's still not a statistically...
+wrote /Users/rishitmathurrishit/trading-robot/research/2026-10-06.md
+cost ~$0.1753  (21941 in / 2622 out)
+
+## How it's actually going
+
+Equity **$102,480.02**, +2.48% since inception, **+$23.09 today** — flat, after yesterday's +$1,133. No new round trips closed, so the realised ledger is unchanged at **−$1,022** (stocks −$845 over 26 RT / 7 wins / avg −1.87% vs matched SPY −0.06%; crypto +$160; options −$346; SPY sleeve +$9).
+
+The entire +2.48% headline is unrealised: **+$3,460 open P/L**, of which $1,320 is four crypto positions sitting on ~$6.2k of capital (AVAX +50%, AAVE +41%, SOL +19%). That concentration remains the book's biggest single fragility and it is the same note as a week ago.
+
+Counts reconcile exactly: 5 scanner BUYs / 4 SELLs in the 7d window match VLO, COHU, MPC, P, CORT and FCX, META, DELL, IQV; crypto 2/2 matches the LINK sell and LTC buy. No orphan SELLs. `ml_brain_v1` is n...
+wrote /Users/rishitmathurrishit/trading-robot/research/2026-10-07.md
+cost ~$0.1624  (21791 in / 2138 out)
+
+## How it's actually going
+
+Equity **$102,066.02**, +2.07% since start, **−$200.33 today**. No round trips closed, so the realised ledger is unchanged for the third day: **−$1,022 total** (stocks −$845 over 26 RT / 7 wins / avg −1.87% vs matched SPY −0.06%; crypto +$160; options −$346; SPY sleeve +$9). Everything in the headline is still unrealised.
+
+Today's loss came from crypto. Open crypto P/L fell from ~$1,320 to **~$1,108** on ~$6.2k of capital — AVAX +47.5%, AAVE +35.9%, SOL +14.5%, and **LTC now −7.1% (−$87)**. That LTC position is the LINK-proceeds re-entry from 10/04; two days ago it was the trade worth watching, and it's now the second consecutive crypto redeployment to go negative out of the gate. The single-name stock sleeve was roughly flat and the SPY sleeve (+$584) absorbed ...

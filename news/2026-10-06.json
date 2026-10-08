@@ -1,0 +1,166 @@
+{
+  "as_of": "2026-10-06 12:45 UTC",
+  "date": "2026-10-06",
+  "market": {
+    "read": "neutral",
+    "reason": "Index futures modestly higher with no broad shock, though the August trade deficit came in wider than expected."
+  },
+  "stocks": {
+    "AMD": {
+      "verdict": "positive",
+      "reason": "Lisa Su says demand exceeds supply, analysts see beat-and-raise"
+    },
+    "CRWD": {
+      "verdict": "positive",
+      "reason": "StoneX reiterates Buy, raises PT to $325; AWS/Nvidia accelerator launch"
+    },
+    "DINO": {
+      "verdict": "positive",
+      "reason": "UBS maintains Buy, raises PT to $133"
+    },
+    "ECO": {
+      "verdict": "positive",
+      "reason": "B. Riley raises PT to $100 on Buy"
+    },
+    "ILMN": {
+      "verdict": "positive",
+      "reason": "RBC raises PT to $310, Outperform"
+    },
+    "UMC": {
+      "verdict": "positive",
+      "reason": "September net sales up 27% YoY"
+    },
+    "ZETA": {
+      "verdict": "positive",
+      "reason": "Senso AI acquisition plus RBC PT raise to $40"
+    },
+    "MU": {
+      "verdict": "neutral",
+      "reason": "Netlist litigation settled with quarterly payments; no clear directional catalyst"
+    },
+    "MPC": {
+      "verdict": "neutral",
+      "reason": "Only a general oil-inventory opinion piece"
+    },
+    "VLO": {
+      "verdict": "neutral",
+      "reason": "CNBC mention and performance recap only"
+    },
+    "TMO": {
+      "verdict": "neutral",
+      "reason": "Small undisclosed-terms CRO contract"
+    },
+    "U": {
+      "verdict": "neutral",
+      "reason": "Piper reiteration; no dated binary event in headlines"
+    },
+    "OKTA": {
+      "verdict": "neutral",
+      "reason": "CNBC 'final trades' mention only"
+    },
+    "NTAP": {
+      "verdict": "neutral",
+      "reason": "Stale weekly analyst-picks recap"
+    },
+    "AA": {
+      "verdict": "avoid",
+      "reason": "earnings imminent"
+    },
+    "T": {
+      "verdict": "positive",
+      "reason": "New US fiber JV with GIP and CPPIB"
+    },
+    "CLF": {
+      "verdict": "positive",
+      "reason": "Wells Fargo upgrade to Overweight, PT $14"
+    },
+    "CTVA": {
+      "verdict": "positive",
+      "reason": "JP Morgan upgrade to Overweight"
+    },
+    "TXRH": {
+      "verdict": "positive",
+      "reason": "StoneX upgrade to Buy, $200 PT"
+    },
+    "MLKN": {
+      "verdict": "positive",
+      "reason": "StoneX upgrade to Buy, $30 PT"
+    },
+    "DIS": {
+      "verdict": "negative",
+      "reason": "Court hearing on bid to block FCC license review"
+    },
+    "RJF": {
+      "verdict": "negative",
+      "reason": "BMO lowers price target"
+    },
+    "LPLA": {
+      "verdict": "negative",
+      "reason": "BMO lowers price target"
+    },
+    "IBKR": {
+      "verdict": "negative",
+      "reason": "BMO lowers price target"
+    },
+    "AMP": {
+      "verdict": "negative",
+      "reason": "BMO lowers price target"
+    },
+    "SF": {
+      "verdict": "negative",
+      "reason": "BMO lowers price target"
+    },
+    "STT": {
+      "verdict": "negative",
+      "reason": "BMO lowers price target"
+    },
+    "NTRS": {
+      "verdict": "negative",
+      "reason": "BMO lowers price target"
+    },
+    "SPHR": {
+      "verdict": "negative",
+      "reason": "StoneX lowers price target"
+    }
+  },
+  "watched": [
+    "ACVA",
+    "ADPT",
+    "AMD",
+    "AMPL",
+    "AVTR",
+    "CBZ",
+    "COHU",
+    "CORT",
+    "CRWD",
+    "CVI",
+    "DINO",
+    "ECO",
+    "ESTC",
+    "GTLB",
+    "HTFL",
+    "ILMN",
+    "MPC",
+    "MRVL",
+    "MU",
+    "NSIT",
+    "NTAP",
+    "OKTA",
+    "P",
+    "PANW",
+    "RBRK",
+    "RNG",
+    "SPY",
+    "TMO",
+    "TWLO",
+    "U",
+    "UMC",
+    "UTZ",
+    "VLO",
+    "XMTR",
+    "XNCR",
+    "ZETA"
+  ],
+  "model": "claude-opus-5",
+  "cost_usd": 0.1133
+}

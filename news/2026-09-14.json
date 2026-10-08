@@ -1,0 +1,168 @@
+{
+  "as_of": "2026-09-14 12:45 UTC",
+  "date": "2026-09-14",
+  "market": {
+    "read": "risk_off",
+    "reason": "Sharp overnight selloff with Nasdaq 100 futures down ~500 points as AI safety appeals from OpenAI/Anthropic hit the AI trade, compounded by a Fed hike being priced in."
+  },
+  "stocks": {
+    "HPE": {
+      "verdict": "avoid",
+      "reason": "analyst downgrade and 6% premarket drop"
+    },
+    "DELL": {
+      "verdict": "negative",
+      "reason": "falling premarket in AI hardware selloff"
+    },
+    "AMD": {
+      "verdict": "negative",
+      "reason": "down ~6% premarket on AI spending concerns"
+    },
+    "NVDA": {
+      "verdict": "negative",
+      "reason": "down ~3% premarket on AI safety/spending fears"
+    },
+    "MU": {
+      "verdict": "negative",
+      "reason": "down 5% premarket on memory/AI spending concerns"
+    },
+    "SNDK": {
+      "verdict": "negative",
+      "reason": "slips 6% premarket with memory names"
+    },
+    "CRWV": {
+      "verdict": "negative",
+      "reason": "down 8% premarket on AI infrastructure spending fears"
+    },
+    "NBIS": {
+      "verdict": "negative",
+      "reason": "down ~7% premarket on AI-cloud growth risk"
+    },
+    "ORCL": {
+      "verdict": "neutral",
+      "reason": "bullish analyst commentary offset by premarket dip"
+    },
+    "GLW": {
+      "verdict": "avoid",
+      "reason": "down 8% on $2B equity offering"
+    },
+    "CHTR": {
+      "verdict": "avoid",
+      "reason": "analyst downgrade"
+    },
+    "CCI": {
+      "verdict": "avoid",
+      "reason": "downgrade with price target cut"
+    },
+    "ADUS": {
+      "verdict": "avoid",
+      "reason": "downgrade with price target cut"
+    },
+    "ERII": {
+      "verdict": "avoid",
+      "reason": "analyst downgrade"
+    },
+    "GEV": {
+      "verdict": "negative",
+      "reason": "initiated with Sell rating"
+    },
+    "COIN": {
+      "verdict": "positive",
+      "reason": "analyst upgrade, no longer bearish"
+    },
+    "AFRM": {
+      "verdict": "positive",
+      "reason": "analyst upgrade"
+    },
+    "CHYM": {
+      "verdict": "positive",
+      "reason": "analyst upgrade"
+    },
+    "BLSH": {
+      "verdict": "positive",
+      "reason": "analyst upgrade"
+    },
+    "FDMT": {
+      "verdict": "positive",
+      "reason": "analyst upgrade"
+    },
+    "FRSH": {
+      "verdict": "positive",
+      "reason": "initiated Overweight with $18 target"
+    },
+    "NPWR": {
+      "verdict": "positive",
+      "reason": "initiated Outperform"
+    },
+    "RUM": {
+      "verdict": "positive",
+      "reason": "up 11% on confirmed $13.7B Anthropic GPU contract"
+    },
+    "APP": {
+      "verdict": "negative",
+      "reason": "Cramer urges selling"
+    },
+    "LEN": {
+      "verdict": "avoid",
+      "reason": "earnings Sept 16"
+    },
+    "EPM": {
+      "verdict": "avoid",
+      "reason": "earnings Sept 15"
+    },
+    "TCOM": {
+      "verdict": "avoid",
+      "reason": "earnings Sept 15"
+    },
+    "HAIN": {
+      "verdict": "neutral",
+      "reason": "Q4 results already reported"
+    },
+    "PLAY": {
+      "verdict": "avoid",
+      "reason": "earnings due this week"
+    },
+    "AXR": {
+      "verdict": "negative",
+      "reason": "missed estimates"
+    },
+    "BKR": {
+      "verdict": "positive",
+      "reason": "CEO sees no slowdown in energy project activity"
+    }
+  },
+  "watched": [
+    "AAPL",
+    "AMD",
+    "BAC",
+    "BBY",
+    "CDW",
+    "COP",
+    "CRM",
+    "CRWD",
+    "DELL",
+    "ELV",
+    "ETN",
+    "HOOD",
+    "HPE",
+    "HPQ",
+    "HUM",
+    "IQV",
+    "JCI",
+    "MET",
+    "MPC",
+    "MRNA",
+    "MSFT",
+    "NEM",
+    "NET",
+    "NOW",
+    "PSX",
+    "SMCI",
+    "SNOW",
+    "TEAM",
+    "TRV",
+    "VLO"
+  ],
+  "model": "claude-opus-5",
+  "cost_usd": 0.1009
+}

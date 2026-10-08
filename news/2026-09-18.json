@@ -1,0 +1,132 @@
+{
+  "as_of": "2026-09-18 12:45 UTC",
+  "date": "2026-09-18",
+  "market": {
+    "read": "neutral",
+    "reason": "Futures higher with tech leading, but gains pared on Iran strike headlines and a 10-year yield near 5% keep the tape mixed."
+  },
+  "stocks": {
+    "AAPL": {
+      "verdict": "positive",
+      "reason": "iPhone 18 Pro launch plus raised analyst price target"
+    },
+    "AMD": {
+      "verdict": "positive",
+      "reason": "CTO signals no slowdown in AI demand, stock rising premarket"
+    },
+    "CRM": {
+      "verdict": "positive",
+      "reason": "Agentforce renewal surge, raised FY27 outlook, $265 target maintained"
+    },
+    "INTC": {
+      "verdict": "positive",
+      "reason": "premarket gain on SK hynix partnership talks"
+    },
+    "NUE": {
+      "verdict": "neutral",
+      "reason": "guides Q3 earnings higher but shares trade lower premarket"
+    },
+    "ILMN": {
+      "verdict": "neutral",
+      "reason": "earnings already reported, transcript only"
+    },
+    "MU": {
+      "verdict": "avoid",
+      "reason": "earnings imminent"
+    },
+    "CBRL": {
+      "verdict": "avoid",
+      "reason": "earnings imminent"
+    },
+    "XENE": {
+      "verdict": "avoid",
+      "reason": "downgrade and 27% plunge after pausing trial enrollment on adverse events"
+    },
+    "NFLX": {
+      "verdict": "avoid",
+      "reason": "analyst downgrade"
+    },
+    "MGA": {
+      "verdict": "avoid",
+      "reason": "analyst downgrade"
+    },
+    "SDST": {
+      "verdict": "negative",
+      "reason": "shares slide on expanded ATM equity offering"
+    },
+    "ABEO": {
+      "verdict": "positive",
+      "reason": "royalties from partner FDA approval and raised price target"
+    },
+    "BB": {
+      "verdict": "positive",
+      "reason": "gains on new QNX deal"
+    },
+    "MCD": {
+      "verdict": "positive",
+      "reason": "dividend increase"
+    },
+    "TSM": {
+      "verdict": "neutral",
+      "reason": "third-party resilience study, no company catalyst"
+    },
+    "DELL": {
+      "verdict": "neutral",
+      "reason": "only mentioned in AI-regulation political story"
+    },
+    "MSFT": {
+      "verdict": "neutral",
+      "reason": "no company-specific catalyst"
+    },
+    "FTNT": {
+      "verdict": "neutral",
+      "reason": "stale long-term performance recap"
+    },
+    "IT": {
+      "verdict": "neutral",
+      "reason": "stale long-term performance recap"
+    },
+    "JEF": {
+      "verdict": "neutral",
+      "reason": "earnings not until Sept 28"
+    },
+    "RIVN": {
+      "verdict": "neutral",
+      "reason": "analyst initiation and R2 ramp commentary, no hard catalyst"
+    }
+  },
+  "watched": [
+    "AAPL",
+    "ABBV",
+    "ADM",
+    "AMD",
+    "BBY",
+    "CDW",
+    "CF",
+    "CRM",
+    "CTSH",
+    "DELL",
+    "ELV",
+    "FTNT",
+    "HPQ",
+    "HUM",
+    "ILMN",
+    "IQV",
+    "IT",
+    "MET",
+    "MPC",
+    "MSFT",
+    "NOW",
+    "NUE",
+    "PSX",
+    "SNOW",
+    "TEAM",
+    "TMO",
+    "TRV",
+    "VLO",
+    "W",
+    "WAT"
+  ],
+  "model": "claude-opus-5",
+  "cost_usd": 0.1195
+}

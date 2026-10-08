@@ -1,0 +1,186 @@
+{
+  "as_of": "2026-10-07 12:45 UTC",
+  "date": "2026-10-07",
+  "market": {
+    "read": "neutral",
+    "reason": "Futures modestly lower on a 30-year yield spike and Iran headlines, but no broad shock or credit event."
+  },
+  "stocks": {
+    "AMD": {
+      "verdict": "positive",
+      "reason": "CEO flags Samsung memory/foundry tie-up and multi-billion supply chain investment"
+    },
+    "MU": {
+      "verdict": "neutral",
+      "reason": "PT raise offset by $600M Netlist patent settlement and Toshiba capacity fears"
+    },
+    "NTAP": {
+      "verdict": "positive",
+      "reason": "Evercore upgrade to Outperform plus PT hikes"
+    },
+    "DELL": {
+      "verdict": "positive",
+      "reason": "Mizuho reiterates Outperform, raises PT to $650"
+    },
+    "TEAM": {
+      "verdict": "positive",
+      "reason": "Expanded OpenAI partnership and new engineering program"
+    },
+    "CRWD": {
+      "verdict": "neutral",
+      "reason": "Only opinion-piece mentions as a top tech pick"
+    },
+    "PANW": {
+      "verdict": "neutral",
+      "reason": "Sector strength, no company-specific catalyst"
+    },
+    "ZETA": {
+      "verdict": "positive",
+      "reason": "Digital Audience acquisition plus PT raise"
+    },
+    "U": {
+      "verdict": "positive",
+      "reason": "Google collaboration on new integrated gaming platform"
+    },
+    "VLO": {
+      "verdict": "positive",
+      "reason": "Barclays Overweight with PT raised to $441"
+    },
+    "MPC": {
+      "verdict": "neutral",
+      "reason": "Generic refining/oil stockpile commentary only"
+    },
+    "TMO": {
+      "verdict": "neutral",
+      "reason": "Small undisclosed-terms clinical trial support deal"
+    },
+    "ACVA": {
+      "verdict": "neutral",
+      "reason": "Only an overbought-RSI recap, not news"
+    },
+    "SPY": {
+      "verdict": "neutral",
+      "reason": "Mixed macro: higher yields versus record-high backdrop"
+    },
+    "XPO": {
+      "verdict": "positive",
+      "reason": "Citigroup upgrade to Buy, PT $224"
+    },
+    "ODFL": {
+      "verdict": "neutral",
+      "reason": "Upgrade only to Peer Perform"
+    },
+    "ABBV": {
+      "verdict": "positive",
+      "reason": "Two new FDA breakthrough therapy designations"
+    },
+    "HALO": {
+      "verdict": "positive",
+      "reason": "Dutch court upholds patent, bars Merck's Keytruda SC"
+    },
+    "RARE": {
+      "verdict": "positive",
+      "reason": "$210M priority review voucher sale"
+    },
+    "ONDS": {
+      "verdict": "positive",
+      "reason": "Over $165M in new orders announced"
+    },
+    "EW": {
+      "verdict": "positive",
+      "reason": "Barclays initiates Overweight, $110 PT"
+    },
+    "DXCM": {
+      "verdict": "positive",
+      "reason": "Barclays initiates Overweight, $115 PT"
+    },
+    "ABT": {
+      "verdict": "positive",
+      "reason": "New Overweight initiation"
+    },
+    "HUM": {
+      "verdict": "positive",
+      "reason": "Analyst upgrade"
+    },
+    "CTVA": {
+      "verdict": "positive",
+      "reason": "Analyst upgrade"
+    },
+    "TEM": {
+      "verdict": "positive",
+      "reason": "Expanded Merck/Moderna cancer vaccine collaboration"
+    },
+    "NOW": {
+      "verdict": "positive",
+      "reason": "Argus maintains Buy, raises PT"
+    },
+    "ALB": {
+      "verdict": "neutral",
+      "reason": "Buy maintained but price target lowered"
+    },
+    "ULCC": {
+      "verdict": "negative",
+      "reason": "PT cut to $6 with Neutral rating"
+    },
+    "UAL": {
+      "verdict": "neutral",
+      "reason": "Positive rating kept but PT lowered"
+    },
+    "DAL": {
+      "verdict": "neutral",
+      "reason": "Outperform kept but PT lowered"
+    },
+    "SHEL": {
+      "verdict": "positive",
+      "reason": "Raised production outlook and strong refining margins"
+    },
+    "CHAR": {
+      "verdict": "avoid",
+      "reason": "Trading halted pending news on $80M quantum merger"
+    },
+    "NLST": {
+      "verdict": "positive",
+      "reason": "$600M Micron patent settlement win"
+    }
+  },
+  "watched": [
+    "ACVA",
+    "AMD",
+    "AMPL",
+    "ANDG",
+    "AVTR",
+    "CBZ",
+    "COHU",
+    "CORT",
+    "CRWD",
+    "CVI",
+    "DELL",
+    "ECO",
+    "ESTC",
+    "GTLB",
+    "HNGE",
+    "ILMN",
+    "MPC",
+    "MU",
+    "NSIT",
+    "NTAP",
+    "OKTA",
+    "P",
+    "PANW",
+    "PAYC",
+    "QLYS",
+    "RBRK",
+    "RNG",
+    "SNOW",
+    "SPY",
+    "TEAM",
+    "TMO",
+    "U",
+    "UTZ",
+    "VLO",
+    "XMTR",
+    "ZETA"
+  ],
+  "model": "claude-opus-5",
+  "cost_usd": 0.1222
+}

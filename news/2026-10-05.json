@@ -1,0 +1,74 @@
+{
+  "as_of": "2026-10-05 12:45 UTC",
+  "date": "2026-10-05",
+  "market": {
+    "read": "neutral",
+    "reason": "Index futures slip modestly on Iran/Hormuz headlines after Friday's higher close, with no broad shock catalyst."
+  },
+  "stocks": {
+    "AMD": {
+      "verdict": "positive",
+      "reason": "Stifel raises target to $700 and multiple analysts lift forecasts amid AI chip demand"
+    },
+    "MU": {
+      "verdict": "neutral",
+      "reason": "Only commentary pieces on possible buyback and AI picks-and-shovels theme"
+    },
+    "OKTA": {
+      "verdict": "neutral",
+      "reason": "Vague CNBC 'Final Trades' mention, no concrete catalyst"
+    },
+    "UMC": {
+      "verdict": "neutral",
+      "reason": "Listed among premarket decliners with no specific news catalyst"
+    },
+    "NTAP": {
+      "verdict": "neutral",
+      "reason": "Stale recap of last week's analyst picks"
+    },
+    "SPY": {
+      "verdict": "neutral",
+      "reason": "Futures modestly lower; sentiment commentary only"
+    }
+  },
+  "watched": [
+    "ACVA",
+    "AMD",
+    "AMPL",
+    "ANDG",
+    "AVTR",
+    "CBZ",
+    "COHU",
+    "CORT",
+    "CRWD",
+    "CVI",
+    "ECO",
+    "ESTC",
+    "HNGE",
+    "HTFL",
+    "ILMN",
+    "IQV",
+    "LPG",
+    "MPC",
+    "MRVL",
+    "MU",
+    "NTAP",
+    "OKTA",
+    "OMER",
+    "P",
+    "PANW",
+    "RBRK",
+    "RNG",
+    "SNOW",
+    "SPY",
+    "TMO",
+    "TWLO",
+    "UMC",
+    "UTZ",
+    "VLO",
+    "XMTR",
+    "ZETA"
+  ],
+  "model": "claude-opus-5",
+  "cost_usd": 0.0672
+}

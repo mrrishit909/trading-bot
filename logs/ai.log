@@ -1,0 +1,1963 @@
+Traceback (most recent call last):
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/alpaca/common/rest.py", line 198, in _one_request
+    response.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/requests/models.py", line 1167, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: https://data.alpaca.markets/v2/stocks/bars?start=2026-07-09T14%3A15%3A06.370515%2B00%3A00&timeframe=1Day&symbols=AAPL%2CABBV%2CABT%2CACN%2CADBE%2CADI%2CAMAT%2CAMD%2CAMGN%2CAMZN%2CANET%2CAVGO%2CAXP%2CBA%2CBAC%2CBKNG%2CBLK%2CBMY%2CBRK.B%2CC%2CCAT%2CCL%2CCMCSA%2CCMG%2CCOP%2CCOST%2CCRM%2CCRWD%2CCSCO%2CCVX%2CDE%2CDHR%2CDIA%2CDIS%2CF%2CGE%2CGILD%2CGM%2CGOOGL%2CGS%2CHD%2CHON%2CIBM%2CIBM260918P00235000%2CINTC%2CINTU%2CISRG%2CJNJ%2CJPM%2CKDP%2CKO%2CLLY%2CLMT%2CLOW%2CLRCX%2CLULU%2CMA%2CMAR%2CMCD%2CMDLZ%2CMDT%2CMETA%2CMO%2CMRK%2CMRVL%2CMS%2CMSFT%2CMU%2CNFLX%2CNKE%2CNOW%2CNVDA%2CORCL%2CPANW%2CPEP%2CPFE%2CPG%2CPM%2CQCOM%2CQQQ%2CRTX%2CSBUX%2CSCHW%2CSPGI%2CSPY%2CT%2CTGT%2CTJX%2CTMO%2CTMUS%2CTSLA%2CTXN%2CUNH%2CUNP%2CUPS%2CUPS260918C00108000%2CV%2CVRTX%2CVZ%2CWFC%2CWMT%2CXOM%2CXOM260918P00155000&limit=10000
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/rishitmathurrishit/trading-robot/step9_ai_advisor.py", line 53, in <module>
+    analysis = analyze_all(data, list(settings.ALLOWED_STOCKS) + list(held))
+  File "/Users/rishitmathurrishit/trading-robot/scanner.py", line 37, in analyze_all
+    bars = data_client.get_stock_bars(StockBarsRequest(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+        symbol_or_symbols=symbols, timeframe=TimeFrame.Day, start=start,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )).data
+    ^^
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/alpaca/data/historical/stock.py", line 87, in get_stock_bars
+    raw_bars = self._get_marketdata(
+        path="/stocks/bars",
+        params=request_params.to_request_fields(),
+        page_size=10_000,
+    )
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/alpaca/common/rest.py", line 393, in _get_marketdata
+    response = self.get(path=path, data=params)
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/alpaca/common/rest.py", line 225, in get
+    return self._request("GET", path, data, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/alpaca/common/rest.py", line 131, in _request
+    return self._one_request(method, url, opts, retry)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rishitmathurrishit/trading-robot/venv/lib/python3.14/site-packages/alpaca/common/rest.py", line 207, in _one_request
+    raise APIError(error, http_error)
+alpaca.common.exceptions.APIError: {"message":"invalid symbol: IBM260918P00235000"}
+
+============================================================
+AI ADVISOR RUN #97   (advisory only — no trades)
+Looking at 18 stocks: own ['AAPL', 'ADBE', 'ANET', 'CRM', 'MSFT', 'NOW', 'ORCL', 'UPS'], shortlist ['FTNT', 'WMB', 'CAH', 'AON', 'TEAM', 'SNPS', 'HUBS', 'CDW', 'CDNS', 'SLB']
+============================================================
+
+--- NOW ---
+AI says: WAIT  (confidence 0.65)
+Reason: Stock has rallied sharply (+12.5% in 5 days, +4.4% today) with positive momentum and uptrend signal, but such rapid gains warrant caution before adding; holding current position is appropriate given strong technicals.
+
+--- AAPL ---
+AI says: WAIT  (confidence 0.65)
+Reason: AAPL shows positive momentum with price at $319.67, a 1.58% daily gain, and a bullish crossover (fast MA above slow MA). However, recent headlines reveal mixed signals around AI readiness concerns and CEO transition uncertainty, warranting caution before adding to the position.
+
+--- ANET ---
+AI says: WAIT  (confidence 0.65)
+Reason: Price is down 2.77% today despite a positive 5-day trend and upward crossover signal, suggesting recent selling pressure. Hold current position and monitor for clearer directional confirmation before adding or exiting.
+
+--- MSFT ---
+AI says: WAIT  (confidence 0.65)
+Reason: MSFT is in a healthy uptrend with strong momentum (5-day gain +6.22%, fast MA above slow MA), but has already risen sharply and is near recent resistance. Headlines show positive AI sentiment but also mention crowded conditions and tariff risks; better entry points may emerge on pullback.
+
+--- ORCL ---
+AI says: WAIT  (confidence 0.65)
+Reason: ORCL is near recent highs with positive momentum (fast MA above slow MA, +3.54% in 5 days), but today's small decline and lack of clear bullish catalyst in headlines suggest waiting for better entry confirmation before adding or better conviction before selling.
+
+--- CRM ---
+AI says: WAIT  (confidence 0.65)
+Reason: CRM is up 23% in 5 days with a strong bullish crossover and positive momentum, but the sharp 2-day rally (252→257→261) combined with 'Where is the Top?' headlines suggests caution about near-term pullback risk. Hold the position rather than add.
+
+--- UPS ---
+AI says: WAIT  (confidence 0.65)
+Reason: UPS shows a positive uptrend with the 5-day average above 20-day average and recent bullish investment news, but we already own it and the price is near recent highs with only a modest 1-day gain, leaving limited margin of safety for a new addition.
+
+--- ADBE ---
+AI says: WAIT  (confidence 0.65)
+Reason: Stock is up 5.9% in 5 days with a bullish crossover signal, but the recent surge (now 293 vs 5-day avg 280.87) suggests momentum may be overextended. Hold position and monitor for consolidation or pullback before adding.
+
+--- FTNT ---
+AI says: WAIT  (confidence 0.65)
+Reason: While the crossover signal is bullish and recent sector momentum is positive, the -3.84% single-day drop after a sharp rally (172.78 high) suggests profit-taking. Better entry point likely coming soon given volatility.
+
+--- WMB ---
+AI says: WAIT  (confidence 0.6)
+Reason: While the 5-day crossover signal is positive and recent expert commentary is favorable, the single-day decline and mixed headline sentiment around inflation/geopolitical risks warrant caution. Better entry confirmation needed.
+
+--- CAH ---
+AI says: WAIT  (confidence 0.65)
+Reason: While the 5-day average is above the 20-day average and the stock shows a +2.25% gain over 5 days, the price is flat to slightly down today and lacks compelling headline-driven catalysts. The setup is marginally bullish but not clear enough to initiate a position.
+
+--- AON ---
+AI says: WAIT  (confidence 0.6)
+Reason: While the 5-day crossover signal is positive and the stock is up 2.24% today, the 5-day and 20-day averages are nearly identical, suggesting weak momentum. Lack of clear technical strength warrants waiting for a more compelling setup.
+
+--- TEAM ---
+AI says: BUY  (confidence 0.72)
+Reason: TEAM shows strong bullish momentum with price up 11.3% over 5 days, a confirmed golden cross (fast MA above slow MA), and recent analyst upgrades including an Outperform rating with a $215 target. Current price of $203.07 is below the target, supporting an entry position.
+
+--- SNPS ---
+AI says: BUY  (confidence 0.72)
+Reason: SNPS shows a bullish crossover (fast MA above slow MA), strong 5-day momentum (+11.16%), and multiple analyst upgrades with price targets well above current price (~$550–$570). Today's -4.86% dip after positive Q3 earnings may represent a buying opportunity.
+
+--- HUBS ---
+AI says: BUY  (confidence 0.68)
+Reason: HUBS shows a bullish golden cross (5-day fast above 20-day slow) with strong 5-day momentum (+8.83%), and price has climbed 27% from the 10-bar low, indicating uptrend continuation. Recent headline suggests caution but does not directly impact HUBS fundamentals.
+
+--- CDW ---
+AI says: BUY  (confidence 0.72)
+Reason: CDW shows a bullish crossover (5-day MA above 20-day MA) with strong 5-day momentum (+7.75%), and price is near recent highs despite a minor 1-day dip. Entry appears reasonable for a small position.
+
+--- CDNS ---
+AI says: WAIT  (confidence 0.65)
+Reason: While the 5-day average is above the 20-day average (bullish signal) and the 5-day return is positive at 6.49%, today's sharp 2.25% drop and lack of recent news create uncertainty about near-term direction. A clearer confirmation of the uptrend would be safer.
+
+--- SLB ---
+AI says: BUY  (confidence 0.72)
+Reason: SLB shows a clear uptrend with the 5-day fast average above the 20-day slow average, recent strong momentum (6% gain over 5 days, 3.8% today), and positive catalysts including new technology launches and strategic partnerships in carbon storage and Venezuela operations.
+
+============================================================
+Done. Total AI cost this run: about $0.0172
+Saved to diary.db as run #97.
+Market is closed — skipping AI advisor run.
+Market is closed — skipping AI advisor run.
+Market is closed — skipping AI advisor run.
+Market is closed — skipping AI advisor run.
+============================================================
+AI ADVISOR RUN #238   (advisory only — no trades)
+Looking at 18 stocks: own ['AAPL', 'ADBE', 'ANET', 'CRM', 'MSFT', 'NOW', 'ORCL', 'UPS'], shortlist ['DELL', 'KHC', 'TEAM', 'CDW', 'SNPS', 'SLB', 'MDB', 'FTNT', 'CDNS', 'HAL']
+============================================================
+
+--- CRM ---
+AI says: WAIT  (confidence 0.65)
+Reason: CRM has rallied strongly (+23.4% in 5 days) with a healthy uptrend (fast MA above slow MA), and analyst sentiment is positive, but the stock is now 27% above its 20-day average—a stretched valuation that warrants caution before adding. Hold the position rather than chase at this extended level.
+
+--- MSFT ---
+AI says: WAIT  (confidence 0.65)
+Reason: MSFT shows a strong 5-day gain (4.26%) with a bullish crossover (fast MA above slow MA), but today's 1.06% pullback and mixed headlines suggest caution. Hold the position rather than add or exit prematurely.
+
+--- ADBE ---
+AI says: WAIT  (confidence 0.65)
+Reason: ADBE shows a positive crossover signal with the 5-day average above the 20-day average and strong 5-day momentum (+4.87%), but today's -0.61% dip and recent headlines suggesting a surge warrant observing whether the uptrend consolidates before adding exposure.
+
+--- NOW ---
+AI says: WAIT  (confidence 0.65)
+Reason: Stock is up 13.3% in 5 days with a bullish crossover (fast MA above slow MA), but today's +0.25% close after recent momentum suggests potential consolidation. Hold current position and monitor for continuation signals before adding.
+
+--- UPS ---
+AI says: WAIT  (confidence 0.65)
+Reason: UPS is down 1.14% today but up 1.37% over 5 days with a bullish crossover signal (fast MA above slow MA). The position is holding; wait for clearer momentum before acting.
+
+--- ANET ---
+AI says: WAIT  (confidence 0.65)
+Reason: The stock shows a positive crossover signal with the 5-day average above the 20-day average, and we're already holding. Recent price action is modest (0.1% daily, 3.95% over 5 days), so there's no urgent pressure to sell, but also no clear catalyst to add.
+
+--- AAPL ---
+AI says: WAIT  (confidence 0.65)
+Reason: Price is down 1% today but up 2% over 5 days with a bullish crossover (fast MA above slow MA). Headlines show mixed signals—Apple gaining iOS share is positive, but CEO transition and potential regulatory scrutiny warrant caution before adding or exiting.
+
+--- ORCL ---
+AI says: WAIT  (confidence 0.65)
+Reason: ORCL shows a positive 5-day trend (+4.19%) with a bullish crossover signal, but today's -1.61% dip and the headline mentioning 'Big Earnings Could Trigger Massive Swing' suggest volatility ahead; hold position and await clarity on earnings results.
+
+--- DELL ---
+AI says: BUY  (confidence 0.72)
+Reason: DELL shows a bullish crossover (fast 5-day MA above slow 20-day MA) with strong recent momentum (+7.4% over 5 days, +1.98% today) and a recent analyst price target raise to $505, suggesting upside potential from current $472 level.
+
+--- KHC ---
+AI says: WAIT  (confidence 0.65)
+Reason: While the crossover signal shows fast above slow and price is near the moving average convergence point, the recent price action is choppy with minimal momentum (only 0.06% gain over 5 days) and today's close is slightly negative. Insufficient conviction to initiate a position without clearer directional bias or headline catalyst.
+
+--- TEAM ---
+AI says: BUY  (confidence 0.72)
+Reason: TEAM shows a strong uptrend with price up 13.4% over 5 days, fast MA (181.05) well above slow MA (159.56) in confirmed UP crossover, and recent close near session highs. Positive momentum supports a small position entry.
+
+--- CDW ---
+AI says: BUY  (confidence 0.72)
+Reason: CDW shows a bullish crossover with the 5-day average above the 20-day average, supported by strong 5-day momentum (+12.76%) and a positive 1-day move. Price is near recent highs with 31 bars of history providing reasonable confidence in the trend.
+
+--- SNPS ---
+AI says: BUY  (confidence 0.72)
+Reason: SNPS shows a bullish crossover (fast MA above slow MA), strong 5-day momentum (+11.96%), and recent analyst upgrades with bullish earnings beat. Entry near $446 is reasonable for a small position in this uptrend.
+
+--- SLB ---
+AI says: BUY  (confidence 0.72)
+Reason: SLB shows a clear bullish technical setup with the fast 5-day average above the slow 20-day average, strong 5-day and 1-day momentum (+10.16% and +3.76%), and a recent large acquisition announcement that signals management confidence and growth potential. The uptrend is consistent over the last 10 days with no major reversals.
+
+--- MDB ---
+AI says: BUY  (confidence 0.72)
+Reason: MDB shows a bullish crossover (fast MA above slow MA) with strong 5-day momentum (+10.13%), and multiple analysts have recently raised price targets above current price. The setup is reasonably clear despite the minor 1-day dip.
+
+--- FTNT ---
+AI says: BUY  (confidence 0.72)
+Reason: FTNT shows a bullish moving-average crossover (5-day fast above 20-day slow), strong 5-day momentum (+9.66%), and positive sector tailwinds from recent cybersecurity strength. Price is slightly above the 5-day average, suggesting controlled upside entry.
+
+--- CDNS ---
+AI says: WAIT  (confidence 0.65)
+Reason: While the uptrend signal (fast MA above slow MA) and recent 5-day gain of 7.76% are positive, the stock is near its 10-bar high (347.55) with minimal daily momentum (0.01%), suggesting caution before entry. Waiting for a pullback or clearer confirmation would be more prudent.
+
+--- HAL ---
+AI says: BUY  (confidence 0.68)
+Reason: HAL shows a clean uptrend with the fast 5-day average above the slow 20-day average, strong recent gains (+7.62% in 5 days, +3.01% today), and a positive catalyst from potential Venezuelan oil investment deals involving major energy companies. The 10-bar close sequence is consistently higher, supporting momentum.
+
+============================================================
+Done. Total AI cost this run: about $0.0178
+Saved to diary.db as run #238.
+============================================================
+AI ADVISOR RUN #275   (advisory only — no trades)
+Looking at 18 stocks: own ['AAPL', 'ADBE', 'ANET', 'CRM', 'MSFT', 'NOW', 'ORCL', 'UPS'], shortlist ['CRWD', 'DELL', 'IBM', 'KHC', 'CDW', 'FTNT', 'TEAM', 'MDB', 'SNPS', 'SLB']
+============================================================
+
+--- ANET ---
+AI says: WAIT  (confidence 0.65)
+Reason: ANET shows positive momentum with price above both 5-day and 20-day moving averages and a bullish crossover signal, but we already own it. The recent 4.74% gain over 5 days suggests the move may be partially priced in; hold the position and reassess if the uptrend breaks or a clearer catalyst emerges.
+
+--- AAPL ---
+AI says: WAIT  (confidence 0.65)
+Reason: Price is down 1.15% today but the 5-day gain is positive and the fast moving average remains above the slow average, showing an uptrend. However, leadership transitions at Apple and geopolitical tensions create near-term uncertainty that warrants holding position rather than adding or exiting.
+
+--- CRM ---
+AI says: WAIT  (confidence 0.65)
+Reason: CRM shows strong uptrend with fast MA above slow MA and positive momentum (24.43% gain in 5d), but current price is already 26% above the 20-day average, suggesting stretched valuation. Hold position and monitor for a pullback or consolidation before adding.
+
+--- MSFT ---
+AI says: WAIT  (confidence 0.65)
+Reason: MSFT shows a healthy uptrend with fast MA above slow MA and +4.78% gain over 5 days, but today's -0.57% dip and recent pullback from the $513.53 peak suggest consolidation. Hold the position and wait for clearer directional confirmation.
+
+--- ORCL ---
+AI says: WAIT  (confidence 0.65)
+Reason: ORCL shows a positive crossover (fast above slow) and +5.43% gain over 5 days, but today's -0.44% decline and the headline 'Oracle at a Crossroads: Big Earnings' suggest we should hold and watch for clarity rather than exit prematurely into earnings uncertainty.
+
+--- ADBE ---
+AI says: WAIT  (confidence 0.65)
+Reason: Price is near recent highs with a positive uptrend (fast MA above slow MA), but Jefferies' recent hold rating and $285 target suggest limited near-term upside from current $293.51 level. Better entry or clarity on momentum is prudent before adding.
+
+--- NOW ---
+AI says: WAIT  (confidence 0.65)
+Reason: NOW shows a strong uptrend with the fast MA above slow MA and +16.2% over 5 days, but we already own it and the stock has rallied significantly; the risk/reward for adding is less attractive at current levels. Hold the position rather than chase momentum.
+
+--- UPS ---
+AI says: WAIT  (confidence 0.72)
+Reason: Price is down 1.23% today and has pulled back below the 5-day average (104.03 vs 105.17), though the uptrend remains intact with fast MA still above slow MA. Hold position and await clearer entry/exit signals.
+
+--- CRWD ---
+AI says: BUY  (confidence 0.72)
+Reason: CRWD shows a bullish golden cross (fast MA above slow MA), strong recent momentum (+5.78% in 1 day, +21.16% in 5 days), and positive headlines including new all-time high and strategic partnerships. Price is near recent highs with solid technical setup.
+
+--- DELL ---
+AI says: BUY  (confidence 0.72)
+Reason: DELL shows a bullish crossover (fast MA above slow MA), positive momentum (up 6.88% in 5 days), and recent analyst upgrade from BofA to $505 target. Current price of $472 is near recent highs with supportive fundamentals around AI backlog.
+
+--- IBM ---
+AI says: WAIT  (confidence 0.65)
+Reason: While the 5-day moving average is above the 20-day (bullish crossover) and price has risen 1.87% over 5 days, the analyst maintains a neutral stance with a target below current price, and insider selling is a cautionary signal. The setup lacks sufficient clarity for a confident entry.
+
+--- KHC ---
+AI says: WAIT  (confidence 0.65)
+Reason: Price is stable around the moving average convergence point with minimal momentum; no recent headlines and only marginal daily/weekly gains warrant cautious observation before entry.
+
+--- CDW ---
+AI says: WAIT  (confidence 0.6)
+Reason: While CDW shows a bullish crossover and strong recent momentum (15.37% gain over 5 days), the sharp 3% daily jump warrants caution against chasing. Wait for a pullback or confirmation before entering a new position.
+
+--- FTNT ---
+AI says: BUY  (confidence 0.72)
+Reason: FTNT shows a bullish crossover (5-day fast average above 20-day slow average) with strong recent momentum (+3.6% today, +13.15% over 5 days) and favorable sector tailwinds from cybersecurity strength. Price is near recent highs but technicals support continuation.
+
+--- TEAM ---
+AI says: BUY  (confidence 0.72)
+Reason: TEAM shows a strong uptrend with the 5-day average ($180.87) well above the 20-day average ($159.51), positive momentum (+12.85% over 5 days), and recent analyst support from Bank of America raising price target to $210. Current price at $205.78 is near that target but still supported by bullish technicals.
+
+--- MDB ---
+AI says: BUY  (confidence 0.72)
+Reason: MDB shows a bullish crossover (fast MA above slow MA) with strong 5-day momentum (+12.07%), positive analyst sentiment including a $540 price target from Cantor Fitzgerald, and earnings approaching which could drive further upside. Current price of $450.72 is slightly above the 5-day average, supporting momentum.
+
+--- SNPS ---
+AI says: BUY  (confidence 0.72)
+Reason: SNPS shows bullish technicals with fast MA above slow MA and strong 5-day momentum (+11.66%), supported by recent analyst upgrades (Baird, Mizuho) and a beat on Q3 earnings. Current pullback of -0.48% today presents a reasonable entry point.
+
+--- SLB ---
+AI says: BUY  (confidence 0.72)
+Reason: SLB shows a strong uptrend with price up 11.4% over 5 days, a bullish crossover (fast MA above slow MA), and recent positive catalyst from the $3.4B Kelvion acquisition announcement for data center growth. Entry timing is reasonable after the recent momentum spike.
+
+============================================================
+Done. Total AI cost this run: about $0.0181
+Saved to diary.db as run #275.
+============================================================
+AI ADVISOR RUN #318   (advisory only — no trades)
+Looking at 18 stocks: own ['AAPL', 'ADBE', 'ANET', 'CRM', 'MSFT', 'NOW', 'ORCL', 'UPS'], shortlist ['KMI', 'PG', 'CRWD', 'TEAM', 'SLB', 'HAL', 'MDB', 'HUBS', 'PLTR', 'ZS']
+============================================================
+
+--- NOW ---
+AI says: WAIT  (confidence 0.65)
+Reason: NOW has a strong uptrend (fast MA above slow MA, +14% in 5 days) but today's -2.09% dip and mixed headlines suggest caution before adding. Hold current position and reassess on next confirmation.
+
+--- CRM ---
+AI says: WAIT  (confidence 0.65)
+Reason: CRM is up 26% in 5 days with a strong bullish crossover and positive analyst upgrades to $300, but the sharp rally from $205 to $260 suggests we may already be in an extended run; holding is prudent, but adding more at these elevated levels carries elevated risk.
+
+--- ANET ---
+AI says: WAIT  (confidence 0.65)
+Reason: Despite a positive crossover signal (fast above slow) and favorable data-center tailwinds, the stock dropped 3.19% today and is below its 5-day average, suggesting near-term weakness. Hold current position but avoid adding until momentum stabilizes.
+
+--- UPS ---
+AI says: WAIT  (confidence 0.72)
+Reason: Price is down 1.78% over 5 days and broke below the 5-day average, but the uptrend signal (fast MA above slow MA) remains intact. Hold position pending clearer directional confirmation.
+
+--- MSFT ---
+AI says: WAIT  (confidence 0.65)
+Reason: MSFT shows a healthy uptrend with the fast MA above slow MA and positive 5-day momentum (+2.46%), but today's -0.69% dip after a sharp prior run suggests consolidation. No clear entry/exit signal warrants action on our existing position right now.
+
+--- AAPL ---
+AI says: WAIT  (confidence 0.65)
+Reason: Price is up 2% today and 4.4% over 5 days with a bullish crossover (fast MA above slow MA), but mixed analyst signals and legal/competitive headwinds suggest holding current position rather than adding. The setup is modestly positive but not compelling enough to increase exposure.
+
+--- ORCL ---
+AI says: WAIT  (confidence 0.65)
+Reason: ORCL shows a sharp -3.66% one-day drop despite an uptrend signal (fast MA above slow MA), and the 5-day decline is minimal (-0.76%), suggesting possible noise or profit-taking. Analyst support remains (TD Cowen Buy with $240 target) and data center tailwinds are favorable, so holding is warranted rather than selling into weakness.
+
+--- ADBE ---
+AI says: WAIT  (confidence 0.65)
+Reason: ADBE shows a bullish crossover (fast MA above slow MA) and strong 5-day momentum (+6.62%), but today's price is already up near recent highs at $298 with a slight daily dip (-0.25%). Recent analyst rating remains cautious (Jefferies Hold at $285 target), suggesting limited upside catalysts from here.
+
+--- KMI ---
+AI says: WAIT  (confidence 0.55)
+Reason: While the 5-day average is above the 20-day average and 5-day momentum is positive (+4.1%), today's price action was flat/negative and there are no recent headlines to confirm conviction. Prefer to wait for stronger confirmation or a pullback entry point.
+
+--- PG ---
+AI says: WAIT  (confidence 0.6)
+Reason: While PG shows a bullish crossover and modest recent gains, the price is near a 10-bar high with limited headline context, and the uptrend appears nascent without stronger confirmation.
+
+--- CRWD ---
+AI says: BUY  (confidence 0.72)
+Reason: CRWD shows a bullish golden cross (fast 5-day MA above slow 20-day MA) with strong 5-day momentum (+17.86%), positive recent news on AI partnerships and all-time highs, and current price near the 5-day average. The one-day dip (-5.42%) appears minor against the broader uptrend.
+
+--- TEAM ---
+AI says: BUY  (confidence 0.72)
+Reason: TEAM shows a strong uptrend with the 5-day average ($185.93) well above the 20-day average ($163.59) and a bullish crossover signal. Recent analyst upgrade to $210 price target and 52-week high suggest positive momentum, though the 1-day dip warrants a cautious small position entry.
+
+--- SLB ---
+AI says: WAIT  (confidence 0.55)
+Reason: While the uptrend is intact (fast MA above slow MA, +10.65% over 5 days), today's -1.89% pullback and mixed headlines about rate-cut concerns warrant caution before entering a new position. Better entry points may emerge after consolidation.
+
+--- HAL ---
+AI says: BUY  (confidence 0.72)
+Reason: HAL shows a clear uptrend with the 5-day average above the 20-day average (crossover signal UP), strong 5-day gain of 9.14%, and a positive headline about U.S. oil investment in Venezuela that likely benefits oilfield services companies. Price is near recent highs with momentum.
+
+--- MDB ---
+AI says: BUY  (confidence 0.72)
+Reason: Fast 5-day average is above slow 20-day average (bullish crossover), stock is up 8.5% over 5 days, and recent analyst upgrade from Cantor Fitzgerald to $540 target suggests positive momentum despite today's -3.1% dip.
+
+--- HUBS ---
+AI says: BUY  (confidence 0.72)
+Reason: Fast MA crossed above slow MA with uptrend confirmed over 5 days (+8.34%), and analyst price target of $285 is above current price. Recent pullback (-1.47% today) offers reasonable entry near support.
+
+--- PLTR ---
+AI says: WAIT  (confidence 0.45)
+Reason: While PLTR shows a bullish crossover (5-day MA above 20-day MA) and solid 5-day gains of 7.25%, recent insider selling by Cathie Wood and mixed political headlines create uncertainty. The stock is already near recent highs with only a -0.61% 1-day decline, suggesting limited near-term catalyst.
+
+--- ZS ---
+AI says: WAIT  (confidence 0.6)
+Reason: While ZS shows a positive crossover signal (fast MA above slow MA) and solid 5-day momentum (+7.25%), today's sharp 4.11% drop and recent price volatility warrant caution before initiating a new position. Headlines suggest sector strength but lack ZS-specific catalysts.
+
+============================================================
+Done. Total AI cost this run: about $0.0180
+Saved to diary.db as run #318.
+============================================================
+AI ADVISOR RUN #343   (advisory only — no trades)
+Looking at 18 stocks: own ['AAPL', 'ADBE', 'ANET', 'CRM', 'MSFT', 'NOW', 'ORCL', 'UPS'], shortlist ['KMI', 'META', 'CRWD', 'TEAM', 'HAL', 'SLB', 'MDB', 'DE', 'MPC', 'ADM']
+============================================================
+
+--- CRM ---
+AI says: WAIT  (confidence 0.72)
+Reason: CRM shows strong uptrend with fast MA above slow MA and positive momentum, but price has already surged 25.66% in 5 days and analyst targets of $300 are only ~15% above current price. Hold to avoid selling into a run-up, but no urgent reason to add at these levels.
+
+--- UPS ---
+AI says: WAIT  (confidence 0.65)
+Reason: UPS is down 1.61% today and 2.46% over 5 days, but the fast 5-day average ($104.69) remains above the slow 20-day average ($103.40), suggesting an uptrend is still intact. Hold and monitor for stabilization before adding or exiting.
+
+--- ANET ---
+AI says: WAIT  (confidence 0.65)
+Reason: Price is down 2.96% today and below the 5-day average despite an uptrend signal, suggesting near-term weakness. Recent bullish analyst coverage ($220 target) is positive, but we should wait for confirmation that the pullback holds support before adding or the trend clearly reverses.
+
+--- NOW ---
+AI says: WAIT  (confidence 0.65)
+Reason: While the 5-day uptrend (+13.41%) and bullish crossover signal are positive, today's -2.68% drop and recent software sector weakness (from headlines) create uncertainty. Hold the position but avoid adding until momentum stabilizes.
+
+--- AAPL ---
+AI says: WAIT  (confidence 0.65)
+Reason: AAPL is up 2.76% today with a bullish crossover (5-day above 20-day) and positive momentum, but recent headlines suggest mixed sentiment with analyst price targets as low as $303 despite current price of $325.60. Hold the position rather than add or exit prematurely.
+
+--- ORCL ---
+AI says: WAIT  (confidence 0.65)
+Reason: ORCL is down 5.35% today with a sharp reversal, but the 5-day moving average still sits above the 20-day and recent analyst support (TD Cowen Buy) suggests underlying strength; better to wait for stabilization before deciding to hold or exit.
+
+--- MSFT ---
+AI says: WAIT  (confidence 0.65)
+Reason: MSFT shows a positive uptrend (fast MA above slow MA, +1.86% over 5d) with strong analyst support ($600 price target), but today's -1.27% dip and current price near the 5-day average suggest consolidation; hold position and monitor for clearer directional confirmation.
+
+--- ADBE ---
+AI says: WAIT  (confidence 0.65)
+Reason: ADBE is near analyst price targets ($301 Citi, $285 Jefferies) with a positive crossover signal and 5-day uptrend, but today's 2.3% dip and mixed analyst sentiment suggest waiting for clearer momentum before adding or exiting.
+
+--- KMI ---
+AI says: WAIT  (confidence 0.55)
+Reason: While the 5-day average is above the 20-day average (UP crossover) and the 5-day change is positive at +3.51%, today's price declined -0.67% and the stock remains near recent lows with minimal headline data to confirm momentum. More confirmation needed before entering.
+
+--- META ---
+AI says: WAIT  (confidence 0.65)
+Reason: META shows modest upward momentum with a bullish crossover and positive 5-day returns, but Wedbush's neutral rating with a $595 target suggests limited near-term upside from current $580.74 price. Wait for a clearer breakout or pullback entry point.
+
+--- CRWD ---
+AI says: WAIT  (confidence 0.65)
+Reason: While the 5-day uptrend (+15.33%) and bullish crossover signal are positive, today's sharp -7.45% drop and macro headwinds (bond rout, inflation pressure) create near-term uncertainty. Better entry points may emerge soon.
+
+--- TEAM ---
+AI says: BUY  (confidence 0.72)
+Reason: Golden crossover with fast MA well above slow MA, strong 5-day momentum (+12.45%), and recent analyst upgrades with elevated price targets ($225, $210) suggest positive momentum. Today's -3.58% dip appears to be a pullback within an uptrend rather than a reversal signal.
+
+--- HAL ---
+AI says: BUY  (confidence 0.72)
+Reason: HAL shows a bullish golden-cross setup with the 5-day average (36.0) above the 20-day average (34.4), supported by strong 5-day momentum (+9.54%). Recent positive headline about major U.S. oil investment adds tailwind to the energy sector position.
+
+--- SLB ---
+AI says: WAIT  (confidence 0.55)
+Reason: While the crossover signal is bullish and 5-day momentum is positive (+8.43%), today's sharp 3.86% decline raises concern about near-term volatility. The major $3.4B acquisition announcement adds execution risk that warrants observing price stabilization first.
+
+--- MDB ---
+AI says: WAIT  (confidence 0.55)
+Reason: While the crossover signal is positive (fast MA above slow MA) and recent analyst upgrades are encouraging, the stock dropped 4.07% today and we lack sufficient clarity on upcoming earnings results to justify a new entry at this price level.
+
+--- DE ---
+AI says: BUY  (confidence 0.72)
+Reason: DE shows a clear uptrend with the 5-day average above the 20-day average, recent strong momentum (+6.87% in 5 days), and multiple analyst upgrades with price target of $730 suggesting further upside from current $673.27.
+
+--- MPC ---
+AI says: BUY  (confidence 0.72)
+Reason: MPC shows a bullish technical setup with the 5-day average ($369.28) above the 20-day average ($348.54) and strong recent momentum (+6.64% over 5 days). A reputable analyst recently raised the price target to $400, suggesting upside from the current $393.48 level.
+
+--- ADM ---
+AI says: BUY  (confidence 0.68)
+Reason: ADM shows a positive crossover signal with the 5-day average above the 20-day average, and recent price momentum is strong (up 3.83% today, 6.62% over 5 days). Oil strength mentioned in headlines may support commodity-linked agribusiness fundamentals.
+
+============================================================
+Done. Total AI cost this run: about $0.0181
+Saved to diary.db as run #343.
+============================================================
+AI ADVISOR RUN #382   (advisory only — no trades)
+Looking at 18 stocks: own ['AAPL', 'ADBE', 'ANET', 'CRM', 'MSFT', 'NOW', 'ORCL', 'UPS'], shortlist ['NVDA', 'WFC', 'CVS', 'XOM', 'PG', 'TEAM', 'CRWD', 'CTVA', 'RBLX', 'DE']
+============================================================
+
+--- UPS ---
+AI says: WAIT  (confidence 0.65)
+Reason: Price is near the 20-day average with a positive crossover signal, but 5-day momentum is negative and we lack recent news context. Hold the position until a clearer trend emerges.
+
+--- CRM ---
+AI says: WAIT  (confidence 0.65)
+Reason: CRM is already owned and showing strong upside momentum (25.89% gain in 5d, bullish crossover, analyst upgrades to $300). However, at $259.07 near the fast average, there is limited margin of safety for adding; current position should be held and monitored for pullbacks if considering additions.
+
+--- MSFT ---
+AI says: WAIT  (confidence 0.65)
+Reason: MSFT is in a mild pullback (-0.43% today) from a strong 5-day rally, with the fast MA still above the slow MA (bullish signal). Headlines are mixed but generally positive for AI positioning. Hold the position and watch for clearer directional confirmation before adding or exiting.
+
+--- NOW ---
+AI says: WAIT  (confidence 0.65)
+Reason: Price dropped 2.58% today despite a bullish 5-day uptrend and positive crossover signal, suggesting near-term pullback pressure. Hold current position while monitoring for consolidation before adding.
+
+--- ORCL ---
+AI says: WAIT  (confidence 0.6)
+Reason: ORCL shows a bullish crossover signal with the 5-day average above the 20-day, and a strong +2.55% one-day gain. However, the 5-day trend is down -2.65%, and recent headlines highlight significant debt concerns ($95B) alongside AI upside uncertainty, warranting a cautious hold before adding or exiting.
+
+--- ANET ---
+AI says: WAIT  (confidence 0.72)
+Reason: Price has declined 7.92% over 5 days and a bearish crossover (fast MA below slow MA) signals weakening momentum, but positive analyst coverage and data center tailwinds provide support. Hold current position and reassess once technical picture stabilizes.
+
+--- AAPL ---
+AI says: WAIT  (confidence 0.72)
+Reason: Price is near recent highs with a positive 5-day trend and bullish crossover (fast MA above slow MA), but today's modest -0.35% dip combined with mixed headline sentiment around CEO transition and AI competition suggests holding rather than adding. Current position remains sound; no clear exit catalyst.
+
+--- ADBE ---
+AI says: WAIT  (confidence 0.65)
+Reason: ADBE shows a positive crossover (fast MA above slow MA) and strong 5-day gains (+3.27%), but today's decline of -1.28% and mixed analyst sentiment (RBC outperform vs. Jefferies hold) suggest caution before adding. The current price near the 10-day average indicates consolidation rather than clear directional momentum.
+
+--- NVDA ---
+AI says: BUY  (confidence 0.72)
+Reason: NVDA shows a bullish crossover (5-day fast average above 20-day slow average), positive momentum with +2.29% daily and +6.09% 5-day gains, and supportive headlines from influential analysts calling it undervalued. Price is near recent highs with upward trend intact.
+
+--- WFC ---
+AI says: WAIT  (confidence 0.6)
+Reason: While WFC shows a bullish crossover (fast MA above slow MA) and positive momentum with a 4.45% 5-day gain, the recent headline is about competitors launching a stablecoin, not WFC itself. The current price (89.05) is near the 10-day high, suggesting limited margin of safety; waiting for a pullback or clearer fundamental catalyst specific to WFC would be more prudent.
+
+--- CVS ---
+AI says: WAIT  (confidence 0.55)
+Reason: CVS shows a modest uptrend with the 5-day average above the 20-day average and recent price strength (+3.88% in 5 days), but headlines highlight regulatory and political scrutiny of healthcare companies and drug pricing that could create headwinds. Entry signal is not compelling enough to overcome uncertainty.
+
+--- XOM ---
+AI says: WAIT  (confidence 0.55)
+Reason: While the crossover signal is bullish and 5-day momentum is positive, the price is down 0.84% today and sits near the moving average rather than decisively above it. Headlines suggest near-term volatility from geopolitical factors; waiting for a clearer breakout would reduce entry risk.
+
+--- PG ---
+AI says: WAIT  (confidence 0.65)
+Reason: PG shows a modest uptrend with the fast average slightly above the slow average and positive recent momentum, but the price is near the top of its recent range with only minor gains over 5 days, leaving little margin of safety for a new entry.
+
+--- TEAM ---
+AI says: BUY  (confidence 0.72)
+Reason: TEAM shows a strong uptrend with the 5-day average (189.29) well above the 20-day average (167.18), a bullish crossover signal, and recent analyst upgrades with elevated price targets ($210–$225). The 12.32% gain over 5 days and recent 52-week high suggest positive momentum.
+
+--- CRWD ---
+AI says: WAIT  (confidence 0.55)
+Reason: Price is down 4.55% today despite a bullish crossover signal and positive news, suggesting near-term uncertainty. Current price of $208 is below the 5-day average of $219.54, warranting clarity on whether today's dip is a buying opportunity or part of a broader pullback.
+
+--- CTVA ---
+AI says: BUY  (confidence 0.72)
+Reason: CTVA shows a clear uptrend with the fast 5-day average above the slow 20-day average, strong recent momentum (+8.15% in 5 days), and price closing near session highs. The crossover signal confirms bullish positioning.
+
+--- RBLX ---
+AI says: BUY  (confidence 0.65)
+Reason: RBLX shows a bullish crossover (fast MA above slow MA) with strong 5-day momentum (+8.12%), and recent positive news about regulatory clarity may support the rally. Price is above both moving averages, suggesting uptrend continuation.
+
+--- DE ---
+AI says: BUY  (confidence 0.72)
+Reason: DE shows a clear uptrend with the 5-day average above the 20-day average, strong recent momentum (+8.06% over 5 days), and multiple analyst upgrades supporting higher price targets. Current price near all-time highs with positive sentiment.
+
+============================================================
+Done. Total AI cost this run: about $0.0185
+Saved to diary.db as run #382.
+============================================================
+AI ADVISOR RUN #405   (advisory only — no trades)
+Looking at 17 stocks: own ['AAPL', 'ADBE', 'CRM', 'MSFT', 'NOW', 'ORCL', 'UPS'], shortlist ['NVDA', 'DELL', 'WFC', 'XOM', 'CVS', 'PG', 'IBM', 'TEAM', 'CF', 'HAL']
+============================================================
+
+--- UPS ---
+AI says: WAIT  (confidence 0.65)
+Reason: Price is near the 20-day moving average with a bullish crossover signal, but the 5-day decline of -2.24% and lack of recent news suggest holding current position rather than adding. Monitor for stronger confirmation.
+
+--- CRM ---
+AI says: WAIT  (confidence 0.65)
+Reason: CRM shows strong uptrend momentum with fast MA above slow MA and 25.7% 5-day gain, but the stock has already rallied sharply from $205 to $258. While analyst targets support higher prices ($300-$400), we should wait for a pullback or consolidation to add safely rather than chase into a strong move.
+
+--- NOW ---
+AI says: WAIT  (confidence 0.6)
+Reason: NOW is down 4% today despite a positive 5-day trend and upward crossover signal, suggesting recent profit-taking or sector weakness in software stocks. Hold current position and monitor for stabilization before adding.
+
+--- AAPL ---
+AI says: WAIT  (confidence 0.65)
+Reason: AAPL shows solid uptrend with fast MA above slow MA and positive 5-day momentum (+3.89%), but we're already holding. Recent price is near the 10-bar high and analyst price target ($360) offers modest upside; wait for a pullback or clearer breakout before adding.
+
+--- ADBE ---
+AI says: WAIT  (confidence 0.72)
+Reason: ADBE shows a mixed picture: the fast MA is above slow MA (bullish crossover) and price is up 2.7% over 5 days, but today's -1.83% drop and recent AI competition warnings temper momentum. With a recent pullback and analyst opinions ranging from Hold to Outperform, holding the current position is prudent until conviction strengthens.
+
+--- ORCL ---
+AI says: WAIT  (confidence 0.72)
+Reason: ORCL shows a positive crossover signal with the fast MA above slow MA, and strong 1-day momentum (+3.47%), but recent 5-day performance is negative (-1.78%) and headlines reflect mixed sentiment regarding AI upside versus debt concerns. Hold current position and monitor for clearer directional conviction.
+
+--- MSFT ---
+AI says: WAIT  (confidence 0.65)
+Reason: MSFT shows a bullish crossover (fast MA above slow MA) and positive AI sentiment, but today's -0.77% decline and price below the 5-day average suggest caution; hold the position but do not add until we see a clearer bounce or consolidation.
+
+--- NVDA ---
+AI says: BUY  (confidence 0.72)
+Reason: NVDA shows a bullish technical setup with the 5-day moving average above the 20-day average and a strong crossover signal. Recent momentum is positive (3.2% today, 7% over 5 days) supported by favorable AI headlines including a potential Hugging Face acquisition.
+
+--- DELL ---
+AI says: BUY  (confidence 0.72)
+Reason: DELL shows a bullish crossover (fast MA above slow MA), strong 1-day momentum (+15%), and multiple major analysts raising price targets significantly above current price ($570–$735). Recent consolidation around $456 with a breakout to $490 suggests upside potential.
+
+--- WFC ---
+AI says: WAIT  (confidence 0.6)
+Reason: While WFC shows a bullish crossover with the 5-day above 20-day and strong recent momentum (+2.9% today, +5.08% in 5 days), the price has moved 3.5% above the slow average in just days, suggesting potential overextension. Wait for a pullback or more confirmation before initiating a new position.
+
+--- XOM ---
+AI says: BUY  (confidence 0.72)
+Reason: XOM shows a bullish crossover signal with the 5-day average above the 20-day average, supported by strong 5-day momentum (+4.15%). Recent energy headlines suggest geopolitical tailwinds for oil prices, and the stock is recovering from recent lows.
+
+--- CVS ---
+AI says: WAIT  (confidence 0.55)
+Reason: CVS shows a positive crossover signal and modest 5-day gains (+3.18%), but the stock is only marginally above its 20-day average with mixed short-term momentum and ambiguous headlines regarding healthcare/pricing regulation. More clarity is warranted before initiating a position.
+
+--- PG ---
+AI says: WAIT  (confidence 0.6)
+Reason: PG shows a modest uptrend with fast MA above slow MA and positive momentum, but the price is near recent highs with limited margin of safety for a new entry. Better entry points may emerge on pullback.
+
+--- IBM ---
+AI says: WAIT  (confidence 0.65)
+Reason: IBM shows a bullish crossover with the 5-day average above the 20-day average and modest positive momentum, but the current price ($231.54) is already near the recent resistance zone (233–235) and below the fast average, signaling hesitation. An insider selling significant shares is a cautionary sign; better entry points may emerge on pullback or after clearer breakout confirmation.
+
+--- TEAM ---
+AI says: BUY  (confidence 0.72)
+Reason: TEAM shows a strong uptrend with fast MA (189.16) well above slow MA (167.15), recent bullish crossover, and 11.92% gain over 5 days. Recent analyst upgrades from Citigroup and BofA with higher price targets support upside momentum.
+
+--- CF ---
+AI says: BUY  (confidence 0.72)
+Reason: CF shows a clear uptrend with fast MA above slow MA, strong 5-day gain of 11.5%, and positive 1-day momentum at +3.36%. Price has broken above resistance and is sustaining higher levels.
+
+--- HAL ---
+AI says: WAIT  (confidence 0.6)
+Reason: While HAL shows a strong uptrend with the 5-day average above the 20-day average and recent gains of 10% over 5 days, the sharp rally and lack of recent news make it prudent to wait for consolidation or a pullback before initiating a position.
+
+============================================================
+Done. Total AI cost this run: about $0.0171
+Saved to diary.db as run #405.
+============================================================
+AI ADVISOR RUN #446   (advisory only — no trades)
+Looking at 17 stocks: own ['AAPL', 'ADBE', 'CRM', 'MSFT', 'NOW', 'ORCL', 'UPS'], shortlist ['MRNA', 'TEAM', 'DELL', 'SNOW', 'HUM', 'VLO', 'CRWD', 'PSX', 'IQV', 'HOOD']
+============================================================
+
+--- NOW ---
+AI says: WAIT  (confidence 0.65)
+Reason: Price is up 7.12% today and 5.79% over 5 days with a bullish crossover signal, but recent headlines show software sector headwinds and intraday volatility. Hold the position and monitor for confirmation or pullback before adding.
+
+--- UPS ---
+AI says: WAIT  (confidence 0.72)
+Reason: UPS shows a bullish crossover signal (fast MA above slow MA) and price near the 5-day average, but recent 5-day decline of 2.94% and lack of supporting news create uncertainty. Hold the position and monitor for clearer momentum before adding or exiting.
+
+--- CRM ---
+AI says: WAIT  (confidence 0.65)
+Reason: CRM shows strong bullish technicals (fast MA above slow, +6% in 5 days) and positive analyst sentiment, but we already own it. Analyst targets ($300–$400) suggest further upside, so holding is reasonable rather than selling into strength.
+
+--- MSFT ---
+AI says: WAIT  (confidence 0.65)
+Reason: MSFT shows a healthy uptrend with fast MA above slow MA and strong recent gains (+3.22% today), but the stock has already rallied significantly from recent lows and is near recent highs. Recent headlines suggest solid AI/cloud growth, but without clearer entry-point weakness or confirmation signals, holding the position is prudent rather than adding.
+
+--- ORCL ---
+AI says: WAIT  (confidence 0.65)
+Reason: Price is near recent highs with a positive crossover signal, but the 5-day return is slightly negative and recent headlines suggest potential concerns about Oracle's role in the AI ecosystem. Hold current position while waiting for clearer directional confirmation.
+
+--- AAPL ---
+AI says: WAIT  (confidence 0.72)
+Reason: AAPL shows solid uptrend momentum (fast MA above slow MA, +4.31% in 5d, +0.98% today) and analyst support ($360 target). However, recent headlines focus heavily on Nvidia and AI competition rather than Apple-specific catalysts, suggesting we should hold and monitor rather than add into potential profit-taking.
+
+--- ADBE ---
+AI says: WAIT  (confidence 0.72)
+Reason: ADBE is near analyst price targets ($295–$315) with a strong uptrend signal (fast MA above slow MA), but recent +4.27% daily gain and mixed sentiment (Cramer AI concern vs. bullish upgrades) suggest waiting for consolidation before adding. Hold current position.
+
+--- MRNA ---
+AI says: WAIT  (confidence 0.75)
+Reason: Recent downgrade from Rothschild & Co to Sell with $81 price target (vs. current $147.96) creates significant uncertainty, and today's -2.87% drop suggests negative momentum despite the bullish crossover signal. Wait for clarity on whether this is a temporary dip or a reversal.
+
+--- TEAM ---
+AI says: BUY  (confidence 0.72)
+Reason: TEAM shows a bullish moving average crossover (fast above slow), strong recent upside momentum (+6.44% in 1d, +6.91% in 5d), and consistent analyst upgrades with rising price targets ($210–$230), suggesting positive sentiment. Entry at current price aligns with the confirmed uptrend.
+
+--- DELL ---
+AI says: BUY  (confidence 0.72)
+Reason: DELL shows a bullish crossover (fast MA above slow MA), positive momentum (6% gain over 5 days, 1.71% today), and recent analyst upgrades from major firms with $600–$635 price targets supporting further upside from current $513.
+
+--- SNOW ---
+AI says: BUY  (confidence 0.72)
+Reason: SNOW shows a strong bullish crossover with the 5-day average above the 20-day average, a massive 22.7% one-day gain, and a 14% five-day rally. Most recent analyst ratings are constructively bullish with multiple price target raises, though Guggenheim's neutral rating suggests some caution.
+
+--- HUM ---
+AI says: BUY  (confidence 0.68)
+Reason: HUM shows a bullish crossover (5-day avg above 20-day avg) with positive momentum (+3.16% in 5 days, +1.01% today) and recent whale activity interest. Price is trending higher from 378.88 to 426.85 with management reiterating FY26 guidance.
+
+--- VLO ---
+AI says: BUY  (confidence 0.72)
+Reason: VLO shows a bullish crossover (fast 5-day MA above slow 20-day MA) with strong recent momentum (+6.51% in 5 days). Wells Fargo recently raised its price target to $389, just above current price, suggesting upside potential.
+
+--- CRWD ---
+AI says: BUY  (confidence 0.72)
+Reason: Fast 5-day average is above slow 20-day average (bullish crossover signal), and today's price rose 2.81%. Multiple analyst upgrades and price targets ($235–$260) support further upside, though the 5-day pullback of -8.26% warrants modest position sizing.
+
+--- PSX ---
+AI says: BUY  (confidence 0.72)
+Reason: PSX shows a bullish uptrend with the 5-day average above the 20-day average, strong 5-day gain of 7.09%, and recent analyst upgrade to $335 price target. Entry near current levels appears reasonable for a small position.
+
+--- IQV ---
+AI says: WAIT  (confidence 0.65)
+Reason: While IQV shows a bullish crossover with the fast MA above the slow MA and modest positive momentum, the price is near recent highs with minimal intraday change, and absence of recent news limits conviction for initiating a position.
+
+--- HOOD ---
+AI says: BUY  (confidence 0.72)
+Reason: HOOD shows a strong uptrend with price at 120.7, fast MA above slow MA, and +12.69% gain today plus recent analyst upgrades (Scotiabank Sector Outperform at $136 target, Piper Sandler Overweight at $145 target) providing bullish confirmation.
+
+============================================================
+Done. Total AI cost this run: about $0.0175
+Saved to diary.db as run #446.
+============================================================
+AI ADVISOR RUN #469   (advisory only — no trades)
+Looking at 17 stocks: own ['AAPL', 'ADBE', 'CRM', 'MSFT', 'NOW', 'ORCL', 'UPS'], shortlist ['MRNA', 'DELL', 'TEAM', 'SNOW', 'HUM', 'VLO', 'CRWD', 'IQV', 'ILMN', 'HOOD']
+============================================================
+
+--- UPS ---
+AI says: WAIT  (confidence 0.65)
+Reason: Price is near recent averages with a bullish crossover signal, but the 5-day decline (-2.19%) and lack of headline catalyst suggest no clear urgency to add. Hold and monitor for stronger conviction.
+
+--- NOW ---
+AI says: WAIT
+Reason: AI brain had a problem, so playing safe with WAIT. (Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}, 'request_id': 'req_011Ceh4VSQ9fy2j5Lgretncf'})
+
+--- CRM ---
+AI says: WAIT  (confidence 0.65)
+Reason: CRM shows strong momentum with price near recent highs and bullish crossover, but we already own it and recent gains (3.29% 1-day, 5.29% 5-day) suggest limited immediate upside without a clear pullback entry for additional position sizing.
+
+--- AAPL ---
+AI says: WAIT  (confidence 0.72)
+Reason: AAPL shows solid technical strength with uptrend crossover and 4.2% gain over 5 days, but recent legal/patent headwinds and MacBook cancellation rumors introduce uncertainty. Hold current position rather than add while digesting these headlines.
+
+--- ORCL ---
+AI says: WAIT
+Reason: AI brain had a problem, so playing safe with WAIT. (Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}, 'request_id': 'req_011Ceh4WVEbAjJGv2n95TjG3'})
+
+--- MSFT ---
+AI says: WAIT  (confidence 0.65)
+Reason: MSFT shows a solid uptrend with the fast MA above slow MA and a strong 1-day gain of 2.93%, but the recent pullback in the last few bars and OpenAI service issues create short-term uncertainty. Hold current position and monitor for clearer momentum before adding.
+
+--- ADBE ---
+AI says: WAIT
+Reason: AI brain had a problem, so playing safe with WAIT. (Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}, 'request_id': 'req_011Ceh4WxVBR38P39DwtfGKX'})
+
+--- MRNA ---
+AI says: WAIT
+Reason: AI brain had a problem, so playing safe with WAIT. (Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}, 'request_id': 'req_011Ceh4XHTSsmsX9eVB33KHN'})
+
+--- DELL ---
+AI says: WAIT
+Reason: AI brain had a problem, so playing safe with WAIT. (Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}, 'request_id': 'req_011Ceh4XZvtjCruCDfDLj6D5'})
+
+--- TEAM ---
+AI says: BUY  (confidence 0.72)
+Reason: TEAM shows a clear uptrend with the fast 5-day average ($190.68) well above the slow 20-day average ($171.30), plus strong recent momentum (+4.78% in 1 day, +5.25% in 5 days). Multiple analyst upgrades with rising price targets support bullish sentiment.
+
+--- SNOW ---
+AI says: WAIT
+Reason: AI brain had a problem, so playing safe with WAIT. (Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}, 'request_id': 'req_011Ceh4Y1mQHH7dmyZi1AxWH'})
+
+--- HUM ---
+AI says: BUY  (confidence 0.72)
+Reason: HUM shows a bullish crossover (fast MA above slow MA) with strong recent momentum (+3.55% over 5 days), positive guidance reiteration, and whale activity in healthcare. Price is near recent highs with upside confirmation.
+
+--- VLO ---
+AI says: BUY  (confidence 0.72)
+Reason: VLO shows a bullish crossover with the 5-day average ($362.13) above the 20-day ($343.88), strong recent momentum (+7.13% in 5 days), and positive analyst sentiment with price targets above current price ($435 from Piper Sandler). Conservative position size appropriate given paper-money learning context.
+
+--- CRWD ---
+AI says: BUY  (confidence 0.72)
+Reason: CrowdStrike shows a bullish crossover (fast 5-day MA above slow 20-day MA) with strong recent momentum (+4.88% today) and multiple analyst upgrades citing $250-$260 price targets, suggesting upside from current $213.69. The position is reasonably clear despite some 5-day pullback noise.
+
+--- IQV ---
+AI says: WAIT
+Reason: AI brain had a problem, so playing safe with WAIT. (Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}, 'request_id': 'req_011Ceh4YhBUtDVD4fnNu1RQP'})
+
+--- ILMN ---
+AI says: WAIT
+Reason: AI brain had a problem, so playing safe with WAIT. (Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}, 'request_id': 'req_011Ceh4YztqsQKMahPqDFeMh'})
+
+--- HOOD ---
+AI says: WAIT
+Reason: AI brain had a problem, so playing safe with WAIT. (Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}, 'request_id': 'req_011Ceh4ZHkc81XG48jZNuPxU'})
+
+============================================================
+Done. Total AI cost this run: about $0.0083
+Saved to diary.db as run #469.
+============================================================
+AI ADVISOR RUN #506   (advisory only — no trades)
+Looking at 17 stocks: own ['AAPL', 'ADBE', 'CRM', 'MSFT', 'NOW', 'ORCL', 'UPS'], shortlist ['MRNA', 'DELL', 'TEAM', 'MU', 'SNOW', 'HUM', 'MPC', 'CRWD', 'VLO', 'HOOD']
+============================================================
+
+--- NOW ---
+AI says: WAIT  (confidence 0.65)
+Reason: Price is down 2.81% today and 2.22% over 5 days, but the fast moving average remains above the slow average, signaling an uptrend. Without a clear breakdown of the uptrend or confirmation of reversal, holding the position is prudent while we await clearer directional cues.
+
+--- MSFT ---
+AI says: WAIT  (confidence 0.65)
+Reason: MSFT shows a bullish crossover (fast MA above slow MA) but recent price action is weak with -1.38% daily decline and -2.03% over 5 days, suggesting consolidation. Hold current position pending clearer directional confirmation.
+
+--- AAPL ---
+AI says: WAIT  (confidence 0.65)
+Reason: Mixed signals: uptrend is intact (fast MA above slow MA, 5-day gain +0.48%), but today's -2.13% drop and patent litigation risk warrant caution before adding or exiting. Hold current position and monitor.
+
+--- CRM ---
+AI says: WAIT  (confidence 0.65)
+Reason: CRM shows a healthy uptrend with the fast 5-day average well above the slow 20-day average, and recent analyst support (Needham Buy at $400). However, today's -1.67% decline and mixed recent headlines create near-term uncertainty; holding our current position is prudent while momentum stabilizes.
+
+--- ADBE ---
+AI says: WAIT  (confidence 0.65)
+Reason: Stock down 6.96% today and 8.8% over 5 days despite bullish crossover signal and analyst upgrades; leadership transition and AI competition concerns warrant observing price stabilization before adding or exiting.
+
+--- UPS ---
+AI says: WAIT  (confidence 0.65)
+Reason: Price recently recovered to 106.56 above both moving averages (103.27 and 103.36), showing some upward momentum despite the DOWN crossover signal. With no recent headlines and mixed signals, holding current position is prudent until a clearer trend emerges.
+
+--- ORCL ---
+AI says: WAIT  (confidence 0.65)
+Reason: ORCL shows solid uptrend (fast MA above slow, +4.77% in 5 days, price near recent highs at 158.8), but analyst price target of $190 and upcoming cloud growth guidance on Sept 10 create uncertainty about near-term direction. Hold current position and await results rather than adding.
+
+--- MRNA ---
+AI says: WAIT  (confidence 0.75)
+Reason: Rothschild & Co just downgraded MRNA to Sell with a $81 price target (well below current $150.5), creating significant uncertainty despite technical uptrend signals. Conservative approach warrants waiting for clarity on whether the stock stabilizes or follows the downgrade.
+
+--- DELL ---
+AI says: BUY  (confidence 0.72)
+Reason: DELL shows a bullish technical setup with the fast 5-day average ($482.58) above the slow 20-day average ($466.07), strong 5-day momentum at +14.7%, and positive sentiment from recent headlines about record highs and AI demand. Price is consolidating near recent highs with upward momentum intact.
+
+--- TEAM ---
+AI says: BUY  (confidence 0.72)
+Reason: Fast moving average is above slow average (bullish crossover), and recent analyst upgrades from multiple major banks support upside momentum. Stock is trading near recent highs with positive multi-day performance despite today's dip.
+
+--- MU ---
+AI says: BUY  (confidence 0.72)
+Reason: MU shows bullish momentum with fast MA above slow MA, strong 5-day/1-day gains (+7.06%/+4.23%), and positive crossover signal; AI memory demand tailwinds support upside despite recent China competition concerns.
+
+--- SNOW ---
+AI says: BUY  (confidence 0.72)
+Reason: Price is at 347.2 with a bullish crossover (fast MA above slow MA), positive 5-day momentum (+5.73%), and strong analyst sentiment with multiple price target increases above current levels. Recent dip today (-2.71%) provides modest entry opportunity.
+
+--- HUM ---
+AI says: BUY  (confidence 0.72)
+Reason: HUM shows a bullish crossover (fast MA above slow MA) with strong 5-day momentum (+4.29%), recent whale activity noted, and management reiterating FY26 guidance. The recent dip (-1.1% today) offers a modest entry point after uptrend confirmation.
+
+--- MPC ---
+AI says: BUY  (confidence 0.72)
+Reason: Fast MA clearly above slow MA with uptrend intact (+4.28% over 5 days); recent analyst upgrades to $462 and $400 targets support upside, though today's -0.8% dip suggests caution on entry timing.
+
+--- CRWD ---
+AI says: BUY  (confidence 0.72)
+Reason: CRWD shows a bullish crossover (5-day fast MA above 20-day slow MA) with recent analyst upgrades and price targets well above current price ($250–$265). The stock is near recent highs with positive momentum, though the 5-day decline warrants caution.
+
+--- VLO ---
+AI says: BUY  (confidence 0.72)
+Reason: VLO shows a bullish crossover (fast MA above slow MA) with strong 5-day momentum (+4.04%), and analyst upgrades from Piper Sandler and Wells Fargo suggest positive conviction despite today's -1.1% dip.
+
+--- HOOD ---
+AI says: WAIT  (confidence 0.35)
+Reason: While the 5-day crossover signal is positive and the stock is up 16.95% over 5 days, today's 2.24% drop and recent headlines about tokenized stocks and regulatory scrutiny create uncertainty about momentum sustainability. The setup is not clear enough to initiate a position.
+
+============================================================
+Done. Total AI cost this run: about $0.0176
+Saved to diary.db as run #506.
+============================================================
+AI ADVISOR RUN #522   (advisory only — no trades)
+Looking at 17 stocks: own ['AAPL', 'ADBE', 'CRM', 'MSFT', 'NOW', 'ORCL', 'UPS'], shortlist ['MRNA', 'DELL', 'TEAM', 'MU', 'SNOW', 'HUM', 'CRWD', 'VLO', 'HOOD', 'ILMN']
+============================================================
+
+--- NOW ---
+AI says: WAIT  (confidence 0.65)
+Reason: NOW is down 3.1% today despite the uptrend signal (fast MA above slow MA), suggesting mixed momentum. The stock trades near its 5-day average with recent volatility, so holding is prudent until clearer directional conviction emerges.
+
+--- ORCL ---
+AI says: WAIT  (confidence 0.65)
+Reason: Price is near recent highs with a solid uptrend (fast MA above slow, +4.27% in 5d), but analyst price targets ($190–$210) suggest modest upside from current $157.34. Upcoming cloud growth guidance on Sept. 10 is a key catalyst; better to hold and see results before adding.
+
+--- MSFT ---
+AI says: WAIT  (confidence 0.65)
+Reason: MSFT shows a bullish crossover (fast MA above slow MA) and analyst support (Stifel raised target to $530), but recent price action is weak with -1.98% loss today and -2.63% over 5 days. Hold current position and monitor for stabilization before adding.
+
+--- UPS ---
+AI says: WAIT  (confidence 0.72)
+Reason: Price is declining with a bearish crossover (fast MA below slow MA), but the position is only down 1% today. Hold for clearer reversal signals or a more substantial pullback before deciding to exit.
+
+--- AAPL ---
+AI says: WAIT  (confidence 0.65)
+Reason: Price dipped 1.96% today but remains above the 5-day average with a bullish uptrend signal (fast MA above slow MA). Headlines show mixed sentiment with product innovation but cost pressures; no clear catalyst to exit the current position yet.
+
+--- ADBE ---
+AI says: WAIT  (confidence 0.65)
+Reason: Stock is down 6.3% today and 8.1% over 5 days despite a bullish crossover signal, likely due to CEO transition uncertainty. Better clarity needed before adding to or exiting a position we already own.
+
+--- CRM ---
+AI says: WAIT  (confidence 0.65)
+Reason: CRM shows a bullish crossover (fast MA above slow MA) and positive 5-day momentum, but the -1.67% daily decline and recent volatility around $256-264 suggest consolidation. Recent analyst support (Needham Buy, $400 target) is encouraging, but wait for clearer confirmation before adding to the position.
+
+--- MRNA ---
+AI says: WAIT  (confidence 0.75)
+Reason: Rothschild & Co downgrade to Sell with $81 price target (vs. current $146.43) is a major headwind that contradicts the technical crossover signal. Conflicting signals warrant caution before entering a new position.
+
+--- DELL ---
+AI says: BUY  (confidence 0.72)
+Reason: DELL shows strong momentum with a 13.43% gain over 5 days, price at $525 is well above both the 5-day fast average ($481.42) and 20-day slow average ($465.78), and the bullish crossover signal confirms uptrend. Recent headlines highlight AI demand and record highs, supporting positive sentiment.
+
+--- TEAM ---
+AI says: BUY  (confidence 0.72)
+Reason: Fast MA above slow MA signals uptrend; current price $198 is below recent analyst targets ($210-$230) with consistent Buy ratings. Recent dip (-2.81% today) may offer a pullback entry point into an established uptrend.
+
+--- MU ---
+AI says: BUY  (confidence 0.72)
+Reason: MU shows a bullish golden cross (5-day fast average above 20-day slow), strong recent momentum (+7.45% in 5 days, +4.62% today), and positive headlines about AI memory demand and whale activity. Price is near a 10-bar high, supporting uptrend continuation.
+
+--- SNOW ---
+AI says: BUY  (confidence 0.72)
+Reason: Snowflake shows a bullish crossover (fast MA above slow MA) with recent analyst upgrades and price targets significantly above current level (~$436–$450). Although today's decline (-4.92%) is concerning, the 5-day trend is positive (+3.33%) and multiple major banks are bullish, suggesting a tactical entry opportunity for a small position.
+
+--- HUM ---
+AI says: WAIT  (confidence 0.55)
+Reason: While HUM shows a bullish crossover (fast MA above slow MA) and positive 5-day momentum (+3.88%), the stock fell 1.48% today and recent headlines suggest sector-wide volatility around healthcare policy. More clarity on the pullback and sustained price confirmation would justify entry.
+
+--- CRWD ---
+AI says: BUY  (confidence 0.72)
+Reason: CRWD shows a bullish crossover (fast MA above slow MA) with multiple analyst upgrades and price targets well above current level ($220–$265). Despite minor 1-day and 5-day declines, the uptrend signal and strong institutional support suggest a reasonable entry point for a small position.
+
+--- VLO ---
+AI says: BUY  (confidence 0.72)
+Reason: VLO shows a bullish crossover (5-day fast MA above 20-day slow MA) with strong 5-day momentum (+5.01%), current price near recent analyst price targets ($435 Piper Sandler, $389 Wells Fargo), and positive sentiment from major analyst coverage. Minor pullback today (-0.18%) offers a reasonable entry point.
+
+--- HOOD ---
+AI says: WAIT  (confidence 0.65)
+Reason: While HOOD shows a positive crossover signal with the 5-day average above the 20-day and strong 5-day gains (+17.69%), today's -1.62% decline and negative headlines regarding regulatory/compliance concerns create uncertainty. The setup is not yet clear enough to justify initiating a new position.
+
+--- ILMN ---
+AI says: BUY  (confidence 0.68)
+Reason: Fast MA above slow MA (bullish crossover), positive 5-day momentum, and recent analyst upgrade with $235 target provide reasonable support for a small entry position.
+
+============================================================
+Done. Total AI cost this run: about $0.0177
+Saved to diary.db as run #522.
+Market is closed — skipping AI advisor run.
+Market is closed — skipping AI advisor run.
+Market is closed — skipping AI advisor run.
+Market is closed — skipping AI advisor run.
+Market is closed — skipping AI advisor run.
+Market is closed — skipping AI advisor run.
+============================================================
+AI ADVISOR RUN #710   (advisory only — no trades)
+Looking at 14 stocks: own ['AAPL', 'CRM', 'MSFT', 'NOW'], shortlist ['MRNA', 'DELL', 'TEAM', 'MU', 'SNOW', 'HUM', 'CRWD', 'PSX', 'ILMN', 'HOOD']
+============================================================
+
+--- NOW ---
+AI says: WAIT  (confidence 0.65)
+Reason: Despite a sharp 5.13% drop today, the fast MA remains above slow MA (bullish setup) and analyst sentiment is positive with a $170 price target. However, significant 9.44% decline over 5 days and high volatility warrant holding position without adding until price stabilizes.
+
+--- AAPL ---
+AI says: WAIT  (confidence 0.65)
+Reason: Price is down 1.28% today and the fast average (322.83) has pulled back closer to slow average (313.52), weakening the uptrend signal. Recent analyst hold rating and mixed market sentiment suggest holding rather than adding or selling into uncertainty.
+
+--- MSFT ---
+AI says: WAIT  (confidence 0.65)
+Reason: Price is down 1.64% today and 3.11% over 5 days, but the fast MA (499.83) remains above slow MA (494.66) with an UP crossover signal. Mixed signals suggest holding current position rather than adding or exiting.
+
+--- CRM ---
+AI says: WAIT  (confidence 0.65)
+Reason: CRM shows a strong uptrend (fast MA above slow MA) but just declined 4.72% today after a recent surge, creating uncertainty about momentum. Headlines suggest AI enthusiasm but technical risks exist; holding our position while awaiting clarity on whether this dip is a pullback or reversal is prudent.
+
+--- MRNA ---
+AI says: WAIT  (confidence 0.55)
+Reason: While the stock shows an uptrend (fast MA above slow MA) and positive 5-day momentum, the recent -1.78% daily drop and high volatility in the closing prices suggest uncertainty. We need clearer confirmation of sustained strength before entering a position.
+
+--- DELL ---
+AI says: BUY  (confidence 0.72)
+Reason: DELL shows a bullish technical setup with the fast 5-day average (495.29) clearly above the slow 20-day average (469.16), indicating upward momentum. Despite a small 1-day dip, the 5-day gain of 13.75% and recent positive headlines about AI and valuation suggest sustained strength.
+
+--- TEAM ---
+AI says: WAIT  (confidence 0.65)
+Reason: Price dropped 5.3% today and is down 7.6% over 5 days, creating uncertainty despite the bullish crossover signal. Need to see stabilization before entering a position.
+
+--- MU ---
+AI says: BUY  (confidence 0.68)
+Reason: MU shows a bullish crossover with the fast 5-day average (976.43) above the slow 20-day average (951.15), and price has gained 6.17% over 5 days with continued upward momentum. Recent price action near recent highs (1017.86) supports a cautious entry for a small position.
+
+--- SNOW ---
+AI says: BUY  (confidence 0.68)
+Reason: SNOW shows a bullish crossover (fast MA above slow MA) with positive momentum over 5 days (+2.09%), and recent analyst upgrades from Goldman Sachs (Buy, $436 target) and Macquarie support the uptrend. Current price of $353.12 sits reasonably between the two price targets, offering a favorable risk/reward setup.
+
+--- HUM ---
+AI says: WAIT  (confidence 0.65)
+Reason: While the 5-day average is above the 20-day average (bullish crossover) and 5-day momentum is positive at 3.59%, today's 1.13% drop and the stock trading below its 5-day average (397.64 vs 400.18) suggest near-term weakness. Wait for confirmation of upward momentum before entering.
+
+--- CRWD ---
+AI says: WAIT  (confidence 0.65)
+Reason: While the crossover signal is bullish and analyst price targets ($220–$265) suggest upside, the stock is down 10% over 5 days and 2.7% today, indicating near-term weakness that warrants patience for a steadier entry point.
+
+--- PSX ---
+AI says: WAIT  (confidence 0.55)
+Reason: While PSX shows a bullish crossover and strong 5-day momentum (+5.75%), a recent analyst headline warns energy stocks could underperform, and the price is already near the raised $264 target, leaving limited upside. Better to wait for a clearer setup or pullback.
+
+--- ILMN ---
+AI says: WAIT  (confidence 0.65)
+Reason: While the crossover signal is positive (fast MA above slow MA) and the S&P 500 inclusion is a bullish catalyst, the stock is down 2.35% today and trading near the middle of its recent range with mixed momentum. Better entry points may emerge after the initial index-inclusion volatility settles.
+
+--- HOOD ---
+AI says: BUY  (confidence 0.72)
+Reason: Strong uptrend with 5-day gain of +17.47%, fast MA above slow MA (bullish crossover), and recent analyst upgrades including a $150 price target from Cantor Fitzgerald suggesting further upside from current $123.25.
+
+============================================================
+Done. Total AI cost this run: about $0.0142
+Saved to diary.db as run #710.
+============================================================
+AI ADVISOR RUN #733   (advisory only — no trades)
+Looking at 14 stocks: own ['AAPL', 'CRM', 'MSFT', 'NOW'], shortlist ['MRNA', 'DELL', 'TEAM', 'MU', 'HUM', 'SNOW', 'CRWD', 'PSX', 'ILMN', 'IQV']
+============================================================
+
+--- MSFT ---
+AI says: WAIT  (confidence 0.65)
+Reason: MSFT shows a bullish crossover (fast MA above slow MA) and strong Azure momentum, but recent price action is weak (-1.32% today, -2.8% over 5 days) with the stock pulling back to near the 20-day average. Hold and monitor for stabilization before adding or exiting.
+
+--- CRM ---
+AI says: WAIT  (confidence 0.72)
+Reason: CRM is down 3.81% today and broke below its 5-day average (257.61), suggesting near-term weakness despite a bullish long-term crossover. Hold current position and wait for stabilization before adding or exiting.
+
+--- NOW ---
+AI says: WAIT  (confidence 0.65)
+Reason: Stock is down 5.3% today and 9.6% over 5 days, but the fast moving average remains above the slow average (bullish structure) and analyst price targets suggest upside to $170. Hold current position and reassess if technical support breaks.
+
+--- AAPL ---
+AI says: WAIT  (confidence 0.72)
+Reason: AAPL shows a bullish crossover (fast MA above slow MA) and analyst support ($366 target), but near-term momentum is mixed with a -1.3% daily drop and price below the 5-day average. Hold through the upcoming iPhone 18 event announcement for clarity before deciding.
+
+--- MRNA ---
+AI says: WAIT  (confidence 0.65)
+Reason: While the uptrend signal is positive (fast MA above slow MA) and the stock is up 1.3% over 5 days, today's sharp 2.32% drop and lack of clear catalyst warrant caution. Better entry points may emerge after consolidation.
+
+--- DELL ---
+AI says: BUY  (confidence 0.72)
+Reason: DELL shows a bullish crossover (5-day MA above 20-day MA) with strong recent momentum: +16.98% over 5 days and +1.77% today. Price has climbed from $451.50 to $561.22, suggesting sustained upward pressure in a tech rally environment.
+
+--- TEAM ---
+AI says: WAIT  (confidence 0.7)
+Reason: TEAM is down 6.45% today and 8.66% over 5 days despite an uptrend signal, suggesting recent weakness that warrants caution. Without supporting news context and given the sharp intraday pullback, waiting for stabilization or a clearer entry point is prudent.
+
+--- MU ---
+AI says: BUY  (confidence 0.68)
+Reason: MU shows a bullish crossover with the fast 5-day average (974.62) above the slow 20-day average (950.7), and is up 5.23% over 5 days despite a small 1-day pullback. Current price near recent highs suggests upward momentum in a chip-sector context.
+
+--- HUM ---
+AI says: BUY  (confidence 0.72)
+Reason: HUM shows a bullish crossover with the 5-day average (402.05) above the 20-day average (388.93), and price momentum is positive (+6.03% in 5 days, +1.2% today). Current price near recent highs suggests continued upward pressure.
+
+--- SNOW ---
+AI says: WAIT  (confidence 0.6)
+Reason: While the crossover signal is bullish and recent momentum is positive, the stock is trading near analyst price targets ($350) with only modest 5-day gains and high volatility. A clearer breakout above resistance or stronger conviction signals would justify entry.
+
+--- CRWD ---
+AI says: WAIT  (confidence 0.65)
+Reason: While the fast/slow crossover is UP and analyst sentiment is bullish, the 5-day decline of -9.38% and today's -1.76% drop suggest recent weakness. Current price is near the 5-day average, making entry timing unclear without more confirmation of upward momentum.
+
+--- PSX ---
+AI says: BUY  (confidence 0.72)
+Reason: PSX shows a bullish crossover with the 5-day average well above the 20-day average, supported by strong recent momentum (5.39% gain over 5 days) and a recent analyst upgrade to a $300 price target. Current price of $273.20 remains below that target with room to run.
+
+--- ILMN ---
+AI says: WAIT  (confidence 0.6)
+Reason: While the bullish crossover signal and S&P 500 inclusion news are positive, the stock is down 2.59% today and trading near the lower end of the 10-day range, suggesting recent weakness that warrants caution before entry.
+
+--- IQV ---
+AI says: WAIT  (confidence 0.65)
+Reason: While the crossover signal is positive (fast MA above slow MA), the stock dropped 2.46% today and shows no clear momentum despite being near recent highs. Without headline context and with mixed recent price action, waiting for stronger confirmation is prudent.
+
+============================================================
+Done. Total AI cost this run: about $0.0137
+Saved to diary.db as run #733.
+============================================================
+AI ADVISOR RUN #775   (advisory only — no trades)
+Looking at 20 stocks: own ['AAPL', 'CRM', 'HOOD', 'HUM', 'ILMN', 'MPC', 'MSFT', 'NOW', 'PSX', 'VLO'], shortlist ['MRNA', 'DELL', 'TEAM', 'AMD', 'MU', 'SNOW', 'CRWD', 'HPQ', 'IQV', 'TRV']
+============================================================
+
+--- MSFT ---
+AI says: WAIT  (confidence 0.65)
+Reason: MSFT shows a bullish crossover (5d fast above 20d slow) and strong AI/Azure headlines, but recent price action is mixed with a 2% decline over 5 days despite holding above support. Hold current position and await clearer momentum confirmation.
+
+--- HOOD ---
+AI says: WAIT  (confidence 0.65)
+Reason: HOOD shows bullish technicals (fast MA above slow, +13% in 5 days) and positive analyst coverage with high price targets ($140–$170), but today's -0.28% dip and the stock already up sharply suggests waiting for a minor pullback or clearer entry before adding. We already own it, so holding is prudent.
+
+--- HUM ---
+AI says: WAIT  (confidence 0.65)
+Reason: Price has pulled back 3.2% today despite an uptrend signal (fast MA above slow MA). The position remains in an uptrend structure, so holding is prudent; insufficient clarity to sell yet or add more.
+
+--- NOW ---
+AI says: WAIT  (confidence 0.65)
+Reason: Price is near the 20-day moving average with a positive crossover signal, but the stock has declined 7% over 5 days and just dropped 1% today, suggesting consolidation. The bullish analyst target warrants holding, but current weakness warrants patience for a clearer entry or confirmation of reversal.
+
+--- VLO ---
+AI says: WAIT  (confidence 0.65)
+Reason: Stock is up 5% in 5 days with a bullish crossover, but today's 0.75% dip and recent analyst upgrades (UBS target $450) suggest momentum may be pausing. Hold current position and monitor for confirmation before adding.
+
+--- CRM ---
+AI says: WAIT  (confidence 0.65)
+Reason: CRM is trading near recent highs with a bullish crossover (fast MA above slow MA), but the 5-day return is negative (-3.08%) and price has pulled back from recent peaks, suggesting near-term consolidation. Hold current position and await clearer directional confirmation.
+
+--- PSX ---
+AI says: WAIT  (confidence 0.65)
+Reason: PSX shows a positive crossover with the 5-day above the 20-day, and we're up 2.44% over 5 days with a bullish analyst upgrade to $300. However, today's -0.37% drop and mixed headlines warrant caution before adding; holding current position is prudent.
+
+--- ILMN ---
+AI says: WAIT  (confidence 0.65)
+Reason: Price has declined 3% today and 1.24% over 5 days despite a bullish crossover and positive headlines (UBS upgrade to $260 target, S&P 500 inclusion). Current consolidation near the 5-day average suggests a pullback within an uptrend; holding rather than selling makes sense, but no urgency to add until conviction strengthens.
+
+--- MPC ---
+AI says: WAIT  (confidence 0.6)
+Reason: MPC shows a bullish crossover with fast MA above slow MA and positive 5-day momentum (+2.97%), but today's -0.86% pullback combined with mixed headlines (one negative outlook) suggests waiting for clearer confirmation before adding to the position.
+
+--- AAPL ---
+AI says: WAIT  (confidence 0.72)
+Reason: AAPL shows a bullish crossover (fast MA above slow MA) and positive product launch/AI narrative headlines, but recent 5-day decline of -2.95% and today's small drop suggest near-term consolidation. Hold current position and monitor for clearer directional confirmation after today's event.
+
+--- MRNA ---
+AI says: WAIT  (confidence 0.65)
+Reason: MRNA shows mixed signals: the 5-day average is above the 20-day (bullish crossover), but the stock has declined 9.92% over 5 days and 0.98% today, suggesting recent downward pressure. The headline mentions whale activity but provides no detail on sentiment, so entry is unclear without more confirmation of reversal.
+
+--- DELL ---
+AI says: BUY  (confidence 0.72)
+Reason: Dell shows a strong bullish setup with the fast 5-day average ($524.96) well above the slow 20-day average ($475.77), a positive crossover signal, and impressive momentum gains of 31.33% over 5 days and 4.55% today. The stock is breaking above recent resistance levels despite some debt refinancing noise.
+
+--- TEAM ---
+AI says: WAIT  (confidence 0.65)
+Reason: Price is near 5-day moving average with mixed signals: uptrend crossover and positive 1-day change are encouraging, but 5-day decline of -3.91% and lack of recent news suggest waiting for clearer confirmation before entering a position.
+
+--- AMD ---
+AI says: WAIT  (confidence 0.55)
+Reason: While AMD shows a bullish crossover and strong 5-day momentum (+13.44%), a recent high-profile sale by Cathie Wood signals institutional caution, and political headlines about tech regulation create near-term uncertainty that warrants waiting for clearer conviction.
+
+--- MU ---
+AI says: BUY  (confidence 0.72)
+Reason: MU shows a bullish crossover with the fast 5-day average (994.45) above the slow 20-day average (958.9), supported by strong recent momentum (+4.09% in 1 day, +11.54% in 5 days). Price has broken above 1000 and is near session highs, suggesting positive trend continuation.
+
+--- SNOW ---
+AI says: WAIT  (confidence 0.6)
+Reason: While the fast moving average is above the slow (bullish crossover) and the 5-day momentum is positive (+4.22%), the stock pulled back -0.65% today and recent analyst sentiment (Macquarie neutral, price target $350 vs current $334.52) suggests limited near-term upside. Better entry point likely available.
+
+--- CRWD ---
+AI says: WAIT  (confidence 0.65)
+Reason: While the fast MA is above slow MA (bullish setup) and analyst maintains Buy, the stock is down 2.64% over 5 days and currently trading near the fast average with mixed momentum. Wait for clearer confirmation before entering.
+
+--- HPQ ---
+AI says: BUY  (confidence 0.72)
+Reason: HPQ shows a bullish crossover with the 5-day average (31.66) above the 20-day (30.16), positive momentum (+2.98% today, +2.48% over 5 days), and recent positive AI product news. Price is near recent highs with reasonable upside setup.
+
+--- IQV ---
+AI says: WAIT  (confidence 0.65)
+Reason: While the fast average is above the slow average (bullish crossover signal), the stock is down 1.4% today and has shown weakness over the past 5 days despite being near a 10-bar high. Price needs to stabilize or show clear momentum before initiating a position.
+
+--- TRV ---
+AI says: WAIT  (confidence 0.65)
+Reason: While the fast average is above the slow average and price is up 0.16% over 5 days, today's -0.32% decline and the lack of clear headline catalyst make this an uncertain entry point. Better confirmation or a stronger trend reversal signal would justify opening a position.
+
+============================================================
+Done. Total AI cost this run: about $0.0197
+Saved to diary.db as run #775.
+============================================================
+AI ADVISOR RUN #796   (advisory only — no trades)
+Looking at 20 stocks: own ['AAPL', 'CRM', 'HOOD', 'HUM', 'ILMN', 'MPC', 'MSFT', 'NOW', 'PSX', 'VLO'], shortlist ['MRNA', 'DELL', 'TEAM', 'AMD', 'MU', 'SNOW', 'CRWD', 'HPQ', 'IQV', 'TRV']
+============================================================
+
+--- CRM ---
+AI says: WAIT  (confidence 0.65)
+Reason: CRM is down 2% today and 5.4% over 5 days despite a bullish crossover signal (fast MA above slow MA), suggesting recent selling pressure may need to stabilize first. The positive headlines about AI/Anthropic partnerships are encouraging, but the pullback warrants patience before adding to the position.
+
+--- MSFT ---
+AI says: WAIT  (confidence 0.72)
+Reason: Price is down 1.86% over 5 days and fell 0.45% today, but the fast moving average (498.46) remains above the slow average (494.22) with an UP crossover signal, suggesting the intermediate trend is still intact. Current positioning warrants holding rather than selling on a minor dip without clearer deterioration.
+
+--- HUM ---
+AI says: WAIT  (confidence 0.65)
+Reason: Price is near recent highs with a positive crossover signal and uptrend over 5 days, but today's small decline and lack of fresh catalysts suggest waiting for clearer momentum before adding to position.
+
+--- HOOD ---
+AI says: WAIT  (confidence 0.65)
+Reason: HOOD shows bullish technicals (uptrend, fast MA above slow MA, +12.25% in 5 days) and strong analyst coverage, but a -0.98% daily pullback after a recent spike suggests consolidation. Hold the position rather than adding; the move may have run its course short-term.
+
+--- NOW ---
+AI says: WAIT  (confidence 0.65)
+Reason: Price is declining (-1.82% today, -7.79% over 5 days) despite a bullish crossover signal and positive analyst commentary. The conflicting signals and recent downtrend warrant caution before adding or exiting.
+
+--- ILMN ---
+AI says: WAIT  (confidence 0.65)
+Reason: Despite recent bullish analyst upgrades and a UBS $260 target, the stock is down 2.76% today and the 5-day trend is slightly negative. The crossover signal is positive, but price momentum and intraday weakness suggest holding rather than adding until we see stabilization.
+
+--- MPC ---
+AI says: WAIT  (confidence 0.65)
+Reason: MPC is in a clear uptrend with a bullish crossover and strong recent gains (+4.64% in 5 days), but the stock has already moved significantly from $362 to $418 and a UBS price target of $450 offers limited upside. Hold the current position rather than add.
+
+--- AAPL ---
+AI says: WAIT  (confidence 0.65)
+Reason: Price is down 2.94% over 5 days and slightly down today, but the fast moving average (320.99) remains above the slow average (314.07) with an UP crossover signal, suggesting underlying strength. Recent product launches are positive long-term catalysts, so holding is reasonable pending clearer directional conviction.
+
+--- VLO ---
+AI says: WAIT  (confidence 0.65)
+Reason: VLO is already owned and shows solid momentum with an uptrend (fast MA above slow MA, +7.08% in 5 days, recent analyst upgrade to $450 target). However, at $399 the stock is already extended from the $354 slow average, and we lack immediate catalyst clarity to justify adding more at current levels.
+
+--- PSX ---
+AI says: WAIT  (confidence 0.65)
+Reason: PSX shows solid uptrend with bullish crossover and recent analyst upgrade to $300 target, but current price of $272.53 is already near that new target, limiting near-term upside. Prudent to hold existing position and await clearer pullback or breakout confirmation.
+
+--- MRNA ---
+AI says: WAIT  (confidence 0.65)
+Reason: While the fast MA (144.37) is above the slow MA (125.78) suggesting an uptrend, the stock is down 11.65% over 5 days and currently trading below its 5-day average, showing recent weakness. The single headline lacks substantive detail to justify entry at this uncertain moment.
+
+--- DELL ---
+AI says: BUY  (confidence 0.72)
+Reason: Dell shows a strong uptrend with the 5-day average ($520.06) well above the 20-day average ($474.55), a 25.57% gain over 5 days, and bullish analyst sentiment (Evercore raising target to $650). AI demand tailwinds and recent positive catalysts support cautious entry despite a flat today.
+
+--- TEAM ---
+AI says: WAIT  (confidence 0.65)
+Reason: Price is below the 5-day average (178.12 vs 185.04) despite an uptrend signal, and recent 5-day performance is negative. No headline context available to justify entry at this uncertainty.
+
+--- AMD ---
+AI says: BUY  (confidence 0.72)
+Reason: AMD shows strong upward momentum with price up 2.59% today and 12.88% over 5 days, supported by a bullish crossover (fast MA above slow MA) and a headline asking why AMD is surging, suggesting positive sentiment in the AI/chip sector.
+
+--- MU ---
+AI says: BUY  (confidence 0.72)
+Reason: MU shows a bullish crossover (5-day fast MA at 991.21 above 20-day slow MA at 958.09), strong 5-day momentum (+9.8%), and positive headline sentiment around AI/HBM demand tailwinds for memory chip makers. Price near recent highs with upward trend intact.
+
+--- SNOW ---
+AI says: WAIT  (confidence 0.55)
+Reason: While the fast MA is above slow MA and 5-day momentum is positive (+4.14%), today's -0.73% decline and recent price volatility (swinging from 305.84 to 356.47) suggest waiting for a clearer entry signal. No compelling headline catalyst present.
+
+--- CRWD ---
+AI says: WAIT  (confidence 0.65)
+Reason: While the fast MA is above the slow MA (bullish signal), the stock has declined 3.35% over 5 days and is down 1.03% today, suggesting recent weakness despite the crossover. More clarity on momentum reversal is needed before initiating a position.
+
+--- HPQ ---
+AI says: BUY  (confidence 0.68)
+Reason: Price is near recent highs with a strong 1-day gain (+6.46%), fast MA above slow MA showing uptrend, and positive 5-day momentum. Conservative position size appropriate given lack of news context.
+
+--- IQV ---
+AI says: WAIT  (confidence 0.65)
+Reason: While the crossover signal is bullish (fast MA above slow MA) and price is near a 10-bar high at 270.65, recent momentum is slightly negative (-0.67% today, -0.34% over 5d) with no headline catalyst. Better entry points may emerge if the consolidation continues.
+
+--- TRV ---
+AI says: WAIT  (confidence 0.6)
+Reason: While the crossover signal is bullish and recent momentum is modestly positive, the stock is trading near resistance around 371 with limited recent news context, making this an uncertain entry point for a new position.
+
+============================================================
+Done. Total AI cost this run: about $0.0196
+Saved to diary.db as run #796.
+============================================================
+AI ADVISOR RUN #849   (advisory only — no trades)
+Looking at 20 stocks: own ['AAPL', 'CRM', 'HOOD', 'HUM', 'ILMN', 'MPC', 'MSFT', 'NOW', 'PSX', 'VLO'], shortlist ['MRNA', 'DELL', 'TEAM', 'HPE', 'AMD', 'MU', 'SNOW', 'CRWD', 'HPQ', 'IQV']
+============================================================
+
+--- MSFT ---
+AI says: WAIT  (confidence 0.65)
+Reason: MSFT shows a bullish crossover (fast MA above slow MA) but is down 1.34% over 5 days with mixed recent action. Hold position and await clearer directional confirmation before adding or exiting.
+
+--- AAPL ---
+AI says: WAIT  (confidence 0.65)
+Reason: AAPL shows a positive short-term signal (fast MA above slow MA, +1.27% today) but is down 1.73% over 5 days with mixed momentum. Headlines suggest upside potential from foldables, but current price is near recent range with no clear breakout momentum—hold and monitor rather than add or exit.
+
+--- HUM ---
+AI says: WAIT  (confidence 0.65)
+Reason: HUM is up 2.16% today with a bullish crossover signal (fast MA above slow MA), but the stock has only risen ~10% from its 20-day low. Without recent headlines or stronger momentum confirmation, holding the position is prudent while monitoring for further upside or reversal signals.
+
+--- VLO ---
+AI says: WAIT  (confidence 0.65)
+Reason: VLO shows a strong uptrend with price above both 5-day and 20-day moving averages, and UBS recently raised its price target to $450. However, today's -1.2% pullback and price already near $405 suggests we should observe the next few candles to confirm the pullback is temporary before adding or holding.
+
+--- MPC ---
+AI says: WAIT  (confidence 0.65)
+Reason: MPC shows a healthy uptrend with fast MA above slow MA and positive 5-day momentum (+2.07%), but today's 1.11% decline after a recent peak at $399.44 suggests a pullback. UBS's bullish $450 target supports holding, but we should wait for confirmation that today's dip isn't the start of a reversal.
+
+--- NOW ---
+AI says: WAIT  (confidence 0.65)
+Reason: Price is near the 5-day fast average (136.85) with a positive crossover signal, but the 5-day decline of -3.41% and recent volatility (swings between 131–148) suggest waiting for clearer momentum before adding or reducing position.
+
+--- CRM ---
+AI says: WAIT  (confidence 0.65)
+Reason: CRM shows a positive crossover (fast above slow) and a +0.6% gain today, but is down 4.4% over 5 days and trading below both its 5-day average (252.51) and recent highs. Hold the position; wait for clearer directional confirmation before adding or exiting.
+
+--- PSX ---
+AI says: WAIT  (confidence 0.65)
+Reason: PSX shows a positive crossover (fast above slow MA) and strong 5-day momentum (+1.27%), but today's -0.55% decline and mixed headlines (including a warning about energy stocks sinking) suggest caution. Current price of $277.15 is near UBS's $300 target, leaving limited upside; hold the position rather than add or exit prematurely.
+
+--- HOOD ---
+AI says: WAIT  (confidence 0.65)
+Reason: HOOD shows bullish technicals (fast MA above slow, +8% in 5 days, analyst price target of $140) but is already up significantly from recent lows. Current price at 115.54 is near the top of the recent range; prudent to wait for a pullback or clearer breakout above 120 before adding to the position.
+
+--- ILMN ---
+AI says: WAIT  (confidence 0.65)
+Reason: ILMN shows a bullish crossover and recent analyst upgrades (UBS to Buy, $260 target), but the stock is down 4.46% over 5 days with modest downward momentum today. Hold and monitor for stabilization before adding.
+
+--- MRNA ---
+AI says: WAIT  (confidence 0.65)
+Reason: While the crossover signal is bullish (fast MA above slow MA) and price is near recent support, the stock has declined 10.8% over 5 days and just fell 0.79% today, suggesting ongoing weakness. More clarity on stabilization is needed before initiating a position.
+
+--- DELL ---
+AI says: WAIT  (confidence 0.55)
+Reason: While DELL shows a positive crossover signal and strong 5-day momentum (+4.98%), today's -3.47% drop and recent debt refinancing news create near-term uncertainty. The bullish analyst upgrade is encouraging, but we should wait for better entry confirmation after the current pullback stabilizes.
+
+--- TEAM ---
+AI says: WAIT  (confidence 0.65)
+Reason: While the fast average is above the slow average (bullish signal) and price is up 1.58% today, the 5-day change is negative (-3.16%) and recent price action shows volatility without clear conviction. More confirmation needed before initiating a new position.
+
+--- HPE ---
+AI says: WAIT  (confidence 0.65)
+Reason: While the 5-day crossover signal is bullish and the stock is up 8.11% over 5 days, the sharp 4.86% single-day drop and lack of clear fundamental catalyst warrant caution before initiating a position.
+
+--- AMD ---
+AI says: WAIT  (confidence 0.55)
+Reason: While the fast MA is above slow MA (bullish signal) and 5-day momentum is positive, today's 2.84% drop and mixed recent headlines create uncertainty. Price volatility and lack of clear fundamental catalyst warrant caution before initiating a new position.
+
+--- MU ---
+AI says: WAIT  (confidence 0.65)
+Reason: MU shows a positive crossover signal with fast MA above slow MA and a 5-day gain of 3.18%, but today's sharp 4.02% drop and recent volatility (wide swings around the 960–1027 range) suggest uncertainty. Wait for stabilization or clearer momentum confirmation before initiating a position.
+
+--- SNOW ---
+AI says: BUY  (confidence 0.72)
+Reason: SNOW shows a bullish crossover (5-day avg 340.04 above 20-day avg 328.52), strong 5-day momentum (+11.03%), and positive 1-day move (+2.44%). Tech sector tailwinds from recent AI/expansion headlines support upside potential.
+
+--- CRWD ---
+AI says: BUY  (confidence 0.65)
+Reason: Price is near 5-day moving average with a bullish upward crossover signal (fast above slow). Recent positive momentum (+1.38% daily, +3.56% over 5 days) combined with relevant cybersecurity news suggests cautious entry point for a small position.
+
+--- HPQ ---
+AI says: WAIT  (confidence 0.65)
+Reason: While the 5-day fast average is above the 20-day slow average (bullish signal) and the 5-day return is positive at +1.29%, the stock dropped 0.93% today and shows volatile price action over the last 10 bars. Without recent headline context and given the day's weakness, waiting for clearer confirmation is prudent.
+
+--- IQV ---
+AI says: WAIT  (confidence 0.65)
+Reason: While the fast MA is above the slow MA (bullish signal) and price is near recent highs, the -1.21% daily drop and -3.78% 5-day decline suggest recent weakness that warrants confirmation before entering. No headlines available to assess catalysts.
+
+============================================================
+Done. Total AI cost this run: about $0.0198
+Saved to diary.db as run #849.
+============================================================
+AI ADVISOR RUN #862   (advisory only — no trades)
+Looking at 20 stocks: own ['AAPL', 'CRM', 'HOOD', 'HUM', 'ILMN', 'MPC', 'MSFT', 'NOW', 'PSX', 'VLO'], shortlist ['MRNA', 'DELL', 'TEAM', 'HPE', 'STX', 'AMD', 'MU', 'SNOW', 'HPQ', 'CRWD']
+============================================================
+
+--- CRM ---
+AI says: WAIT  (confidence 0.65)
+Reason: CRM is down 5.47% over 5 days and broke below the fast 5-day average, but the uptrend crossover signal remains intact and the stock is still well above the 20-day support. Hold the position and wait for clearer directional confirmation before acting.
+
+--- MPC ---
+AI says: WAIT  (confidence 0.65)
+Reason: MPC shows a positive technical setup (fast MA above slow MA, +2.21% over 5 days) and bullish analyst coverage, but today's -0.98% decline and mixed headlines suggest near-term uncertainty. Hold the position rather than add or exit prematurely.
+
+--- HUM ---
+AI says: WAIT  (confidence 0.65)
+Reason: Price is near recent highs with a modest uptrend, but momentum is weak (only +0.62% daily, +0.38% over 5 days) and no headlines to justify further buying. Hold the position rather than add.
+
+--- NOW ---
+AI says: WAIT  (confidence 0.65)
+Reason: Price is down 4.19% over 5 days and near recent lows, but the fast moving average remains above the slow average with an UP crossover signal. The recent analyst upgrade to $170 is positive, but current weakness and lack of immediate momentum warrant holding rather than adding.
+
+--- PSX ---
+AI says: WAIT  (confidence 0.65)
+Reason: PSX shows a bullish technical setup (fast MA above slow MA, uptrend over 5 days) and UBS raised its price target to $300, but the -0.25% today and conflicting headlines (including portfolio risk warning) suggest we should hold and let the position prove itself before adding.
+
+--- MSFT ---
+AI says: WAIT  (confidence 0.65)
+Reason: Price is near the 20-day average with a mild uptrend signal (fast MA above slow MA), but recent weakness (-1.32% in 5 days) and lack of strong catalysts warrant holding rather than adding. Microsoft's AI safety announcement is positive but not enough to break the consolidation pattern.
+
+--- HOOD ---
+AI says: WAIT  (confidence 0.65)
+Reason: HOOD shows a positive crossover signal (fast MA above slow MA) and strong 5-day momentum (+6.87%), but today's -0.82% decline and recent pullback from the 124.72 peak suggest near-term consolidation. Headlines indicate positive crypto/regulatory tailwinds, but a more stable entry or confirmation of support would be prudent before adding.
+
+--- ILMN ---
+AI says: WAIT  (confidence 0.72)
+Reason: While recent analyst upgrades (UBS to Buy, $260 target) and an UP crossover signal are positive, the stock is down 4.87% over 5 days and the fast average is only marginally above slow average, suggesting weak momentum confirmation. Hold current position and monitor for stronger bullish setup.
+
+--- AAPL ---
+AI says: WAIT  (confidence 0.65)
+Reason: AAPL shows a bullish technical setup (fast MA above slow MA, +3.15% today) and positive sentiment around the foldable iPhone, but broader market headwinds (Nasdaq tumbling, yields at 19-year highs, Fed rate-hike odds at 70%) create uncertainty. Hold the position and monitor for clearer directional conviction.
+
+--- VLO ---
+AI says: WAIT  (confidence 0.65)
+Reason: VLO shows a strong uptrend with a golden cross and recent analyst upgrade to $450, but today's -0.19% decline and current price of $393 already near the 5-day average suggest potential consolidation. Hold the position rather than adding risk.
+
+--- MRNA ---
+AI says: WAIT  (confidence 0.65)
+Reason: MRNA shows a bullish crossover (fast MA above slow MA) and is near support, but the 5-day decline of -10.5% and lack of strong positive catalyst warrant more confirmation before entering. A small bounce or stabilization would provide a clearer entry point.
+
+--- DELL ---
+AI says: BUY  (confidence 0.72)
+Reason: DELL shows a bullish crossover with the 5-day average ($525.31) well above the 20-day ($476.25), and positive 5-day momentum (+5.01%). Recent headlines confirm strong AI-driven demand and analyst confidence with a $650 price target, despite today's -3.43% dip which may present a minor entry opportunity.
+
+--- TEAM ---
+AI says: WAIT  (confidence 0.65)
+Reason: While the fast MA is above slow MA (bullish crossover) and today's close is positive, the 5-day return is negative (-3.23%) and price remains below the 5-day average, suggesting recent weakness. Need clearer uptrend confirmation before entering.
+
+--- HPE ---
+AI says: WAIT  (confidence 0.65)
+Reason: While the 5-day crossover signal is bullish and the 5-day return is positive, today's sharp 5.76% drop conflicts with the uptrend narrative, and the recent headline lacks specificity about HPE fundamentals. More clarity needed before entering a position.
+
+--- STX ---
+AI says: WAIT  (confidence 0.6)
+Reason: While the crossover signal is bullish and 5-day performance is strong, the recent -1.62% daily decline and lack of clear STX-specific catalysts warrant caution. Better entry clarity would be preferable before initiating a position.
+
+--- AMD ---
+AI says: WAIT  (confidence 0.6)
+Reason: AMD shows a bullish crossover (fast MA above slow MA) and strong 5-day gain (+10.65%), but today's -2.94% drop and lack of clear catalyst in headlines warrant caution before entering a new position.
+
+--- MU ---
+AI says: WAIT  (confidence 0.65)
+Reason: While the fast MA is above slow MA (bullish crossover) and 5-day momentum is positive, today's sharp 4.27% drop contradicts the uptrend and warrants confirmation before entering. Headlines suggest strong AI memory demand tailwinds, but the immediate price weakness creates uncertain entry timing.
+
+--- SNOW ---
+AI says: BUY  (confidence 0.65)
+Reason: SNOW shows a bullish crossover (5-day average above 20-day) with strong 5-day momentum (+8.34%) and price near recent highs, suggesting upward trend. Recent IT sector strength and whale activity provide additional tailwind for a small cautious entry.
+
+--- HPQ ---
+AI says: WAIT  (confidence 0.65)
+Reason: While HPQ shows a bullish crossover (fast MA above slow MA) and positive momentum over 5 days, the lack of recent news and relatively modest uptrend warrant caution. Better entry signals or headline confirmation would justify a BUY.
+
+--- CRWD ---
+AI says: BUY  (confidence 0.72)
+Reason: CRWD shows a bullish golden cross (fast 5-day MA above slow 20-day MA) with positive momentum (+2.38% over 5 days), and recent headlines indicate strong sector activity and strategic partnerships in cybersecurity/AI, supporting upside potential.
+
+============================================================
+Done. Total AI cost this run: about $0.0196
+Saved to diary.db as run #862.
+============================================================
+AI ADVISOR RUN #902   (advisory only — no trades)
+Looking at 20 stocks: own ['AAPL', 'CRM', 'HOOD', 'HUM', 'IQV', 'MPC', 'MSFT', 'NOW', 'PSX', 'VLO'], shortlist ['MRNA', 'DELL', 'TEAM', 'HPE', 'AMD', 'HPQ', 'SNOW', 'NET', 'CRWD', 'BBY']
+============================================================
+
+--- VLO ---
+AI says: WAIT  (confidence 0.65)
+Reason: VLO is in a strong uptrend with price above both moving averages and a bullish crossover signal, but it has already rallied +6.59% in 5 days and +2.51% today—suggesting momentum may be overextended in the short term. Hold the position rather than add to it.
+
+--- MPC ---
+AI says: WAIT  (confidence 0.65)
+Reason: Price is near recent highs with a solid uptrend (fast MA above slow MA, +3.27% today), but we already own it and recent headlines show mixed sentiment (UBS bullish at $450 target vs. portfolio risk warnings). Hold current position rather than add into strength.
+
+--- CRM ---
+AI says: WAIT  (confidence 0.65)
+Reason: CRM shows a positive crossover signal (fast above slow MA) and a strong 1-day bounce (+1.62%), but the 5-day trend remains negative (-6.61%) and price has fallen significantly from recent highs. Hold and monitor for clearer conviction before adding or exiting.
+
+--- HUM ---
+AI says: WAIT  (confidence 0.65)
+Reason: HUM shows a modest uptrend with the fast average above the slow average and positive 1-day momentum (+2.02%), but the 5-day gain is minimal (+0.57%) and price is near recent highs with limited new catalyst information. Hold the position rather than add or exit.
+
+--- MSFT ---
+AI says: WAIT  (confidence 0.65)
+Reason: MSFT shows a positive crossover signal with the 5-day average above the 20-day average, and today's gain of +0.65% is encouraging. However, the 5-day performance is down 2.84% and price remains near support levels, so holding the current position is prudent while awaiting clearer momentum confirmation.
+
+--- NOW ---
+AI says: WAIT  (confidence 0.6)
+Reason: Price is near the 20-day moving average with a weak bullish crossover, but the 5-day decline of -9.21% and recent volatility suggest consolidation rather than a clear trend. Analyst optimism is positive, but we should wait for stronger confirmation before adding or closing.
+
+--- HOOD ---
+AI says: WAIT  (confidence 0.65)
+Reason: HOOD shows a bullish crossover (fast MA above slow MA) with today's +1.58% gain, but the 5-day decline of -7.7% and recent negative headline about August figures suggest underlying weakness. Hold current position and monitor for clearer momentum confirmation before adding.
+
+--- AAPL ---
+AI says: WAIT  (confidence 0.65)
+Reason: Price is up 1.57% today with a bullish crossover (fast MA above slow MA), but the move is modest and recent consolidation suggests caution. Hold the position rather than add or exit; wait for clearer momentum confirmation.
+
+--- PSX ---
+AI says: WAIT  (confidence 0.65)
+Reason: PSX shows solid uptrend with fast MA above slow MA and +3.75% 5-day gain, but recent price (275.63) is already near UBS's raised target of $300 with mixed headline sentiment suggesting caution before adding.
+
+--- IQV ---
+AI says: WAIT  (confidence 0.65)
+Reason: Price is near recent highs with a positive crossover signal, but the 5-day decline of -5.05% and lack of fundamental news create uncertainty. Hold position and monitor for clearer confirmation.
+
+--- MRNA ---
+AI says: WAIT  (confidence 0.65)
+Reason: While the 5-day MA is above the 20-day MA (bullish signal) and momentum is positive today (+6.73%), the stock is down 2.06% over 5 days and headlines lack specificity about MRNA fundamentals. Wait for clearer conviction before entering.
+
+--- DELL ---
+AI says: BUY  (confidence 0.72)
+Reason: DELL shows a strong bullish setup with the fast 5-day average ($531.67) well above the slow 20-day average ($478.93), positive crossover signal, and recent gains of 10.24% in one day and 8.15% over five days. Recent analyst upgrades and strong AI-driven demand provide fundamental support for the upside move.
+
+--- TEAM ---
+AI says: WAIT  (confidence 0.65)
+Reason: While the fast MA is above slow MA (bullish signal), the stock is down 8.68% over 5 days with no recent news to explain the move, suggesting uncertainty. Price is near the slow MA support at 177.51, but momentum remains weak.
+
+--- HPE ---
+AI says: BUY  (confidence 0.72)
+Reason: HPE shows a strong upward crossover with the 5-day average above the 20-day average, recent momentum of +10.92% in one day and +12.51% over five days, and whale activity detected in tech stocks. However, confidence is moderate due to limited headline detail and potential for pullback after a sharp single-day gain.
+
+--- AMD ---
+AI says: WAIT  (confidence 0.55)
+Reason: While AMD shows a bullish crossover with the 5-day average above the 20-day and strong 5-day momentum (+12.51%), the price has already rallied significantly and sits near recent highs, limiting margin of safety for a new entry.
+
+--- HPQ ---
+AI says: WAIT  (confidence 0.65)
+Reason: While HPQ shows a strong uptrend with the fast MA above slow MA and solid recent gains (8.16% in 1d, 11.95% in 5d), the sharp 8% single-day jump warrants caution to confirm momentum isn't overextended before entering a new position.
+
+--- SNOW ---
+AI says: WAIT  (confidence 0.65)
+Reason: While the fast moving average is above slow (bullish crossover), the stock is down 7.58% over 5 days and down 0.08% today, suggesting weak recent momentum despite the technical signal. Insufficient clarity to initiate a position.
+
+--- NET ---
+AI says: BUY  (confidence 0.72)
+Reason: NET shows a bullish technical setup with the fast 5-day average (299.95) above the slow 20-day average (294.33), and price (330.75) well above both. Strong 5-day momentum (+9.38%) and recent positive headlines support entry into a small position.
+
+--- CRWD ---
+AI says: WAIT  (confidence 0.65)
+Reason: Price is near the 20-day average with a modest upward crossover signal, but recent 5-day decline of -3% and mixed momentum suggest waiting for clearer confirmation before initiating a position.
+
+--- BBY ---
+AI says: WAIT  (confidence 0.65)
+Reason: While BBY shows a bullish technical setup (fast MA above slow MA, positive momentum), recent analyst downgrade from DA Davidson to Neutral and negative sentiment override the short-term uptrend signal. Wait for clarity on analyst sentiment shift before entering.
+
+============================================================
+Done. Total AI cost this run: about $0.0194
+Saved to diary.db as run #902.
+============================================================
+AI ADVISOR RUN #917   (advisory only — no trades)
+Looking at 20 stocks: own ['AAPL', 'CRM', 'HOOD', 'HUM', 'IQV', 'MPC', 'MSFT', 'NOW', 'PSX', 'VLO'], shortlist ['MRNA', 'DELL', 'TEAM', 'HPE', 'AMD', 'HPQ', 'SNOW', 'NET', 'CRWD', 'BBY']
+============================================================
+
+--- MPC ---
+AI says: WAIT  (confidence 0.65)
+Reason: Price is near recent highs with a healthy uptrend (fast MA above slow MA, +2.68% in 5 days), but recent headlines show mixed sentiment and no clear catalyst to add now. Hold the position and reassess if support breaks or momentum weakens.
+
+--- PSX ---
+AI says: WAIT  (confidence 0.65)
+Reason: PSX shows positive momentum with a bullish crossover and 2.14% 5-day gains, but we already own it and the recent $100 oil headline mixed with a cautionary article suggests near-term volatility. Hold the position rather than adding or exiting.
+
+--- NOW ---
+AI says: WAIT  (confidence 0.65)
+Reason: Stock is near 5-day moving average with a positive crossover signal, but recent 5-day decline of -8.71% and volatile price action suggest waiting for clearer directional confirmation. Analyst forecasts are bullish, but current momentum is mixed.
+
+--- AAPL ---
+AI says: WAIT  (confidence 0.65)
+Reason: Price is at a 10-day high with a bullish crossover (fast MA above slow MA), but headlines suggest macro headwinds (higher Fed rate-hike odds) and we lack recent momentum confirmation beyond one strong day. Hold the position and monitor for consolidation or pullback before adding.
+
+--- CRM ---
+AI says: WAIT  (confidence 0.65)
+Reason: Price is near the 5-day average with a positive crossover signal, but the 5-day decline of -6.05% and recent volatility (ranging from 243 to 264) suggest uncertainty. Hold current position and monitor for clearer directional conviction before adding or exiting.
+
+--- HOOD ---
+AI says: WAIT  (confidence 0.65)
+Reason: HOOD shows a bullish crossover (fast MA above slow MA) but has declined 10% over 5 days and 0.94% today, suggesting recent weakness despite the technical signal. Better clarity needed before adding or reducing exposure.
+
+--- IQV ---
+AI says: WAIT  (confidence 0.65)
+Reason: Price is near recent highs with a positive crossover signal, but the 5-day return is negative and momentum appears mixed. Hold current position without adding until clearer directional conviction emerges.
+
+--- HUM ---
+AI says: WAIT  (confidence 0.72)
+Reason: HUM is in a healthy uptrend with a positive crossover signal and strong 1-day gain, but the 5-day return is minimal and price remains near recent highs with no clear catalyst. Hold the position and monitor for stronger confirmation before adding.
+
+--- MSFT ---
+AI says: WAIT  (confidence 0.65)
+Reason: MSFT shows a positive crossover signal with the fast MA above the slow MA, and today's gain of +0.95% is encouraging. However, the 5-day decline of -2.54% and mixed headlines (AI capacity constraints offset by strong demand) create uncertain near-term momentum, so holding is prudent rather than adding.
+
+--- VLO ---
+AI says: WAIT  (confidence 0.65)
+Reason: VLO is up 5.6% in 5 days with a bullish crossover and positive headlines, but it's already at $400 with momentum potentially exhausted in the near term. Since we already own it, holding is prudent; adding now risks buying near a local peak.
+
+--- MRNA ---
+AI says: WAIT  (confidence 0.45)
+Reason: While the fast MA is above slow MA and price jumped 6.91% today, the 5-day return is negative (-1.89%) and price remains below the recent peak of 154.27, suggesting mixed momentum and no clear entry signal yet.
+
+--- DELL ---
+AI says: BUY  (confidence 0.72)
+Reason: DELL shows strong technical momentum with price up 10.46% in one day, fast average well above slow average (bullish crossover), and recent analyst upgrade targeting $650. Positive sentiment from AI demand surge and successful refinancing support entry at current levels.
+
+--- TEAM ---
+AI says: WAIT  (confidence 0.65)
+Reason: Price is near 5-day average with a positive crossover signal, but the stock is down 7.68% over 5 days and shows recent volatility; insufficient clarity to commit to a position.
+
+--- HPE ---
+AI says: BUY  (confidence 0.72)
+Reason: HPE shows a bullish crossover (fast 5-day above slow 20-day) with strong recent momentum (+11.19% in 1 day, +12.78% in 5 days). Recent positive sector headlines support the uptrend, though we should size conservatively given the sharp single-day move.
+
+--- AMD ---
+AI says: BUY  (confidence 0.72)
+Reason: AMD shows a strong uptrend with the fast 5-day average ($504.85) decisively above the slow 20-day average ($482.04), a bullish crossover signal. The stock is up 13.18% over 5 days with positive momentum (2.51% today), and recent headlines suggest institutional interest in AI-related semiconductor plays.
+
+--- HPQ ---
+AI says: BUY  (confidence 0.68)
+Reason: HPQ shows a bullish crossover (5-day MA above 20-day MA) with strong recent momentum (+8.26% 1-day, +12.07% 5-day). Recent news mentions HP moving higher, and price is near a 10-bar high, suggesting upward momentum continuation.
+
+--- SNOW ---
+AI says: WAIT  (confidence 0.65)
+Reason: While the fast 5-day average is above the slow 20-day average (bullish crossover), the stock has declined 8.67% over 5 days and 1.26% today, suggesting weakness despite the technical signal. Entry point remains unclear without confirmation of reversal.
+
+--- NET ---
+AI says: WAIT  (confidence 0.65)
+Reason: Price is near recent highs with a -2.05% pullback today, and while the 5-day uptrend and bullish crossover are positive, the 10-bar volatility and lack of clear entry confirmation warrant patience before initiating a position.
+
+--- CRWD ---
+AI says: WAIT  (confidence 0.6)
+Reason: While the 5-day fast MA is above the 20-day slow MA (bullish crossover signal), CRWD has declined 3.89% over 5 days and 1.08% today, suggesting recent momentum is negative. Without stronger confirmation of reversal, waiting for clearer entry signals is prudent.
+
+--- BBY ---
+AI says: WAIT  (confidence 0.65)
+Reason: While price momentum is positive (up 3.55% today, fast MA above slow MA), recent analyst downgrade to Neutral with mixed sentiment creates uncertainty. Better entry point or clearer conviction likely coming.
+
+============================================================
+Done. Total AI cost this run: about $0.0193
+Saved to diary.db as run #917.
+Market is closed — skipping AI advisor run.
+Market is closed — skipping AI advisor run.
+Market is closed — skipping AI advisor run.
+Market is closed — skipping AI advisor run.
+============================================================
+AI ADVISOR RUN #1051   (advisory only — no trades)
+Looking at 20 stocks: own ['AAPL', 'CRM', 'HOOD', 'HUM', 'IQV', 'MPC', 'MSFT', 'NOW', 'PSX', 'VLO'], shortlist ['MRNA', 'DELL', 'TEAM', 'HPE', 'CRWD', 'FTNT', 'SNOW', 'HPQ', 'NET', 'BBY']
+============================================================
+
+--- HOOD ---
+AI says: WAIT  (confidence 0.65)
+Reason: HOOD shows a positive crossover signal (fast MA above slow MA) and strong 1-day gain (+2.36%), but the 5-day return is negative (-5.63%) and price remains below recent peaks. Recent headlines suggest competitive pressure from Kalshi; hold for clearer direction.
+
+--- CRM ---
+AI says: WAIT  (confidence 0.65)
+Reason: CRM shows a positive crossover signal (fast MA above slow MA) and today's +2.05% gain, but the 5-day return is negative and the recent headline questions why AI momentum hasn't translated to stock strength. Hold current position and monitor for clearer conviction.
+
+--- MSFT ---
+AI says: WAIT  (confidence 0.65)
+Reason: MSFT shows a modest up-crossover and positive 1-day momentum (+1.04%), but recent headlines warn of AI slowdown risks and broader market volatility, creating conflicting signals that argue for holding rather than acting hastily.
+
+--- AAPL ---
+AI says: WAIT  (confidence 0.65)
+Reason: Price is up 4.23% over 5 days with a bullish crossover (fast MA above slow MA), but we already own the position and momentum appears extended near recent highs. Hold and monitor for pullback or further confirmation before adding.
+
+--- HUM ---
+AI says: WAIT  (confidence 0.65)
+Reason: Stock is up 2.73% over 5 days with a bullish crossover, but the recent surge to 435.75 is a notable 5.6% jump from the 20-day average, suggesting possible overextension. Hold current position and monitor for pullback or further confirmation before adding.
+
+--- VLO ---
+AI says: WAIT  (confidence 0.65)
+Reason: VLO is in a strong uptrend with price well above both moving averages and a bullish crossover signal, but we already own it. The 7.68% 5-day gain suggests recent momentum; holding is prudent unless a clear reversal signal emerges.
+
+--- NOW ---
+AI says: WAIT  (confidence 0.65)
+Reason: Price is up 4.07% today but down 2.36% over 5 days; fast and slow averages are nearly identical (~133.4) with a bearish crossover signal suggesting consolidation rather than clear direction. Recent headlines show mixed sentiment (AI slowdown concerns offset by SaaS recovery), warranting patience for clearer momentum.
+
+--- PSX ---
+AI says: WAIT  (confidence 0.65)
+Reason: PSX shows a solid uptrend with the fast moving average above the slow average and recent gains of 3.67% over 5 days. However, the stock has already risen sharply; holding the current position is prudent unless there is a clear pullback or reversal signal.
+
+--- IQV ---
+AI says: WAIT  (confidence 0.72)
+Reason: IQV shows a bullish crossover with the fast MA above slow MA and positive 1-day momentum, but the 5-day return is slightly negative and price action is choppy. Hold the position and monitor for clearer confirmation of the uptrend before adding.
+
+--- MPC ---
+AI says: WAIT  (confidence 0.65)
+Reason: MPC is rallying with a strong 1-day gain (3.08%) and bullish crossover, but the price has jumped significantly above the 5-day average; prudent to wait for a pullback or consolidation before adding to an existing position.
+
+--- MRNA ---
+AI says: WAIT  (confidence 0.7)
+Reason: While the crossover signal is positive (fast MA above slow MA), the stock has declined 2.5% today and 3.6% over 5 days, and recent headlines lack MRNA-specific catalysts. Prudence suggests waiting for clearer momentum before initiating a position.
+
+--- DELL ---
+AI says: WAIT  (confidence 0.6)
+Reason: While the 5-day moving average is above the 20-day (bullish crossover) and an analyst raised the price target to $650, today's -4.89% drop and recent headline about falling stock create uncertainty. The entry point is unclear given the volatility.
+
+--- TEAM ---
+AI says: WAIT  (confidence 0.65)
+Reason: Price is above both moving averages with an upward crossover signal and strong 1-day momentum (+2.2%), but 5-day weakness (-3.13%) and lack of recent news warrant caution before committing capital.
+
+--- HPE ---
+AI says: WAIT  (confidence 0.45)
+Reason: HPE shows a bullish crossover signal and positive 5-day momentum (+8.37%), but today's sharp -9.24% drop on negative headlines about AI chips undermines conviction. The conflicting signals warrant waiting for clarity on whether this is a reversal or temporary pullback.
+
+--- CRWD ---
+AI says: BUY  (confidence 0.72)
+Reason: CRWD shows a bullish technical setup with the fast 5-day average above the slow 20-day average, strong recent momentum (+11.92% in 1 day, +8.58% in 5 days), and positive sector tailwinds from increased AI safety concerns driving cybersecurity demand.
+
+--- FTNT ---
+AI says: BUY  (confidence 0.72)
+Reason: Price is above both 5-day and 20-day moving averages with an upward crossover signal, and strong recent momentum (+5.85% today, +5.7% over 5 days) suggests positive short-term trend. Entry is reasonable for a small position in a paper-money learning context.
+
+--- SNOW ---
+AI says: WAIT  (confidence 0.65)
+Reason: While SNOW shows a bullish crossover (fast MA above slow MA) and today's small gain, the 5-day decline of -2.28% and recent volatility (ranging from 305.84 to 356.47) suggest uncertainty; clearer momentum confirmation would be prudent before initiating a position.
+
+--- HPQ ---
+AI says: WAIT  (confidence 0.55)
+Reason: HPQ shows a positive crossover signal with the 5-day average above the 20-day average and a 5.51% gain over 5 days, but today's sharp 3.86% drop and recent volatility create uncertainty about momentum sustainability. Recent headlines mention HP positively but lack specific fundamental catalysts, so waiting for clearer confirmation is prudent.
+
+--- NET ---
+AI says: BUY  (confidence 0.72)
+Reason: NET shows a bullish golden cross (fast MA above slow MA), strong recent momentum (+6.23% in 1 day, +16.75% in 5 days), and positive sentiment from AI-related headlines. Price is near a 10-day high, suggesting upside continuation.
+
+--- BBY ---
+AI says: BUY  (confidence 0.65)
+Reason: BBY shows a bullish crossover with the 5-day average (89.8) above the 20-day average (86.81), and price has gained 2.76% over 5 days with positive momentum. However, we lack recent headlines for context and should start with a small position given limited news confirmation.
+
+============================================================
+Done. Total AI cost this run: about $0.0192
+Saved to diary.db as run #1051.
+============================================================
+AI ADVISOR RUN #1072   (advisory only — no trades)
+Looking at 20 stocks: own ['AAPL', 'CRM', 'HOOD', 'HUM', 'IQV', 'MPC', 'MSFT', 'NOW', 'PSX', 'VLO'], shortlist ['MRNA', 'TEAM', 'DELL', 'HPE', 'CRWD', 'FTNT', 'SNOW', 'HPQ', 'NET', 'BBY']
+============================================================
+
+--- MPC ---
+AI says: WAIT  (confidence 0.65)
+Reason: Price is near recent highs with a slight daily pullback (-0.65%), and the uptrend (fast MA above slow MA) is intact. Hold the position but no urgent reason to add; wait for a clearer dip or breakout confirmation.
+
+--- HUM ---
+AI says: WAIT  (confidence 0.65)
+Reason: HUM shows a positive uptrend with the fast average above slow average and modest gains over 5 days, but the current price is near recent resistance and momentum is not decisively strong. Hold the position and monitor for clearer directional confirmation.
+
+--- VLO ---
+AI says: WAIT  (confidence 0.65)
+Reason: VLO shows a positive crossover signal with the fast MA above the slow MA, and a solid 5-day gain of 2.43%. However, today's sharp 2.74% drop and recent price volatility suggest waiting for confirmation of support before adding to the position.
+
+--- HOOD ---
+AI says: WAIT  (confidence 0.65)
+Reason: Price is up 2.45% today and the 5-day fast average is above the 20-day slow average (bullish crossover), but the 5-day return is negative at -5.55%, suggesting recent weakness. Hold current position and monitor for clearer momentum confirmation.
+
+--- MSFT ---
+AI says: WAIT  (confidence 0.65)
+Reason: Price is near recent highs with a positive crossover signal and strong 1-day momentum (+2.35%), but mixed headlines suggest near-term uncertainty about AI spending and earnings risk. Hold current position rather than add into potential pullback.
+
+--- IQV ---
+AI says: WAIT  (confidence 0.65)
+Reason: Stock is up 1.19% today and fast MA is above slow MA (bullish), but the 5-day return is negative and price remains below the recent high, suggesting consolidation. Hold and monitor for clearer directional conviction.
+
+--- PSX ---
+AI says: WAIT  (confidence 0.65)
+Reason: PSX shows a positive crossover signal with fast MA above slow MA, but today's -1.42% drop and lack of recent news create uncertainty. Hold current position and monitor for confirmation of trend strength.
+
+--- CRM ---
+AI says: WAIT  (confidence 0.65)
+Reason: Price is up 4.84% today with a bullish crossover (fast MA above slow MA), but the 5-day return is flat (0.19%), suggesting recent gains lack momentum. Headlines indicate AI hype around Salesforce but no clear fundamental catalyst to justify adding at current levels.
+
+--- NOW ---
+AI says: WAIT  (confidence 0.65)
+Reason: We own NOW at 143.0 with a strong 7.47% daily gain and uptrend signal (fast MA above slow MA). Recent headlines show positive sentiment on SaaS recovery, but the stock is near 10-day highs with limited margin of safety for a new entry or hold decision; holding existing position is prudent until clearer pullback or breakdown occurs.
+
+--- AAPL ---
+AI says: WAIT  (confidence 0.65)
+Reason: AAPL is in a healthy uptrend with the fast MA above slow MA and recent +4.51% 5-day gains, but the stock is already trading near 52-week highs with mixed sentiment around AI concerns. Hold the position rather than add or exit prematurely.
+
+--- MRNA ---
+AI says: WAIT  (confidence 0.55)
+Reason: MRNA shows a bullish crossover (fast MA above slow MA) and recent upward momentum, but the 5-day change is nearly flat (0.11%) and headlines lack specific catalysts for the stock. A clearer trend confirmation or fundamental catalyst would justify entry.
+
+--- TEAM ---
+AI says: BUY  (confidence 0.7)
+Reason: Price has risen 6.48% in one day and is trading above both the 5-day and 20-day moving averages with an UP crossover signal, suggesting positive momentum. The 10-bar pattern shows recovery from lows around 176, supporting a cautious entry.
+
+--- DELL ---
+AI says: WAIT  (confidence 0.65)
+Reason: While DELL shows a bullish crossover (fast MA above slow MA) and positive 5-day momentum (+2.51%), the recent -5.29% daily drop and conflicting headlines ("Why Is Dell Technologies Stock Falling Monday?") create uncertainty. The volatility warrants waiting for clearer confirmation before entering a position.
+
+--- HPE ---
+AI says: WAIT  (confidence 0.65)
+Reason: HPE shows a sharp -10.12% one-day drop despite a positive 5-day trend and an UP crossover signal, likely due to today's headline about chip stocks sinking on AI slowdown concerns. The conflicting signals and immediate negative momentum warrant caution until the picture stabilizes.
+
+--- CRWD ---
+AI says: BUY  (confidence 0.72)
+Reason: CRWD shows a strong bullish setup with a +14% one-day jump, fast MA crossing above slow MA (UP signal), and positive sector tailwinds from recent cybersecurity rallies tied to AI safety concerns. Conservative entry for a small position is warranted given the technical and thematic momentum.
+
+--- FTNT ---
+AI says: BUY  (confidence 0.72)
+Reason: Price is above both 5-day and 20-day moving averages with a bullish crossover signal, and recent momentum shows +8.85% in one day and +8.7% over 5 days. Stock appears to be in a uptrend with positive market sentiment.
+
+--- SNOW ---
+AI says: WAIT  (confidence 0.65)
+Reason: While the fast MA is above slow MA (bullish signal) and price is up 1% today, the stock is down 1.44% over 5 days and headlines lack specific positive catalysts for SNOW. The setup is moderately bullish but not clear enough to initiate a position without more conviction.
+
+--- HPQ ---
+AI says: WAIT  (confidence 0.6)
+Reason: While HPQ shows a bullish crossover (fast MA above slow MA) and positive 5-day momentum (+6.23%), today's sharp -3.2% drop and recent price volatility warrant caution before entering a new position. The headlines lack HPQ-specific catalysts.
+
+--- NET ---
+AI says: BUY  (confidence 0.72)
+Reason: NET shows a strong uptrend with the 5-day average above the 20-day average (UP crossover signal), recent momentum of +7.88% in one day and +18.56% over 5 days, and positive headline mentions around AI safety and cybersecurity tailwinds. Entry is reasonable for a small position.
+
+--- BBY ---
+AI says: BUY  (confidence 0.72)
+Reason: BBY shows a clear uptrend with price above both 5-day and 20-day moving averages, confirmed by an UP crossover signal. Recent momentum is positive (4% daily gain, 4.7% over 5 days), suggesting continued strength.
+
+============================================================
+Done. Total AI cost this run: about $0.0189
+Saved to diary.db as run #1072.
+============================================================
+AI ADVISOR RUN #1112   (advisory only — no trades)
+Looking at 20 stocks: own ['AAPL', 'CRM', 'HOOD', 'HUM', 'IQV', 'MPC', 'MSFT', 'NOW', 'PSX', 'VLO'], shortlist ['DELL', 'TEAM', 'HPE', 'CRWD', 'HPQ', 'SNOW', 'FTNT', 'NET', 'BBY', 'SWKS']
+============================================================
+
+--- PSX ---
+AI says: WAIT  (confidence 0.65)
+Reason: Price is near recent highs with a positive crossover signal, but momentum is modest (1.84% daily gain) and we lack headline context. Hold current position rather than add risk.
+
+--- MPC ---
+AI says: WAIT  (confidence 0.65)
+Reason: Price is up 1.51% today and above the 5-day moving average with an uptrend signal, but the recent rally from 383 to 420 is steep and lacks supporting news. Hold the position rather than add into potential overextension.
+
+--- AAPL ---
+AI says: WAIT  (confidence 0.65)
+Reason: Price is near 52-week highs with a positive crossover (fast MA above slow MA) and strong 5-day momentum (+4.28%), but today's -1% pullback and mixed Siri performance headlines introduce near-term uncertainty. Hold current position rather than add.
+
+--- HUM ---
+AI says: WAIT  (confidence 0.65)
+Reason: While the uptrend crossover signal is positive, the stock is down 1.94% today with mixed 5-day performance, suggesting consolidation. Holding current position is prudent until clearer directional momentum emerges.
+
+--- NOW ---
+AI says: WAIT  (confidence 0.65)
+Reason: Price is near recent highs with a positive crossover signal and 5-day momentum, but recent volatility (swinging from 131 to 145) and AI sector uncertainty from headlines suggest holding current position rather than adding. Monitor for consolidation before increasing exposure.
+
+--- HOOD ---
+AI says: WAIT  (confidence 0.65)
+Reason: HOOD shows mixed signals: the fast MA is above slow MA (bullish) but price declined 3.5% today and 6% over 5 days, suggesting recent weakness. Headlines hint at competitive pressures (Kalshi) and disappointing metrics, warranting patience for clearer directional confirmation before acting.
+
+--- VLO ---
+AI says: WAIT  (confidence 0.65)
+Reason: Stock is up 2% today with a bullish crossover signal and positive momentum, but current price of 404.25 is already well above both the 5-day and 20-day averages, suggesting we may already be in a run. Better to hold and monitor for pullback or consolidation before adding.
+
+--- CRM ---
+AI says: WAIT  (confidence 0.65)
+Reason: CRM is up 3% over 5 days with a bullish crossover signal, but today's -1% drop and the recent headline questioning AI momentum warrant caution before adding. Hold current position and monitor for stronger confirmation.
+
+--- MSFT ---
+AI says: WAIT  (confidence 0.65)
+Reason: MSFT shows a positive crossover (fast MA above slow MA) and modest 5-day gains of 1.14%, but today's -1.15% drop and tight clustering around the 495–505 range suggest consolidation rather than clear directional conviction. Hold the position but wait for stronger momentum confirmation.
+
+--- IQV ---
+AI says: WAIT  (confidence 0.65)
+Reason: Price is near recent highs with a positive crossover signal and uptrend momentum, but no clear catalyst or headlines justify adding to the position right now. Hold and monitor for pullback or breakout confirmation.
+
+--- DELL ---
+AI says: BUY  (confidence 0.72)
+Reason: DELL shows a bullish setup with the fast 5-day average (539.73) decisively above the slow 20-day average (485.32), and the stock is up 3.92% today and 4% over 5 days. Recent price action recovered strongly from a dip on Sept 14, and momentum appears constructive.
+
+--- TEAM ---
+AI says: WAIT  (confidence 0.65)
+Reason: While the 5-day crossover is bullish and 5-day performance is strong (+7%), the stock fell 2% today and shows volatility with a wide range over 10 days. More confirmation or a steadier entry point would be prudent.
+
+--- HPE ---
+AI says: WAIT  (confidence 0.45)
+Reason: While the fast MA is above slow MA (bullish signal) and price is up 2.76% today, recent headlines show analyst downgrades and uncertainty about HPE specifically. Without clearer conviction, holding off is prudent for a paper-money exercise.
+
+--- CRWD ---
+AI says: BUY  (confidence 0.68)
+Reason: CRWD shows a strong bullish setup: fast MA above slow MA with a confirmed uptrend, up 12.7% in 5 days and 0.55% today. Recent momentum and positive technical crossover signal suggest reasonable entry point for a small position.
+
+--- HPQ ---
+AI says: WAIT  (confidence 0.65)
+Reason: While HPQ shows positive momentum (UP crossover, +11.56% in 5 days), the recent spike from 32.73 to 35.48 followed by pullback to 34.46 suggests potential consolidation; wait for clearer confirmation of sustained strength before entering.
+
+--- SNOW ---
+AI says: WAIT  (confidence 0.65)
+Reason: While the crossover signal shows fast MA above slow MA (bullish), the stock is down 3.5% today and 4.4% over 5 days, suggesting recent weakness. Price remains near the lower end of the 10-bar range, warranting more clarity before entry.
+
+--- FTNT ---
+AI says: BUY  (confidence 0.65)
+Reason: Price has surged 8.1% over 5 days with a bullish crossover (fast MA above slow MA), and momentum is positive at current price near recent highs. Headlines suggest broad market strength.
+
+--- NET ---
+AI says: WAIT  (confidence 0.6)
+Reason: While NET shows a bullish crossover (fast MA above slow MA) and strong 5-day gains (+14.41%), the stock fell 1.54% today and is near recent resistance around 330. Better entry points may emerge on a pullback or after confirming sustained momentum above current levels.
+
+--- BBY ---
+AI says: WAIT  (confidence 0.65)
+Reason: While BBY shows a bullish crossover (fast MA above slow MA) and positive 5-day momentum (+4.63%), today's -1.43% drop and lack of recent news suggest waiting for clearer confirmation before entering a new position.
+
+--- SWKS ---
+AI says: WAIT  (confidence 0.6)
+Reason: While SWKS shows strong technicals (up 16% in 5 days, fast MA above slow MA), the sharp 10% single-day gain and mixed headlines suggest potential overextension. Better entry points may emerge after consolidation.
+
+============================================================
+Done. Total AI cost this run: about $0.0185
+Saved to diary.db as run #1112.
+============================================================
+AI ADVISOR RUN #1135   (advisory only — no trades)
+Looking at 20 stocks: own ['AAPL', 'CRM', 'HOOD', 'HUM', 'IQV', 'MPC', 'MSFT', 'NOW', 'PSX', 'VLO'], shortlist ['TEAM', 'DELL', 'CRWD', 'HPE', 'HPQ', 'SNOW', 'FTNT', 'NET', 'SWKS', 'BBY']
+============================================================
+
+--- AAPL ---
+AI says: WAIT  (confidence 0.65)
+Reason: Price is slightly down today (-0.85%) but 5-day trend is positive (+4.44%) with fast MA above slow MA, suggesting upward momentum. Headlines show mixed sentiment with AI updates but also macro headwinds (Treasury yields); hold current position and monitor.
+
+--- MPC ---
+AI says: WAIT  (confidence 0.65)
+Reason: Price is near recent highs with a strong uptrend (fast MA above slow MA, +3.69% today), but momentum appears stretched after a 7.4% move over 10 days. Hold the position while conditions remain bullish, but wait for a pullback or clearer entry signal before adding.
+
+--- NOW ---
+AI says: WAIT  (confidence 0.65)
+Reason: NOW shows a positive crossover (fast MA above slow MA) with solid 5-day momentum (+6.16%), but recent price action is choppy with high volatility in the last 10 closes. Headlines suggest sector-wide AI narrative shifts that may still be settling; wait for clearer directional confirmation before adding.
+
+--- CRM ---
+AI says: WAIT  (confidence 0.65)
+Reason: CRM shows a positive crossover (fast above slow) and 5-day momentum is up 2.89%, but today's -1.2% drop and conflicting headlines about AI business strength suggest uncertainty. Hold current position until a clearer trend emerges.
+
+--- HOOD ---
+AI says: WAIT  (confidence 0.65)
+Reason: HOOD shows a positive uptrend signal (fast MA above slow MA) but recent price action is weak with -3.38% drop today and -5.86% over 5 days, creating conflicting signals that warrant holding rather than adding or selling into uncertainty.
+
+--- PSX ---
+AI says: WAIT  (confidence 0.65)
+Reason: PSX shows bullish momentum with fast MA above slow MA and recent 3.24% daily gain, but the sharp single-day jump warrants caution; holding is prudent until we see if the momentum sustains or consolidates.
+
+--- HUM ---
+AI says: WAIT  (confidence 0.7)
+Reason: Price dropped 2.91% today despite the uptrend signal (fast MA above slow MA). The crossover remains positive, but we should wait for confirmation that the decline has stabilized before adding or exiting.
+
+--- IQV ---
+AI says: WAIT  (confidence 0.65)
+Reason: IQV shows modest uptrend with fast MA above slow MA and positive momentum (up 3.83% in 5 days), but the position is already held and current price is near recent highs with no compelling new catalyst to add exposure.
+
+--- VLO ---
+AI says: WAIT  (confidence 0.72)
+Reason: VLO shows strong uptrend with price at 396.87, fast MA well above slow MA, and recent bullish headlines. Since we already own it, holding is prudent; no clear reversal signal or profit-taking catalyst justifies selling, and entry at current levels is less attractive than holding what we have.
+
+--- MSFT ---
+AI says: WAIT  (confidence 0.72)
+Reason: MSFT shows a mild bullish crossover (fast above slow MA) and positive 5-day momentum, but today's -1.77% drop and elevated Treasury yields create near-term uncertainty. Hold the position rather than add or exit prematurely.
+
+--- TEAM ---
+AI says: WAIT  (confidence 0.65)
+Reason: While the 5-day average is above the 20-day average (bullish signal) and the stock is up 7.6% over 5 days, today's 1.54% drop and lack of recent news headlines create uncertainty. Better entry points may emerge after consolidation.
+
+--- DELL ---
+AI says: BUY  (confidence 0.68)
+Reason: DELL shows a clean bullish crossover (5-day fast average above 20-day slow average) with positive momentum (+1.87% today, +1.95% over 5 days). Price is trading near recent highs and recent headlines suggest upward price movement, supporting a cautious small entry.
+
+--- CRWD ---
+AI says: BUY  (confidence 0.72)
+Reason: CRWD shows a bullish technical setup with the fast 5-day average (220.01) above the slow 20-day average (209.8), confirmed by strong recent momentum (+14.87% over 5 days, +2.5% today). The stock is in focus with multiple headlines suggesting renewed market interest.
+
+--- HPE ---
+AI says: WAIT  (confidence 0.55)
+Reason: HPE shows a bullish crossover with fast MA above slow MA, but the stock is down 0.87% over 5 days and recent headlines suggest sector weakness (AI chip concerns, analyst downgrades). Current price of 55.6 is below the 5-day fast average of 57.43, indicating recent pullback that warrants more confirmation before entry.
+
+--- HPQ ---
+AI says: WAIT  (confidence 0.6)
+Reason: While HPQ shows a bullish crossover (fast MA above slow MA) and positive 5-day momentum (+9.38%), the stock fell -0.75% today and recent headlines lack HPQ-specific catalysts. Price action is mixed; prudent to wait for clearer confirmation before opening a position.
+
+--- SNOW ---
+AI says: WAIT  (confidence 0.65)
+Reason: While the fast moving average is above the slow average (UP crossover signal), the stock has declined 3-4% over recent periods and is trading below both key averages. A clearer entry point with stronger momentum confirmation would be more prudent before initiating a position.
+
+--- FTNT ---
+AI says: BUY  (confidence 0.68)
+Reason: FTNT is trading at 175.0 with a bullish crossover (5-day fast average above 20-day slow average) and strong 5-day momentum at +9.62%. Recent price action shows recovery from lows near 154, with upward trending momentum on the 1-day as well.
+
+--- NET ---
+AI says: BUY  (confidence 0.72)
+Reason: NET shows a bullish crossover with the 5-day average (317.7) above the 20-day average (295.79), supported by strong 5-day momentum (+14.77%). Recent cybersecurity tailwinds from Microsoft's AI safety push provide additional conviction.
+
+--- SWKS ---
+AI says: WAIT  (confidence 0.55)
+Reason: While the stock shows strong momentum (up 17.6% in 5 days with a bullish crossover), the recent 11.8% single-day spike and mixed tech sector headlines suggest potential volatility and overextension. A safer entry point may emerge after consolidation.
+
+--- BBY ---
+AI says: WAIT  (confidence 0.6)
+Reason: While BBY shows a bullish crossover (fast MA above slow MA) and positive 5-day momentum (+4.38%), today's -1.68% drop and lack of recent news create uncertainty. Better entry clarity would come after confirming the uptrend holds or on a pullback.
+
+============================================================
+Done. Total AI cost this run: about $0.0190
+Saved to diary.db as run #1135.
+AI advisor is paused (settings.AI_ADVISOR_ENABLED = False).
+AI advisor is paused (settings.AI_ADVISOR_ENABLED = False).
+AI advisor is paused (settings.AI_ADVISOR_ENABLED = False).
+AI advisor is paused (settings.AI_ADVISOR_ENABLED = False).
+AI advisor is paused (settings.AI_ADVISOR_ENABLED = False).
+AI advisor is paused (settings.AI_ADVISOR_ENABLED = False).
+AI advisor is paused (settings.AI_ADVISOR_ENABLED = False).
+AI advisor is paused (settings.AI_ADVISOR_ENABLED = False).
+AI advisor is paused (settings.AI_ADVISOR_ENABLED = False).
+AI advisor is paused (settings.AI_ADVISOR_ENABLED = False).
+AI advisor is paused (settings.AI_ADVISOR_ENABLED = False).
+AI advisor is paused (settings.AI_ADVISOR_ENABLED = False).
+AI advisor is paused (settings.AI_ADVISOR_ENABLED = False).
+AI advisor is paused (settings.AI_ADVISOR_ENABLED = False).
+AI advisor is paused (settings.AI_ADVISOR_ENABLED = False).
+AI advisor is paused (settings.AI_ADVISOR_ENABLED = False).
+AI advisor is paused (settings.AI_ADVISOR_ENABLED = False).
+AI advisor is paused (settings.AI_ADVISOR_ENABLED = False).
+AI advisor is paused (settings.AI_ADVISOR_ENABLED = False).
+AI advisor is paused (settings.AI_ADVISOR_ENABLED = False).
+AI advisor is paused (settings.AI_ADVISOR_ENABLED = False).
+AI advisor is paused (settings.AI_ADVISOR_ENABLED = False).
+AI advisor is paused (settings.AI_ADVISOR_ENABLED = False).
+AI advisor is paused (settings.AI_ADVISOR_ENABLED = False).
+AI advisor is paused (settings.AI_ADVISOR_ENABLED = False).
+AI advisor is paused (settings.AI_ADVISOR_ENABLED = False).
+AI advisor is paused (settings.AI_ADVISOR_ENABLED = False).
+AI advisor is paused (settings.AI_ADVISOR_ENABLED = False).
+AI advisor is paused (settings.AI_ADVISOR_ENABLED = False).
+AI advisor is paused (settings.AI_ADVISOR_ENABLED = False).
+AI advisor is paused (settings.AI_ADVISOR_ENABLED = False).
+AI advisor is paused (settings.AI_ADVISOR_ENABLED = False).
+AI advisor is paused (settings.AI_ADVISOR_ENABLED = False).
+AI advisor is paused (settings.AI_ADVISOR_ENABLED = False).
+AI advisor is paused (settings.AI_ADVISOR_ENABLED = False).
+AI advisor is paused (settings.AI_ADVISOR_ENABLED = False).
+AI advisor is paused (settings.AI_ADVISOR_ENABLED = False).
+AI advisor is paused (settings.AI_ADVISOR_ENABLED = False).
+AI advisor is paused (settings.AI_ADVISOR_ENABLED = False).
+AI advisor is paused (settings.AI_ADVISOR_ENABLED = False).
+AI advisor is paused (settings.AI_ADVISOR_ENABLED = False).
+AI advisor is paused (settings.AI_ADVISOR_ENABLED = False).
+AI advisor is paused (settings.AI_ADVISOR_ENABLED = False).

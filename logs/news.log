@@ -1,0 +1,68 @@
+market: neutral — Mixed idiosyncratic headlines with solid retail sales and no broad macro shock overnight.
+stock verdicts: 32  (avoid/negative: ['BBY', 'DECK', 'AMGN', 'BNTX', 'GPOR', 'NUE', 'TGT'])
+cost ~$0.1168   wrote news/2026-09-09.json
+market: neutral — Futures mixed with Dow up and Nasdaq lower amid oil near $100 and stimulus-check headlines — no single broad shock.
+stock verdicts: 35  (avoid/negative: ['NVDA', 'COO', 'CHWY', 'M', 'LMNR', 'AU', 'CCAP', 'ORCL', 'CPRT', 'RH', 'NEM'])
+cost ~$0.1513   wrote news/2026-09-10.json
+market: neutral — August CPI landed in line at 3.4% with futures modestly higher, though hawkish Fed pricing and Iran-related energy costs keep the tape mixed.
+stock verdicts: 21  (avoid/negative: ['ADBE', 'SMR', 'AVGO', 'VST', 'FIZZ', 'CRS'])
+cost ~$0.1152   wrote news/2026-09-11.json
+Not a pre-market trading day (or clock unavailable). Skipping. Use --force to override.
+Not a pre-market trading day (or clock unavailable). Skipping. Use --force to override.
+market: risk_off — Sharp overnight selloff with Nasdaq 100 futures down ~500 points as AI safety appeals from OpenAI/Anthropic hit the AI trade, compounded by a Fed hike being priced in.
+stock verdicts: 31  (avoid/negative: ['HPE', 'DELL', 'AMD', 'NVDA', 'MU', 'SNDK', 'CRWV', 'NBIS', 'GLW', 'CHTR', 'CCI', 'ADUS', 'ERII', 'GEV', 'APP', 'LEN', 'EPM', 'TCOM', 'PLAY', 'AXR'])
+cost ~$0.1009   wrote news/2026-09-14.json
+market: neutral — Index futures slipped modestly ahead of a two-day FOMC meeting with Brent near $107 and yields elevated, but there is no broad shock.
+stock verdicts: 25  (avoid/negative: ['HPE', 'SMCI', 'AXON', 'QCOM', 'PLAY', 'KMTS', 'BAC', 'AZO', 'CBRL'])
+cost ~$0.1234   wrote news/2026-09-15.json
+market: neutral — Futures higher ahead of the FOMC decision, but 10-year yields above 5%, oil near $107 and bitcoin down 4% keep the backdrop mixed.
+stock verdicts: 25  (avoid/negative: ['HOOD', 'TSLA', 'BBNX', 'CAVA'])
+cost ~$0.1297   wrote news/2026-09-16.json
+market: neutral — Fed delivered a 25bp hike and crypto ETFs saw outflows, but index futures rose and headlines are mixed rather than broadly shocking.
+stock verdicts: 20  (avoid/negative: ['PANW', 'CPRT', 'PEGA', 'S', 'FLNC', 'LEN', 'WOR'])
+cost ~$0.1144   wrote news/2026-09-17.json
+market: neutral — Futures higher with tech leading, but gains pared on Iran strike headlines and a 10-year yield near 5% keep the tape mixed.
+stock verdicts: 22  (avoid/negative: ['MU', 'CBRL', 'XENE', 'NFLX', 'MGA', 'SDST'])
+cost ~$0.1195   wrote news/2026-09-18.json
+Not a pre-market trading day (or clock unavailable). Skipping. Use --force to override.
+Not a pre-market trading day (or clock unavailable). Skipping. Use --force to override.
+market: neutral — U.S. futures are modestly higher on a chip-led tech bid, but mixed headlines (Iran warning, diesel spike, Novo trial disappointment) offer no clear broad catalyst.
+stock verdicts: 31  (avoid/negative: ['MU', 'GIS', 'KMX', 'ABVX', 'EBF', 'NVO', 'RCAT', 'NVTS'])
+cost ~$0.1045   wrote news/2026-09-21.json
+market: neutral — Futures mixed with Dow/S&P higher and Nasdaq 100 slipping; no broad shock, just rotation and idiosyncratic headlines.
+stock verdicts: 41  (avoid/negative: ['ERIC', 'DGX', 'LH', 'AZO', 'KBH', 'MLKN', 'THO', 'PAYX', 'C'])
+cost ~$0.1684   wrote news/2026-09-22.json
+market: neutral — Futures mixed with Dow/S&P higher and Nasdaq lower amid Trump's Iran rhetoric — no broad shock.
+stock verdicts: 48  (avoid/negative: ['APP', 'MPC', 'VLO', 'ACN', 'GIS', 'CTAS', 'CBRL', 'MANU', 'FUL', 'DRI', 'AVGO', 'INNV'])
+cost ~$0.1605   wrote news/2026-09-23.json
+market: neutral — Futures modestly lower with 10-year yields at multi-year highs, but jobless claims came in firm and there is no broad shock.
+stock verdicts: 28  (avoid/negative: ['MU', 'PLTR', 'ORCL', 'COST'])
+cost ~$0.1244   wrote news/2026-09-24.json
+market: neutral — Mixed durable goods data and constructive Trump-Xi headlines with futures modestly higher; no broad shock.
+stock verdicts: 38  (avoid/negative: ['DELL', 'GWW', 'COST', 'SCHL', 'ASTC', 'STFS', 'LGO', 'JAGX'])
+cost ~$0.1137   wrote news/2026-09-25.json
+Not a pre-market trading day (or clock unavailable). Skipping. Use --force to override.
+Not a pre-market trading day (or clock unavailable). Skipping. Use --force to override.
+market: risk_off — Treasury yields spiking to 5.17% with high crude, Asian equities and US futures sharply lower and gold slumping on renewed Fed hike bets.
+stock verdicts: 22  (avoid/negative: ['SNOW', 'MDB', 'CTVA'])
+cost ~$0.1148   wrote news/2026-09-28.json
+market: neutral — Mixed futures with Dow/S&P soft and Nasdaq higher amid oil strength and Iran headlines, but no broad shock.
+stock verdicts: 26  (avoid/negative: ['ORCL', 'MDB', 'NKE', 'MTN', 'TRU', 'PS', 'BLSH', 'CMCSA'])
+cost ~$0.1015   wrote news/2026-09-29.json
+market: neutral — Futures mixed with Nasdaq higher on easing Iran tensions and better-than-expected jobless claims, no broad shock.
+stock verdicts: 28  (avoid/negative: ['XOM', 'WLK', 'OLN'])
+cost ~$0.0998   wrote news/2026-10-01.json
+market: neutral — September payrolls badly missed (29K vs 90K) but yields fell and index futures rose, leaving a mixed rather than shocked tape.
+stock verdicts: 41  (avoid/negative: ['NKE', 'META', 'ATRC', 'ASTS', 'FHTX', 'BUSE', 'EQBK', 'BA', 'OWL', 'CSX', 'MKC'])
+cost ~$0.1274   wrote news/2026-10-02.json
+Not a pre-market trading day (or clock unavailable). Skipping. Use --force to override.
+Not a pre-market trading day (or clock unavailable). Skipping. Use --force to override.
+market: neutral — Index futures slip modestly on Iran/Hormuz headlines after Friday's higher close, with no broad shock catalyst.
+stock verdicts: 6  (avoid/negative: [])
+cost ~$0.0672   wrote news/2026-10-05.json
+market: neutral — Index futures modestly higher with no broad shock, though the August trade deficit came in wider than expected.
+stock verdicts: 29  (avoid/negative: ['AA', 'DIS', 'RJF', 'LPLA', 'IBKR', 'AMP', 'SF', 'STT', 'NTRS', 'SPHR'])
+cost ~$0.1133   wrote news/2026-10-06.json
+market: neutral — Futures modestly lower on a 30-year yield spike and Iran headlines, but no broad shock or credit event.
+stock verdicts: 34  (avoid/negative: ['ULCC', 'CHAR'])
+cost ~$0.1222   wrote news/2026-10-07.json

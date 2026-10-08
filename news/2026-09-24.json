@@ -1,0 +1,154 @@
+{
+  "as_of": "2026-09-24 12:45 UTC",
+  "date": "2026-09-24",
+  "market": {
+    "read": "neutral",
+    "reason": "Futures modestly lower with 10-year yields at multi-year highs, but jobless claims came in firm and there is no broad shock."
+  },
+  "stocks": {
+    "MU": {
+      "verdict": "avoid",
+      "reason": "ITC Section 337 investigation instituted plus Sept. 30 earnings and heavy short pressure"
+    },
+    "PANW": {
+      "verdict": "positive",
+      "reason": "post-earnings transcript out, new Unit 42 AI scanner and top analyst backing"
+    },
+    "PLTR": {
+      "verdict": "negative",
+      "reason": "lost $875M FAA AI contract"
+    },
+    "VLO": {
+      "verdict": "positive",
+      "reason": "Goldman maintains Buy, raises target to $457"
+    },
+    "MPC": {
+      "verdict": "neutral",
+      "reason": "industry lobbying against a potential diesel export ban, no decision yet"
+    },
+    "PSX": {
+      "verdict": "neutral",
+      "reason": "only sector-level diesel export ban speculation"
+    },
+    "CRWD": {
+      "verdict": "neutral",
+      "reason": "52-week high is technical, no company-specific catalyst"
+    },
+    "FTNT": {
+      "verdict": "neutral",
+      "reason": "only sector mention"
+    },
+    "ZS": {
+      "verdict": "neutral",
+      "reason": "only sector mention"
+    },
+    "NET": {
+      "verdict": "neutral",
+      "reason": "only a performance recap"
+    },
+    "AMD": {
+      "verdict": "neutral",
+      "reason": "only opinion pieces and long-term return recaps"
+    },
+    "META": {
+      "verdict": "positive",
+      "reason": "Wall Street upgrades outlook on Muse AI monetization plus Dolby expansion"
+    },
+    "BBY": {
+      "verdict": "positive",
+      "reason": "expanded multiyear Amazon Fire TV partnership with new ad inventory"
+    },
+    "JNJ": {
+      "verdict": "positive",
+      "reason": "positive Phase 3 MajesTEC-3 myeloma data"
+    },
+    "MRK": {
+      "verdict": "positive",
+      "reason": "Phase 2b/3 BRUNELLO trial met primary endpoint"
+    },
+    "ORCL": {
+      "verdict": "negative",
+      "reason": "invoking force majeure on a controversial data center project"
+    },
+    "OKTA": {
+      "verdict": "positive",
+      "reason": "Wells Fargo and Barclays both raise price targets"
+    },
+    "ONON": {
+      "verdict": "positive",
+      "reason": "Barclays raises target, maintains Overweight"
+    },
+    "COST": {
+      "verdict": "avoid",
+      "reason": "earnings imminent (Q4 report due)"
+    },
+    "MDGL": {
+      "verdict": "positive",
+      "reason": "Goldman reinstates Buy with $704 target"
+    },
+    "RVMD": {
+      "verdict": "positive",
+      "reason": "Goldman reinstates Buy with $267 target"
+    },
+    "ORKA": {
+      "verdict": "positive",
+      "reason": "Wedbush reiterates Outperform, $165 target"
+    },
+    "WPC": {
+      "verdict": "neutral",
+      "reason": "target trimmed but rating unchanged at Sector Perform"
+    },
+    "BSX": {
+      "verdict": "neutral",
+      "reason": "price target lowered, rating maintained Equal-Weight"
+    },
+    "FISV": {
+      "verdict": "neutral",
+      "reason": "small Clover deal and unresolved debit network chatter"
+    },
+    "HAWK": {
+      "verdict": "positive",
+      "reason": "~$18M in Middle East contract awards"
+    },
+    "WTFC": {
+      "verdict": "neutral",
+      "reason": "initiated Equal-Weight"
+    },
+    "ONB": {
+      "verdict": "positive",
+      "reason": "Wells Fargo initiates Overweight with $30 target"
+    }
+  },
+  "watched": [
+    "A",
+    "AMD",
+    "BBY",
+    "CRWD",
+    "DDOG",
+    "DELL",
+    "DXCM",
+    "EMR",
+    "FAST",
+    "FTNT",
+    "ILMN",
+    "IQV",
+    "JNJ",
+    "META",
+    "MPC",
+    "MRK",
+    "MU",
+    "NET",
+    "PANW",
+    "PLTR",
+    "PSX",
+    "SNOW",
+    "TEAM",
+    "TMO",
+    "VLO",
+    "W",
+    "ZBRA",
+    "ZS"
+  ],
+  "model": "claude-opus-5",
+  "cost_usd": 0.1244
+}

@@ -1,0 +1,161 @@
+{
+  "as_of": "2026-10-01 12:45 UTC",
+  "date": "2026-10-01",
+  "market": {
+    "read": "neutral",
+    "reason": "Futures mixed with Nasdaq higher on easing Iran tensions and better-than-expected jobless claims, no broad shock."
+  },
+  "stocks": {
+    "AMD": {
+      "verdict": "positive",
+      "reason": "HPE $1.2B AMD Helios AI rack order and AI acquisition driving rally"
+    },
+    "MU": {
+      "verdict": "positive",
+      "reason": "post-earnings beat with multiple price target raises"
+    },
+    "META": {
+      "verdict": "neutral",
+      "reason": "AI tax-credit scrutiny report, nothing concrete"
+    },
+    "IQV": {
+      "verdict": "positive",
+      "reason": "UBS reinstates Buy with $345 target"
+    },
+    "AMPL": {
+      "verdict": "positive",
+      "reason": "Piper Sandler raises target, maintains Overweight"
+    },
+    "CRWD": {
+      "verdict": "neutral",
+      "reason": "only a thematic AI cybersecurity recap"
+    },
+    "PANW": {
+      "verdict": "neutral",
+      "reason": "sympathy move on inflation data, no company catalyst"
+    },
+    "DELL": {
+      "verdict": "neutral",
+      "reason": "only tangential mention in HPE/AMD order story"
+    },
+    "AVTR": {
+      "verdict": "neutral",
+      "reason": "options whale-alert screen only"
+    },
+    "UTZ": {
+      "verdict": "neutral",
+      "reason": "overbought RSI screen is not a news event"
+    },
+    "VLO": {
+      "verdict": "neutral",
+      "reason": "stale 5-year performance recap"
+    },
+    "SPY": {
+      "verdict": "neutral",
+      "reason": "jobless claims slightly better than expected"
+    },
+    "NTAP": {
+      "verdict": "positive",
+      "reason": "Supermicro AI infrastructure collaboration and PT raise"
+    },
+    "SNOW": {
+      "verdict": "positive",
+      "reason": "expanded LSEG and UiPath partnerships"
+    },
+    "MSFT": {
+      "verdict": "positive",
+      "reason": "Wells Fargo raises target to $725"
+    },
+    "REGN": {
+      "verdict": "positive",
+      "reason": "Argus upgrade to Buy"
+    },
+    "ED": {
+      "verdict": "positive",
+      "reason": "Wells Fargo upgrade to Overweight"
+    },
+    "XOM": {
+      "verdict": "avoid",
+      "reason": "Wells Fargo downgrade to Equal-Weight"
+    },
+    "HPE": {
+      "verdict": "positive",
+      "reason": "$1.2B Vultr AI rack order and PT raise"
+    },
+    "LRCX": {
+      "verdict": "positive",
+      "reason": "B. Riley raises target, named top semi pick"
+    },
+    "SNPS": {
+      "verdict": "positive",
+      "reason": "Wells Fargo raises target to $540"
+    },
+    "SCHW": {
+      "verdict": "neutral",
+      "reason": "dual listing on Texas Stock Exchange"
+    },
+    "CCL": {
+      "verdict": "neutral",
+      "reason": "target trimmed but Overweight maintained"
+    },
+    "AQN": {
+      "verdict": "neutral",
+      "reason": "target lowered, rating unchanged"
+    },
+    "WLK": {
+      "verdict": "negative",
+      "reason": "Wells Fargo cuts price target"
+    },
+    "OLN": {
+      "verdict": "negative",
+      "reason": "Wells Fargo cuts price target"
+    },
+    "FDS": {
+      "verdict": "neutral",
+      "reason": "target raised but rating stays Underweight"
+    },
+    "SMCI": {
+      "verdict": "positive",
+      "reason": "NetApp AI infrastructure collaboration"
+    }
+  },
+  "watched": [
+    "ACVA",
+    "AMD",
+    "AMPL",
+    "ATRC",
+    "AVTR",
+    "CAI",
+    "CBZ",
+    "CORT",
+    "CRWD",
+    "CVI",
+    "DELL",
+    "ECO",
+    "ESTC",
+    "HNGE",
+    "HTFL",
+    "HZO",
+    "ILMN",
+    "IQV",
+    "META",
+    "MU",
+    "NEO",
+    "NTAP",
+    "OKTA",
+    "OMER",
+    "PANW",
+    "RBRK",
+    "RNG",
+    "RVMD",
+    "SNOW",
+    "SPY",
+    "TMO",
+    "TWLO",
+    "UTZ",
+    "VLO",
+    "XMTR"
+  ],
+  "model": "claude-opus-5",
+  "cost_usd": 0.0998
+}

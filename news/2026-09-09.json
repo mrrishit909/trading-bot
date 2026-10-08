@@ -1,0 +1,148 @@
+{
+  "as_of": "2026-09-09 20:27 UTC",
+  "date": "2026-09-09",
+  "market": {
+    "read": "risk_off",
+    "reason": "Brent pushed above $100 after US strikes on Iranian tankers, with equities slipping broadly on the geopolitical/energy shock."
+  },
+  "stocks": {
+    "AAPL": {
+      "verdict": "positive",
+      "reason": "iPhone 18/Duo foldable, Watch and AirPods launch event"
+    },
+    "AMD": {
+      "verdict": "positive",
+      "reason": "stock surged on bullish CFO long-term targets at Citi conference"
+    },
+    "MU": {
+      "verdict": "positive",
+      "reason": "HBM demand upgrade cycle and higher peer valuation read-through"
+    },
+    "MSFT": {
+      "verdict": "neutral",
+      "reason": "only broad AI-demand mentions, nothing company-specific"
+    },
+    "CRM": {
+      "verdict": "neutral",
+      "reason": "stale long-term performance recap only"
+    },
+    "HOOD": {
+      "verdict": "positive",
+      "reason": "Mizuho PT raise to $140 and new bullish initiation at $170"
+    },
+    "ILMN": {
+      "verdict": "positive",
+      "reason": "UBS upgrade to Buy, PT $260"
+    },
+    "DELL": {
+      "verdict": "positive",
+      "reason": "Evercore PT hike to $650 and refinancing on strong AI server demand"
+    },
+    "MPC": {
+      "verdict": "positive",
+      "reason": "refiners flagged as winners as Brent tops $100"
+    },
+    "PSX": {
+      "verdict": "positive",
+      "reason": "refining margins benefit from $100 oil"
+    },
+    "VLO": {
+      "verdict": "positive",
+      "reason": "refining margins benefit from $100 oil"
+    },
+    "CRWD": {
+      "verdict": "neutral",
+      "reason": "minor Wipro CISO command center partnership"
+    },
+    "NEM": {
+      "verdict": "negative",
+      "reason": "Bernstein lowered price target; gold miners flagged on wrong side of oil move"
+    },
+    "ADBE": {
+      "verdict": "avoid",
+      "reason": "earnings tomorrow"
+    },
+    "ORCL": {
+      "verdict": "avoid",
+      "reason": "earnings tomorrow"
+    },
+    "M": {
+      "verdict": "avoid",
+      "reason": "earnings tomorrow"
+    },
+    "RH": {
+      "verdict": "avoid",
+      "reason": "earnings tomorrow"
+    },
+    "AEO": {
+      "verdict": "avoid",
+      "reason": "stock tanked after weak Q2 print"
+    },
+    "TTAN": {
+      "verdict": "avoid",
+      "reason": "weak Q3 revenue guidance and CRO transition"
+    },
+    "CAL": {
+      "verdict": "positive",
+      "reason": "Q2 beat and raised full-year outlook"
+    },
+    "SUNE": {
+      "verdict": "positive",
+      "reason": "merger partner Suniva raised $835M, shares jumped"
+    },
+    "PYXS": {
+      "verdict": "negative",
+      "reason": "analyst flags safety liabilities in MICVO Phase 1 data"
+    },
+    "LINE": {
+      "verdict": "positive",
+      "reason": "Morgan Stanley upgrade to Overweight"
+    },
+    "MRK": {
+      "verdict": "positive",
+      "reason": "Leerink reiterates Outperform with higher price target"
+    },
+    "TSLA": {
+      "verdict": "neutral",
+      "reason": "robotaxi progress offset by China softness, no hard catalyst"
+    },
+    "GOOGL": {
+      "verdict": "neutral",
+      "reason": "internal AI leadership reshuffle only"
+    }
+  },
+  "watched": [
+    "AAPL",
+    "AMD",
+    "BAC",
+    "BBY",
+    "CF",
+    "CRM",
+    "CRWD",
+    "DELL",
+    "HOOD",
+    "HPQ",
+    "HUM",
+    "ILMN",
+    "IQV",
+    "MET",
+    "MPC",
+    "MRK",
+    "MRNA",
+    "MS",
+    "MSFT",
+    "MU",
+    "NEM",
+    "NOW",
+    "NUE",
+    "PSX",
+    "REGN",
+    "SNOW",
+    "TEAM",
+    "TGT",
+    "TRV",
+    "VLO"
+  ],
+  "model": "claude-opus-5",
+  "cost_usd": 0.1391
+}

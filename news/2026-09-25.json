@@ -1,0 +1,194 @@
+{
+  "as_of": "2026-09-25 12:45 UTC",
+  "date": "2026-09-25",
+  "market": {
+    "read": "neutral",
+    "reason": "Mixed durable goods data and constructive Trump-Xi headlines with futures modestly higher; no broad shock."
+  },
+  "stocks": {
+    "AMD": {
+      "verdict": "positive",
+      "reason": "BofA raises target to $720 on AI breakout"
+    },
+    "DELL": {
+      "verdict": "negative",
+      "reason": "pressured by reported Oracle Project Jupiter data center delays"
+    },
+    "TMO": {
+      "verdict": "neutral",
+      "reason": "stale record-high recap, no new catalyst"
+    },
+    "PANW": {
+      "verdict": "neutral",
+      "reason": "only CEO commentary on AI regulation"
+    },
+    "PLTR": {
+      "verdict": "neutral",
+      "reason": "passing mention in AI commentary piece"
+    },
+    "ZS": {
+      "verdict": "positive",
+      "reason": "Mizuho maintains Outperform, raises PT to $220"
+    },
+    "MRK": {
+      "verdict": "positive",
+      "reason": "FDA approval of WELIREG plus LENMIVA in advanced RCC"
+    },
+    "MET": {
+      "verdict": "positive",
+      "reason": "guided Q3 variable investment income at least $600M"
+    },
+    "AAPL": {
+      "verdict": "neutral",
+      "reason": "Qualcomm patent license renewal, incremental"
+    },
+    "NVDA": {
+      "verdict": "positive",
+      "reason": "Vera Rubin racks begin shipping via Super Micro"
+    },
+    "SMCI": {
+      "verdict": "positive",
+      "reason": "began shipping NVIDIA Vera Rubin racks, strong AI demand outlook"
+    },
+    "META": {
+      "verdict": "positive",
+      "reason": "Muse AI launch drives 52-week high and bullish analyst views"
+    },
+    "ARM": {
+      "verdict": "positive",
+      "reason": "rising on CPU design demand from Meta Muse AI"
+    },
+    "TMUS": {
+      "verdict": "positive",
+      "reason": "signed U-wifi affordability program agreement"
+    },
+    "RKLB": {
+      "verdict": "positive",
+      "reason": "Iridium shareholders approve deal"
+    },
+    "GWW": {
+      "verdict": "negative",
+      "reason": "Barclays keeps Underweight and lowers target"
+    },
+    "COST": {
+      "verdict": "negative",
+      "reason": "multiple brokers lowered price targets"
+    },
+    "DRI": {
+      "verdict": "neutral",
+      "reason": "mixed post-earnings target revisions"
+    },
+    "OKTA": {
+      "verdict": "positive",
+      "reason": "Stephens raises target to $240"
+    },
+    "CRL": {
+      "verdict": "positive",
+      "reason": "Barclays and Mizuho raise price targets"
+    },
+    "KMX": {
+      "verdict": "positive",
+      "reason": "Stephens raises target to $74"
+    },
+    "LGND": {
+      "verdict": "positive",
+      "reason": "Barclays initiates Overweight, $345 target"
+    },
+    "VIK": {
+      "verdict": "positive",
+      "reason": "StoneX initiates Buy with $99 target"
+    },
+    "TCBX": {
+      "verdict": "positive",
+      "reason": "StoneX initiates Buy with $54 target"
+    },
+    "TSEM": {
+      "verdict": "positive",
+      "reason": "new bullish coverage initiation"
+    },
+    "CF": {
+      "verdict": "positive",
+      "reason": "bullish initiation with $162 target"
+    },
+    "AXGN": {
+      "verdict": "positive",
+      "reason": "Raymond James raises target to $53"
+    },
+    "TSLA": {
+      "verdict": "positive",
+      "reason": "StoneX reiterates Buy, $475 target"
+    },
+    "GIS": {
+      "verdict": "neutral",
+      "reason": "Barclays stays Equal-Weight with small PT raise"
+    },
+    "PEP": {
+      "verdict": "neutral",
+      "reason": "earnings not until Oct. 8"
+    },
+    "SCHL": {
+      "verdict": "avoid",
+      "reason": "missed Q1 results, shares plunge"
+    },
+    "ASTC": {
+      "verdict": "avoid",
+      "reason": "wider Q4 loss on sharply lower sales"
+    },
+    "STFS": {
+      "verdict": "negative",
+      "reason": "dilutive $9.6M follow-on at $0.80"
+    },
+    "LGO": {
+      "verdict": "negative",
+      "reason": "dilutive registered direct offering with warrants"
+    },
+    "JAGX": {
+      "verdict": "negative",
+      "reason": "share issuance to retire notes, dilution"
+    },
+    "LUMN": {
+      "verdict": "neutral",
+      "reason": "exchange listing move to Nasdaq"
+    },
+    "GRAL": {
+      "verdict": "neutral",
+      "reason": "Mizuho stays Neutral despite PT raise"
+    },
+    "OBK": {
+      "verdict": "neutral",
+      "reason": "initiated at Hold"
+    }
+  },
+  "watched": [
+    "A",
+    "AAPL",
+    "AMD",
+    "APH",
+    "BBY",
+    "CRWD",
+    "DDOG",
+    "DELL",
+    "DXCM",
+    "FTNT",
+    "ILMN",
+    "IQV",
+    "KO",
+    "MET",
+    "MPC",
+    "MRK",
+    "NET",
+    "PANW",
+    "PLTR",
+    "PSX",
+    "SNOW",
+    "TEAM",
+    "TMO",
+    "VLO",
+    "W",
+    "WAT",
+    "ZBRA",
+    "ZS"
+  ],
+  "model": "claude-opus-5",
+  "cost_usd": 0.1137
+}

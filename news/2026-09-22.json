@@ -1,0 +1,208 @@
+{
+  "as_of": "2026-09-22 12:45 UTC",
+  "date": "2026-09-22",
+  "market": {
+    "read": "neutral",
+    "reason": "Futures mixed with Dow/S&P higher and Nasdaq 100 slipping; no broad shock, just rotation and idiosyncratic headlines."
+  },
+  "stocks": {
+    "ACN": {
+      "verdict": "positive",
+      "reason": "expanded Google Cloud/Volvo automotive AI partnership"
+    },
+    "AMD": {
+      "verdict": "positive",
+      "reason": "hit $1T market cap on AI demand, analysts bullish"
+    },
+    "META": {
+      "verdict": "positive",
+      "reason": "Shopify partnership for Muse AI checkout, stock soared"
+    },
+    "SHOP": {
+      "verdict": "positive",
+      "reason": "Meta Muse AI shopping/checkout partnership"
+    },
+    "MET": {
+      "verdict": "positive",
+      "reason": "analyst upgrade with higher price target"
+    },
+    "PLXS": {
+      "verdict": "positive",
+      "reason": "analyst upgrade"
+    },
+    "EAT": {
+      "verdict": "positive",
+      "reason": "analyst upgrade"
+    },
+    "WST": {
+      "verdict": "positive",
+      "reason": "analyst upgrade"
+    },
+    "OMER": {
+      "verdict": "positive",
+      "reason": "analyst upgrade"
+    },
+    "WBD": {
+      "verdict": "positive",
+      "reason": "Paramount $110B merger cleared legal hurdle, settlement talks"
+    },
+    "LEN": {
+      "verdict": "positive",
+      "reason": "Berkshire Hathaway took major stake"
+    },
+    "LLY": {
+      "verdict": "positive",
+      "reason": "CEO cites 70% share of new senior GLP-1 patients"
+    },
+    "COIN": {
+      "verdict": "positive",
+      "reason": "X Cashtag partner program and x402 payment adoption"
+    },
+    "IBKR": {
+      "verdict": "positive",
+      "reason": "named broker partner in X Cashtag program"
+    },
+    "GOOGL": {
+      "verdict": "positive",
+      "reason": "Volvo cloud deal, Qualcomm partnership, bullish Evercore view on Search"
+    },
+    "QCOM": {
+      "verdict": "positive",
+      "reason": "new Google partnership drove rally"
+    },
+    "INTC": {
+      "verdict": "positive",
+      "reason": "surged on SK Hynix foundry optimism"
+    },
+    "GME": {
+      "verdict": "positive",
+      "reason": "CEO Ryan Cohen bought $26.4M of shares"
+    },
+    "GRAB": {
+      "verdict": "positive",
+      "reason": "CEO and COO bought $30.7M of stock"
+    },
+    "FSLY": {
+      "verdict": "positive",
+      "reason": "shares up into investor day on AI security push"
+    },
+    "JBL": {
+      "verdict": "positive",
+      "reason": "announced $1.5B buyback; earnings not until Sept 30"
+    },
+    "MU": {
+      "verdict": "positive",
+      "reason": "analysts revising estimates higher; earnings Sept 30"
+    },
+    "ERIC": {
+      "verdict": "avoid",
+      "reason": "Morgan Stanley downgrade, down 4.3% premarket"
+    },
+    "DGX": {
+      "verdict": "avoid",
+      "reason": "CMS proposed Medicare lab rate cuts, shares down premarket"
+    },
+    "LH": {
+      "verdict": "negative",
+      "reason": "declined premarket on CMS lab payment rate proposal"
+    },
+    "AZO": {
+      "verdict": "avoid",
+      "reason": "earnings before the bell today"
+    },
+    "KBH": {
+      "verdict": "avoid",
+      "reason": "earnings today"
+    },
+    "MLKN": {
+      "verdict": "avoid",
+      "reason": "earnings before the bell today"
+    },
+    "THO": {
+      "verdict": "avoid",
+      "reason": "earnings today"
+    },
+    "PAYX": {
+      "verdict": "avoid",
+      "reason": "earnings imminent"
+    },
+    "C": {
+      "verdict": "negative",
+      "reason": "named in $6.9B Russia-linked sanctions-evasion payments report"
+    },
+    "PFE": {
+      "verdict": "neutral",
+      "reason": "criticism of most-favored-nation drug pricing pact, no concrete impact"
+    },
+    "AMZN": {
+      "verdict": "neutral",
+      "reason": "blocked Meta's Muse agent; no direct financial impact"
+    },
+    "NVDA": {
+      "verdict": "neutral",
+      "reason": "higher AI debt borrowing costs commentary only"
+    },
+    "NFLX": {
+      "verdict": "neutral",
+      "reason": "vague analyst opinion piece"
+    },
+    "AAPL": {
+      "verdict": "neutral",
+      "reason": "only speculation and performance-comparison pieces"
+    },
+    "CRM": {
+      "verdict": "neutral",
+      "reason": "incidental mention in fund-holdings story"
+    },
+    "DELL": {
+      "verdict": "neutral",
+      "reason": "only options whale-activity mention"
+    },
+    "TMO": {
+      "verdict": "neutral",
+      "reason": "stale long-term performance recap"
+    },
+    "FTNT": {
+      "verdict": "neutral",
+      "reason": "mentioned in a cybersecurity opinion list, no clear catalyst"
+    },
+    "ZS": {
+      "verdict": "neutral",
+      "reason": "mentioned in a cybersecurity opinion list, no clear catalyst"
+    }
+  },
+  "watched": [
+    "A",
+    "AAPL",
+    "ABBV",
+    "ACN",
+    "AMD",
+    "BBY",
+    "CRM",
+    "DELL",
+    "DHR",
+    "DXCM",
+    "ETN",
+    "FTNT",
+    "ILMN",
+    "IQV",
+    "MET",
+    "META",
+    "MPC",
+    "NOW",
+    "PLTR",
+    "PSX",
+    "QQQ",
+    "SNOW",
+    "TEAM",
+    "TMO",
+    "TRV",
+    "VLO",
+    "W",
+    "WAT",
+    "WBD",
+    "ZS"
+  ],
+  "model": "claude-opus-5",
+  "cost_usd": 0.1684
+}

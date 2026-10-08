@@ -1,0 +1,168 @@
+{
+  "as_of": "2026-09-21 12:45 UTC",
+  "date": "2026-09-21",
+  "market": {
+    "read": "neutral",
+    "reason": "U.S. futures are modestly higher on a chip-led tech bid, but mixed headlines (Iran warning, diesel spike, Novo trial disappointment) offer no clear broad catalyst."
+  },
+  "stocks": {
+    "AMD": {
+      "verdict": "neutral",
+      "reason": "premarket strength is technical, no company-specific news"
+    },
+    "AAPL": {
+      "verdict": "neutral",
+      "reason": "steady iPhone 18 Pro demand but analyst calls stock 'relatively rich'"
+    },
+    "ACN": {
+      "verdict": "positive",
+      "reason": "Anthropic AI partnership driving rebound after Friday selloff"
+    },
+    "INTC": {
+      "verdict": "neutral",
+      "reason": "premarket pop tied to broad tech rally, no specific catalyst"
+    },
+    "MU": {
+      "verdict": "avoid",
+      "reason": "earnings within days"
+    },
+    "GIS": {
+      "verdict": "avoid",
+      "reason": "earnings imminent (Q1 report ahead)"
+    },
+    "KMX": {
+      "verdict": "avoid",
+      "reason": "earnings imminent (Q2 report ahead)"
+    },
+    "ABVX": {
+      "verdict": "avoid",
+      "reason": "earnings tonight"
+    },
+    "EBF": {
+      "verdict": "avoid",
+      "reason": "earnings today before the bell"
+    },
+    "CNXC": {
+      "verdict": "neutral",
+      "reason": "analysts raise forecasts but earnings not until Sept 29"
+    },
+    "NVO": {
+      "verdict": "avoid",
+      "reason": "shares down ~5% on disappointing CagriSema trial results"
+    },
+    "RCAT": {
+      "verdict": "avoid",
+      "reason": "Teal missed the cut in Pentagon drone Gauntlet II round"
+    },
+    "XTND": {
+      "verdict": "positive",
+      "reason": "placed third and is lone public finalist in Pentagon drone round"
+    },
+    "ONDS": {
+      "verdict": "neutral",
+      "reason": "did not compete in the Pentagon round"
+    },
+    "WBD": {
+      "verdict": "positive",
+      "reason": "shares near 52-week high on Paramount settlement talks clearing merger hurdle"
+    },
+    "PSKY": {
+      "verdict": "positive",
+      "reason": "nearing California AG deal to clear WBD merger path"
+    },
+    "CRML": {
+      "verdict": "positive",
+      "reason": "surged 27% on Greenland security pact spotlighting Tanbreez deposit"
+    },
+    "IREN": {
+      "verdict": "positive",
+      "reason": "new $99 price target from Northland"
+    },
+    "MAC": {
+      "verdict": "positive",
+      "reason": "analyst upgrade"
+    },
+    "INVH": {
+      "verdict": "positive",
+      "reason": "analyst upgrade"
+    },
+    "CIEN": {
+      "verdict": "positive",
+      "reason": "analyst upgrade"
+    },
+    "AMH": {
+      "verdict": "positive",
+      "reason": "analyst upgrade"
+    },
+    "CADL": {
+      "verdict": "positive",
+      "reason": "analyst upgrade"
+    },
+    "DLR": {
+      "verdict": "positive",
+      "reason": "bullish new analyst coverage"
+    },
+    "TEM": {
+      "verdict": "positive",
+      "reason": "new analyst coverage initiated"
+    },
+    "NNE": {
+      "verdict": "positive",
+      "reason": "new analyst coverage initiated"
+    },
+    "GM": {
+      "verdict": "positive",
+      "reason": "UBS raised price target on software revenue growth"
+    },
+    "HHH": {
+      "verdict": "positive",
+      "reason": "Ackman endorses bullish long-term thesis"
+    },
+    "NVTS": {
+      "verdict": "negative",
+      "reason": "Cramer calls it a risky, unprofitable speculation"
+    },
+    "AVGO": {
+      "verdict": "neutral",
+      "reason": "stale drawdown recap plus a CNBC final-trade mention"
+    },
+    "TSLA": {
+      "verdict": "neutral",
+      "reason": "routine supplier audits ahead of Optimus production"
+    }
+  },
+  "watched": [
+    "A",
+    "AAPL",
+    "ABBV",
+    "ACN",
+    "ADM",
+    "AMD",
+    "BBY",
+    "CRM",
+    "CTSH",
+    "DELL",
+    "ELV",
+    "FTNT",
+    "GILD",
+    "HPQ",
+    "ILMN",
+    "IQV",
+    "IT",
+    "MET",
+    "MPC",
+    "NOW",
+    "NUE",
+    "PSX",
+    "SNOW",
+    "TEAM",
+    "TMO",
+    "TRV",
+    "VLO",
+    "W",
+    "WAT",
+    "ZS"
+  ],
+  "model": "claude-opus-5",
+  "cost_usd": 0.1045
+}

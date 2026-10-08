@@ -1,0 +1,128 @@
+{
+  "as_of": "2026-09-11 12:45 UTC",
+  "date": "2026-09-11",
+  "market": {
+    "read": "neutral",
+    "reason": "August CPI landed in line at 3.4% with futures modestly higher, though hawkish Fed pricing and Iran-related energy costs keep the tape mixed."
+  },
+  "stocks": {
+    "AAPL": {
+      "verdict": "neutral",
+      "reason": "only analyst commentary and watch upgrade-cycle chatter, no hard catalyst"
+    },
+    "HOOD": {
+      "verdict": "neutral",
+      "reason": "price target raise offset by soft August monthly metrics"
+    },
+    "NOW": {
+      "verdict": "positive",
+      "reason": "analyst price target raised with ~18% implied upside"
+    },
+    "ILMN": {
+      "verdict": "positive",
+      "reason": "appeared among Thursday analyst upgrades"
+    },
+    "MU": {
+      "verdict": "neutral",
+      "reason": "record Taiwan bonuses but lingering union strike threat"
+    },
+    "MPC": {
+      "verdict": "neutral",
+      "reason": "stale long-term performance recap only"
+    },
+    "VLO": {
+      "verdict": "neutral",
+      "reason": "technical trading-signal item, not news"
+    },
+    "ORCL": {
+      "verdict": "positive",
+      "reason": "Q1 beat and raised FY27 EPS guidance"
+    },
+    "ADBE": {
+      "verdict": "negative",
+      "reason": "beat and raised but shares falling premarket"
+    },
+    "SMR": {
+      "verdict": "avoid",
+      "reason": "UBS downgrade to Sell with 40% downside"
+    },
+    "CPRT": {
+      "verdict": "positive",
+      "reason": "Q4 revenue beat plus ACV Auctions acquisition"
+    },
+    "ACVA": {
+      "verdict": "positive",
+      "reason": "being acquired by Copart at $10.50/share"
+    },
+    "RH": {
+      "verdict": "positive",
+      "reason": "earnings beat and strong Q4 guidance"
+    },
+    "UBER": {
+      "verdict": "positive",
+      "reason": "CEO bought $10M of stock"
+    },
+    "AVGO": {
+      "verdict": "negative",
+      "reason": "potential EU probe into VMware licensing changes"
+    },
+    "TSM": {
+      "verdict": "positive",
+      "reason": "August revenue up 53% on AI demand"
+    },
+    "VST": {
+      "verdict": "negative",
+      "reason": "$1.5B junior notes offering priced"
+    },
+    "FIZZ": {
+      "verdict": "avoid",
+      "reason": "downbeat Q1 results"
+    },
+    "CRS": {
+      "verdict": "negative",
+      "reason": "Third Point cut stake 31% amid CEO shake-up and insider selling"
+    },
+    "GME": {
+      "verdict": "positive",
+      "reason": "store reopenings after Q2 revenue beat"
+    },
+    "SHOP": {
+      "verdict": "positive",
+      "reason": "bullish new analyst coverage initiation"
+    }
+  },
+  "watched": [
+    "AAPL",
+    "AMD",
+    "BAC",
+    "BBY",
+    "CRM",
+    "CRWD",
+    "DELL",
+    "GM",
+    "GS",
+    "HOOD",
+    "HPE",
+    "HPQ",
+    "HUM",
+    "ILMN",
+    "IQV",
+    "MET",
+    "MPC",
+    "MRK",
+    "MRNA",
+    "MSFT",
+    "MU",
+    "NEM",
+    "NOW",
+    "PSX",
+    "SMCI",
+    "SNOW",
+    "TEAM",
+    "TGT",
+    "TRV",
+    "VLO"
+  ],
+  "model": "claude-opus-5",
+  "cost_usd": 0.1152
+}
